@@ -99,7 +99,7 @@
     .hero-cta:hover { transform: rotate(0deg) scale(1.03); }
     /* COUPLE STRIP */
     .couple-strip { display: grid; grid-template-columns: repeat(3, 1fr); height: 280px; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
-    @media (max-width: 700px) { .couple-strip { grid-template-columns: 1fr 1fr; height: 200px; } }
+    @media (max-width: 700px) { .couple-strip { grid-template-columns: repeat(3, 1fr); height: 160px; } }
     .couple-strip img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; border-right: 3px solid var(--ink); filter: sepia(8%); }
     .couple-strip img:last-child { border-right: none; }
     /* PANO */
@@ -125,7 +125,40 @@
     .frame-tilt-l { transform: rotate(-2.5deg); } .frame-tilt-r { transform: rotate(2deg); }
     .frames-grid { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: flex-start; justify-content: center; margin-top: 2.5rem; }
     .frames-grid .frame { width: calc(33% - 2rem); min-width: 220px; }
-    @media (max-width: 700px) { .frames-grid .frame { width: 100%; max-width: 320px; } }
+    @media (max-width: 700px) {
+      .frames-grid {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1.5rem;
+        padding: 1rem 2rem 2rem;
+        justify-content: flex-start;
+        cursor: grab;
+      }
+      .frames-grid:active { cursor: grabbing; }
+      .frames-grid .frame {
+        flex: 0 0 78vw;
+        max-width: 300px;
+        scroll-snap-align: center;
+        width: 78vw;
+      }
+      /* subtle swipe hint */
+      .frames-grid::after {
+        content: '';
+        flex: 0 0 1rem;
+      }
+      .swipe-hint {
+        font-family: 'Caveat', cursive;
+        font-size: 1.1rem;
+        color: rgba(253,248,238,.6);
+        text-align: center;
+        margin-top: .75rem;
+        display: block;
+      }
+      .swipe-hint-hide { display: none; }
+    }
+    @media (min-width: 701px) { .swipe-hint { display: none; } }
     /* WATER SHOW */
     .water-show { position: relative; height: 380px; overflow: hidden; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--gold); }
     .water-show img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
@@ -190,8 +223,41 @@
     .success-note { font-family: 'Caveat', cursive; font-size: 1.3rem; color: rgba(253,248,238,.7); }
     /* CHAT */
     #chat-bubble { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; }
-    #chat-toggle { background: var(--gold); color: var(--ink); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; border: 3px solid var(--ink); padding: .8rem 1.2rem; cursor: pointer; box-shadow: 4px 4px 0 var(--ink); transition: transform .15s; white-space: nowrap; }
-    #chat-toggle:hover { transform: translate(-2px,-2px); }
+    #chat-toggle {
+      background: var(--gold);
+      color: var(--ink);
+      font-family: 'Anybody', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: 5px solid var(--ink);
+      padding: 1.4rem 1.8rem;
+      cursor: pointer;
+      box-shadow: 7px 7px 0 var(--ink);
+      transition: transform .15s, box-shadow .15s;
+      white-space: nowrap;
+      border-radius: 50% 8px 50% 8px;
+      transform: rotate(-4deg);
+      line-height: 1.1;
+      text-align: center;
+      animation: sticker-wobble 3s ease-in-out infinite;
+      position: relative;
+    }
+    #chat-toggle::before {
+      content: '🌊 FREE!';
+      display: block;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: var(--ink);
+      opacity: .75;
+      margin-bottom: .2rem;
+    }
+    #chat-toggle:hover { transform: rotate(0deg) scale(1.08); box-shadow: 10px 10px 0 var(--ink); }
+    @keyframes sticker-wobble {
+      0%, 100% { transform: rotate(-4deg) scale(1); }
+      50% { transform: rotate(-2deg) scale(1.04); }
+    }
     #chat-panel { display: none; flex-direction: column; width: min(360px, 92vw); background: var(--ink); border: 3px solid var(--gold); box-shadow: 6px 6px 0 rgba(0,0,0,.5); max-height: 500px; }
     #chat-panel.open { display: flex; }
     .chat-header { background: var(--gold); color: var(--ink); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; padding: .6rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--ink); }
@@ -239,7 +305,7 @@
       <div class="spinning-ring">
         <svg viewBox="0 0 180 180">
           <defs><path id="cp" d="M 90,90 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" /></defs>
-          <text><textPath href="#cp" startOffset="0%">SAVE THE DATE ✦ SAVE THE DATE ✦ SAVE THE DATE ✦</textPath></text>
+          <text><textPath href="#cp" startOffset="0%">THE DATE ✦ THE DATE ✦ THE DATE ✦ THE DATE ✦</textPath></text>
         </svg>
       </div>
       <div class="date-center">
@@ -249,6 +315,10 @@
     </div>
     <p class="hero-location">The Woodlot · Skaneateles Lake, NY</p>
     <a href="#travel-form" class="hero-cta">Share your travel plans →</a>
+    <a href="https://maps.google.com/?q=75+Woodlot+Landing,+Skaneateles+NY+13152" target="_blank" rel="noopener"
+       class="hero-cta" style="margin-top:.75rem;background:transparent;color:var(--gold);border-color:var(--gold);box-shadow:4px 4px 0 var(--gold);transform:rotate(1.5deg);">
+      📍 Where is that?! →
+    </a>
   </div>
 </section>
 
@@ -269,6 +339,7 @@
       Woods down to the water. A dock. A firepit. One of the most beautiful small lakes
       in North America. Come for the whole weekend.
     </p>
+    <span class="swipe-hint">← swipe →</span>
     <div class="frames-grid">
       <div class="frame frame-tilt-l pop d1">
         <img src="assets/web/venue-cabin-water.jpg" alt="The cabin from the water" />
@@ -385,10 +456,10 @@
     <h2 class="section-title pop d1">We've got <em>answers</em></h2>
     <div class="faq-list pop d2">
       <details><summary>What's the dress code?</summary><div class="faq-body"><strong>Outdoor cocktail / garden party.</strong> Something you'd feel great in on a lakeside lawn. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself.</div></details>
-      <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — vegetarian, vegan, and gluten-free options will be available. Put any serious allergies in the notes section of the travel form.</div></details>
+      <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — vegetarian, vegan, gluten-free, dairy-free, and allergy-friendly options will be available. <strong>Garlic &amp; allium allergies are specifically accommodated.</strong> Check all that apply in the travel form below so we can make sure you're taken care of.</div></details>
       <details><summary>What's the weather like in August?</summary><div class="faq-body"><strong>Gorgeous.</strong> 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible but usually brief.</div></details>
       <details><summary>Is there parking?</summary><div class="faq-body">Yes, parking is available at The Woodlot. More logistics details will come closer to the date.</div></details>
-      <details><summary>Can I bring kids?</summary><div class="faq-body">This is an adult-focused celebration. If you have a specific situation, reach out directly and we'll talk it through.</div></details>
+      <details><summary>Can I bring my kids?</summary><div class="faq-body">All ages welcome — the lake does not card anyone. Little ones are especially encouraged to look for lucky stones in the pebbles along the shore. If you would also like to bring your parents, you are welcome to.</div></details>
       <details><summary>Indoors or outdoors?</summary><div class="faq-body">Ceremony is outside on the lakefront. The reception starts outdoors for the golden hour and moves inside as the evening cools. Comfortable shoes are your friend.</div></details>
       <details><summary>What should I bring for the weekend?</summary><div class="faq-body"><strong>Swimsuit</strong> — the lake is crystal clear and you will want to be in it. Also: sunscreen, layers for the evening, comfortable shoes, and a camera.</div></details>
     </div>
@@ -463,7 +534,21 @@
           <div class="form-group" style="grid-column:1/-1;"><label class="form-lbl" for="fflt">Flight Number (optional)</label><input class="form-inp" type="text" id="fflt" name="flight" placeholder="e.g. AA 1234" /></div>
         </div>
         <div class="form-row" style="margin-top:1rem;">
-          <div class="form-group"><label class="form-lbl" for="fnotes">Anything else?</label><input class="form-inp" type="text" id="fnotes" name="notes" placeholder="Dietary needs, questions, excitement level…" /></div>
+          <div class="form-group" style="grid-column:1/-1;">
+            <label class="form-lbl">Dietary needs &amp; allergies — check all that apply</label>
+            <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:.5rem;">
+              <label class="radio-lbl"><input type="checkbox" name="diet_veg" value="Vegetarian" style="accent-color:var(--gold);"> Vegetarian</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_vegan" value="Vegan" style="accent-color:var(--gold);"> Vegan</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_gf" value="Gluten-free" style="accent-color:var(--gold);"> Gluten-free</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_dairy" value="Dairy-free" style="accent-color:var(--gold);"> Dairy-free</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_nut" value="Nut allergy" style="accent-color:var(--gold);"> Nut allergy</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_shellfish" value="Shellfish allergy" style="accent-color:var(--gold);"> Shellfish allergy</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_garlic" value="Garlic &amp; Allium allergy" style="accent-color:var(--gold);"> Garlic &amp; Allium allergy</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:1rem;">
+          <div class="form-group"><label class="form-lbl" for="fnotes">Anything else?</label><input class="form-inp" type="text" id="fnotes" name="notes" placeholder="Other needs, questions, excitement level…" /></div>
         </div>
         <button type="submit" class="form-btn" id="fsubmit">Send it our way ✦</button>
       </form>
@@ -495,7 +580,7 @@
       <button id="chat-send">Send</button>
     </div>
   </div>
-  <button id="chat-toggle">💬 Ask the Lake</button>
+  <button id="chat-toggle">💬 Ask<br>the Lake</button>
 </div>
 
 <script>
@@ -565,10 +650,26 @@ const RESP=[
   {k:['lake','water','swim','dock','canoe','kayak','boat'],a:[
     "That's ME! I'm Skaneateles Lake. One of the cleanest lakes in the US — you can see straight to the bottom. The dock is excellent for jumping off of. I am teal. I am cold. I am wonderful. Get in. 🌊",
     "I'm 16 miles long, up to 300 feet deep, and I have been here since the last ice age. I am extremely qualified to host a wedding. The water is cold and clear and it will make you feel alive. 🧊✨",
+    "Fun fact: the Woodlot drinks straight from me. No filter. No treatment. Just me, cold and clear from the source. Some people say I have healing properties. Those people are correct. 💧✨",
   ]},
-  {k:['food','eat','diet','vegetarian','vegan','gluten','allergy','dietary'],a:[
-    "Veg, vegan, and GF options will be available! Serious allergy? Note it in the travel form. I personally support an entire ecosystem of fish, algae, and freshwater invertebrates, so I understand dietary complexity. 🥗🐟",
-    "There will be real food — a proper dinner, not just apps. Dietary needs? Fill out the travel form and Anna & Steve will make sure you're covered. They care deeply about feeding people well. I also care. I feed fish. 🍽️",
+  {k:['drink','drinking','tap','water quality','clean','pure','filtered','heal','healing','healthy'],a:[
+    "They drink straight from me at the Woodlot. Right from the lake. No filtration needed — I am that clean. I am one of the few lakes in the US where that's possible. Some say the water has healing properties. I neither confirm nor deny this. I simply provide. 💧",
+    "Some people believe my water has healing properties. They are not wrong. You will arrive feeling like a normal person and leave feeling like you've been gently restored. That's just what I do. I'm a healing lake. Science mostly agrees. 🌿🌊",
+  ]},
+  {k:['lucky stone','luckystone','lucky rock','stone','pebble','rock','fossil','hole','donut','shale'],a:[
+    "Oh! You found out about the lucky stones! 🪨 Look in the pebbles along the shore — small, round stones with a smooth hole through them, like a tiny donut. They're fossils from Marcellus shale, worn smooth by me over thousands of years. Hard to find. Lucky when you do. Like a four-leaf clover, but ancient and geological.",
+    "Lucky stones! Small pebbles with a hole worn through — some are tiny donuts, some have just a partial hole, very rarely you find one with multiple holes. They come from the shale cliffs full of fossils. As I tumbled them for centuries the fossil tubes wore into holes. Less magic, more me being thorough. Still lucky. 🍀🪨",
+    "Keep an eye out for lucky stones while you're on the shore. Small round pebbles with a hole through them — formed from ancient fossil tubes in Marcellus shale that I patiently wore smooth over thousands of years. Finding one is good luck. Finding one with multiple holes means I like you specifically. 🪨✨",
+  ]},
+  {k:['fish','greta'],a:[
+    "The fish are harmless! They're small, they're shy, and they are FAR more afraid of you than you are of them. This is official lake policy. The fish do not want to touch your leg. They are simply existing in their home. Please respect their anxiety. 🐟",
+    "I hear there are concerns about fish-leg contact. I want to assure you: the fish are very small, very fast, and deeply uninterested in your legs. They have places to be. They are not thinking about you. You are enormous to them and honestly a little intimidating. 🐟😅",
+    "The fish. I know about the fish concern. Here is what I'll say: in all my years I have never once had a fish intentionally touch a human leg. Accidental brushes happen. It is simply water traffic. Everyone is just swimming. It's fine. It's completely fine. 🌊🐟",
+  ]},
+  {k:['food','eat','diet','vegetarian','vegan','gluten','allergy','dietary','garlic','dairy','nut','shellfish'],a:[
+    "Veg, vegan, GF, dairy-free, nut, shellfish, and garlic & allium allergies are all accommodated! Check everything that applies in the travel form. I personally support an entire ecosystem of fish, algae, and freshwater invertebrates, so I understand dietary complexity. 🥗🐟",
+    "There will be real food — a proper dinner, not just apps. Garlic & allium allergies are specifically on the list. Fill out the dietary section in the travel form and Anna & Steve will make sure you're covered. 🍽️",
+    "The travel form has a full dietary checklist — veg, vegan, GF, dairy-free, nut allergy, shellfish allergy, and garlic & allium allergy. Check yours and they'll sort it. They take feeding people seriously. 🌿",
   ]},
   {k:['weather','hot','cold','rain','temperature','august','climate'],a:[
     "August in the Finger Lakes: 70–85°F, long golden evenings, low humidity. Genuinely gorgeous. Bring a light layer for after sunset. Brief afternoon storms are possible — I sometimes cause those. Mostly: perfect lake weather. ☀️",
