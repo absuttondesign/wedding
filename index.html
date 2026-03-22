@@ -42,6 +42,21 @@
     .marquee-inner { display: inline-block; animation: marquee 32s linear infinite; }
     .marquee-inner span { padding: 0 2rem; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    /* ROTATING WORD */
+    .rotating-word-wrap { display: inline-block; overflow: hidden; vertical-align: bottom; height: 1.1em; }
+    .rotating-word { display: flex; flex-direction: column; animation: wordroll 7s steps(1) infinite; }
+    .rotating-word span { display: block; height: 1.1em; font-style: italic; color: var(--gold); }
+    @keyframes wordroll {
+      0%    { transform: translateY(0); }
+      12.5% { transform: translateY(-1.1em); }
+      25%   { transform: translateY(-2.2em); }
+      37.5% { transform: translateY(-3.3em); }
+      50%   { transform: translateY(-4.4em); }
+      62.5% { transform: translateY(-5.5em); }
+      75%   { transform: translateY(-6.6em); }
+      87.5% { transform: translateY(-7.7em); }
+      100%  { transform: translateY(0); }
+    }
     /* HERO */
     #hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
     @media (max-width: 700px) { #hero { grid-template-columns: 1fr; } }
@@ -271,7 +286,7 @@
     <div style="margin-top:2.5rem;" class="pop d2">
       <a href="https://www.airbnb.com/rooms/1642913184393041864" target="_blank" rel="noopener"
          style="display:inline-block;background:var(--ink);color:var(--gold);font-family:'Anybody',sans-serif;font-weight:900;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;padding:.8rem 1.8rem;text-decoration:none;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transform:rotate(1deg);">
-        🛖 Book the Cabin on Airbnb →
+        🛖 See the Venue →
       </a>
     </div>
   </div>
@@ -306,7 +321,7 @@
 <section class="section-wood">
   <div class="section-inner">
     <p class="diner-label pop">The Weekend</p>
-    <h2 class="section-title pop d1">Three days of <em>joy</em></h2>
+    <h2 class="section-title pop d1">Three days of <span class="rotating-word-wrap"><span class="rotating-word"><span>joy</span><span>celebration</span><span>swimming</span><span>eating</span><span>smiling</span><span>intense conversations</span><span>???</span><span>fun</span></span></span></h2>
     <p class="pop d2" style="font-size:1rem;line-height:1.75;color:rgba(253,248,238,.7);max-width:58ch;margin-bottom:2.5rem;">
       The whole weekend is the celebration. Come for as much as you can.
     </p>
@@ -473,7 +488,7 @@
       <button class="chat-close" id="chat-close-btn">×</button>
     </div>
     <div class="chat-messages" id="chat-msgs">
-      <div class="msg bot"><span class="msg-name">The Lake</span>Hi! I'm the Woodlot's resident answer-bot. Ask me anything about the wedding weekend — travel, dress code, what to pack, the schedule… I know things. 🌊</div>
+      <div class="msg bot"><span class="msg-name">The Lake</span>Hi! I'm the lake. I hold fish and secrets. 🌊 I've been here since the glaciers and I know everything about this wedding weekend. Ask me anything — travel, dress code, schedule, what to pack… I am ancient and I am ready.</div>
     </div>
     <div class="chat-input-row">
       <input type="text" id="chat-input" placeholder="Ask a question…" autocomplete="off" />
@@ -515,27 +530,27 @@ document.getElementById('chat-toggle').addEventListener('click',()=>document.get
 document.getElementById('chat-close-btn').addEventListener('click',()=>document.getElementById('chat-panel').classList.remove('open'));
 
 const RESP=[
-  {k:['dress','wear','outfit','clothes','attire','formal','casual'],a:"Outdoor cocktail / garden party! Think: something you'd feel great in on a lakeside lawn. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself. 👗✨"},
-  {k:['when','time','ceremony','what time','start'],a:"The ceremony is Saturday afternoon, August 22. Full weekend: Friday evening rehearsal dinner → Saturday afternoon ceremony + evening reception → Sunday farewell lunch. Come for all of it! 📅"},
-  {k:['schedule','weekend','friday','saturday','sunday','rehearsal','dancing'],a:"Three days! 🎉 Fri: arrive + rehearsal dinner. Sat: ceremony in the afternoon, dinner + dancing through the night. Sun: lazy morning + farewell lunch. Come for the whole thing."},
-  {k:['airport','fly','flight','travel','syr','ith','drive','car','uber','rideshare'],a:"Two airports: SYR (Syracuse, ~25 min) has the most routes. ITH (Ithaca, ~1hr) is a beautiful drive through wine country. Rent a car — you'll want it. Need a pickup? Fill out the travel form! ✈️🚗"},
-  {k:['stay','hotel','airbnb','cabin','woodlot','accommodation','sleep','lodging'],a:"The Woodlot cabin (Blakney Sisters Cabin) is on Airbnb — staying onsite is HIGHLY recommended. You won't want to leave. Plenty of other options in Skaneateles village (~10 min away). 🛖"},
-  {k:['bring','pack','what to bring','swim','swimming','lake','swimsuit'],a:"SWIMSUIT first — the lake is crystal clear and incredible. Also: sunscreen, layers for evening, comfortable shoes for the lawn, and a camera. The dock is excellent for jumping off of. 🏊🌊"},
-  {k:['food','eat','diet','vegetarian','vegan','gluten','allergy','dietary'],a:"Yes! Veg, vegan, and GF options will be available. Serious allergy or specific need? Put it in the travel form notes and Anna & Steve will make sure you're taken care of. 🥗"},
-  {k:['weather','hot','cold','rain','temperature','august','climate'],a:"August in the Finger Lakes is genuinely beautiful — 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible. Mostly: perfect. ☀️"},
-  {k:['parking','park'],a:"Yes, parking at The Woodlot. If you're staying onsite, you won't need to think about it at all. 🅿️"},
-  {k:['kids','children','child','baby'],a:"Adult-focused celebration, but if you have a specific situation reach out to Anna & Steve directly. They want everyone — including parents — fully present and relaxed. 💛"},
-  {k:['venmo','gift','money','honeymoon','present'],a:"Your presence is the best gift! But if you'd like to contribute to their honeymoon, there's a Venmo button on the site. They're dreaming big. ✈️💸"},
-  {k:['where','location','address','skaneateles','woodlot','venue','map'],a:"The Woodlot — Blakney Sisters Cabin, western shore of Skaneateles Lake, Finger Lakes, New York. ~25 min from SYR. There's a map link in the venue section! 📍"},
-  {k:['who','anna','steve','couple','engaged'],a:"Anna and Steve! Two people who really like each other, good food, good adventures, and being near water. Getting married at a place they love, with people they love. That's the whole thing. 💛"},
-  {k:['rsvp','form','travel form','tell you','let you know'],a:"Scroll down to the travel form on this page! Share your group, guest count, where you're staying, and if you need an airport pickup. Best way to keep them in the loop. 📝"},
-  {k:['hello','hi','hey','howdy','hola','good morning'],a:"Hi! 👋 I'm the Woodlot's know-it-all lake oracle. Ask me about travel, dress code, the schedule, what to bring, or anything about the wedding weekend!"},
+  {k:['dress','wear','outfit','clothes','attire','formal','casual'],a:"Outdoor cocktail / garden party — think lakeside lawn realness. Sundresses, linen suits, flowy fabrics. Light colors, breathable materials. Things that move like water. (I'm water. I move beautifully.) Express yourself. 👗🌊"},
+  {k:['when','time','ceremony','what time','start'],a:"Saturday afternoon, August 22. Full weekend: Friday rehearsal dinner → Saturday ceremony + reception → Sunday farewell lunch. Come for all three days. I'll be here the whole time. I'm a lake. I don't leave. 📅"},
+  {k:['schedule','weekend','friday','saturday','sunday','rehearsal','dancing'],a:"Three glorious days! 🎉 Fri: arrive + rehearsal dinner. Sat: ceremony in the afternoon, dinner + dancing through the night. Sun: lazy morning farewell lunch. I recommend arriving with swim capacity. I am here and I am clear and I am waiting."},
+  {k:['airport','fly','flight','travel','syr','ith','drive','car','uber','rideshare'],a:"Two airports: SYR (Syracuse, ~25 min) has the most flights. ITH (Ithaca, ~1hr) is a gorgeous drive through wine country. Rent a car — you'll want it. Both routes eventually end at me. Everything ends at the lake. ✈️🚗"},
+  {k:['stay','hotel','airbnb','cabin','woodlot','accommodation','sleep','lodging'],a:"Staying at The Woodlot cabin is HIGHLY recommended. You'll wake up and I'll be right there, sparkling at you. Other options in Skaneateles village (~10 min away) if needed, but waking up next to a glacier lake is not something to miss. 🛖"},
+  {k:['bring','pack','what to bring','swim','swimming','lake','swimsuit'],a:"SWIMSUIT. Non-negotiable. I am one of the cleanest lakes in the United States and I expect to be swum in. Also: sunscreen, layers for evening, comfortable shoes, a camera. You will want photos of me. Everyone does. 🏊🌊"},
+  {k:['food','eat','diet','vegetarian','vegan','gluten','allergy','dietary'],a:"Veg, vegan, and GF options will be available! Serious allergy? Note it in the travel form. I personally support an entire ecosystem of fish, algae, and freshwater invertebrates, so I understand dietary complexity. 🥗🐟"},
+  {k:['weather','hot','cold','rain','temperature','august','climate'],a:"August in the Finger Lakes: 70–85°F, long golden evenings, low humidity. Genuinely gorgeous. Bring a layer for after sunset. Brief afternoon storms are possible — I sometimes cause those. Mostly: perfect lake weather. ☀️"},
+  {k:['parking','park'],a:"Yes, parking at The Woodlot. Easy. I myself do not have a parking situation — I am simply HERE, in my place, as I have been for 10,000 years. You may park nearby. 🅿️"},
+  {k:['kids','children','child','baby'],a:"Adult-focused celebration! If you have a specific situation, reach out to Anna & Steve directly. I am ageless and contain multitudes, but the weekend is designed for grown-ups to be fully present. 💛"},
+  {k:['venmo','gift','money','honeymoon','present'],a:"Your presence is the best gift! If you'd like to contribute to the honeymoon fund, there's a Venmo button on the site. They're going somewhere with water, probably. All good trips involve water. It's a fact. ✈️💸"},
+  {k:['where','location','address','skaneateles','woodlot','venue','map'],a:"The Woodlot — western shore of Skaneateles Lake, Finger Lakes, New York. ~25 min from SYR. There's a map link in the venue section. Skaneateles means 'long lake' in Haudenosaunee. That's me. I am long. 📍"},
+  {k:['who','anna','steve','couple','engaged'],a:"Anna and Steve! Two people who love each other, love adventures, and clearly have excellent taste in bodies of water. They chose me. They're getting married in my presence. I'm honored and a little smug about it. 💛"},
+  {k:['rsvp','form','travel form','tell you','let you know'],a:"Scroll down to the travel form! Share your group, guest count, where you're staying, airport pickup needs. I also accept offerings of smooth stones thrown gently into my surface. But the form is preferred. 📝"},
+  {k:['hello','hi','hey','howdy','hola','good morning'],a:"Hello! 👋 I'm the lake. I hold fish and secrets. Ask me about travel, the dress code, the schedule, accommodations, weather, what to pack — I know everything that happens on my shores."},
 ];
 
 function getR(input){
   const q=input.toLowerCase();
   for(const r of RESP){ if(r.k.some(k=>q.includes(k))) return r.a; }
-  return "Hmm, I'm just a lake! 🌊 Try asking about: travel, dress code, schedule, accommodations, weather, food, what to pack, or gifts!";
+  return "I'm a lake, not a search engine. 🌊 But I know a lot! Try asking about: travel, dress code, the schedule, where to stay, weather, food, what to pack, or gifts.";
 }
 function addMsg(text,type){
   const msgs=document.getElementById('chat-msgs');
