@@ -4,6 +4,7 @@
 
 
 **Live URL:** https://absuttondesign.github.io/wedding
+**Venue address:** 91 Woodlot Landing, Skaneateles, NY 13152
 **GitHub repo:** https://github.com/absuttondesign/wedding
 **Deploy:** GitHub Pages from `main` branch, root `/`
 **SEO:** noindex (private link-only, family and friends)

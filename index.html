@@ -234,6 +234,13 @@
     .stay-detail { background:rgba(255,255,255,.06); padding:1rem; border-left:3px solid var(--gold); }
     .stay-detail-label { font-family:'Anybody',sans-serif; font-weight:700; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:.3rem; }
     .stay-detail-value { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--cream); line-height:1.4; }
+    .unit-room { padding:.5rem 0; border-bottom:1px dashed rgba(253,248,238,.15); }
+    .unit-room:last-child { border-bottom:none; }
+    .unit-room-label { font-family:'Anybody',sans-serif; font-weight:700; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); opacity:.75; margin-bottom:.4rem; }
+    .unit-guest { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; padding:.15rem 0; }
+    .unit-guest-name { font-family:'Playfair Display',serif; font-size:1rem; }
+    .unit-guest-bed { font-size:.85rem; color:rgba(253,248,238,.6); font-style:italic; }
+    .unit-self .unit-guest-name { color:var(--gold); font-weight:700; }
     .stay-link-btn { display:inline-block; background:rgba(255,255,255,.1); color:var(--cream); font-family:'Anybody',sans-serif; font-weight:700; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; padding:.6rem 1.2rem; text-decoration:none; border:2px solid rgba(253,248,238,.3); transition:background .2s; }
     .stay-link-btn:hover { background:rgba(255,255,255,.2); }
     .stay-link-gold { background:var(--gold); color:var(--ink); border-color:var(--gold); }
@@ -328,7 +335,7 @@
     </div>
     <p class="hero-location">The Woodlot · Skaneateles Lake, NY</p>
     <a href="#travel-form" class="hero-cta">Share your travel plans →</a>
-    <a href="https://maps.google.com/?q=75+Woodlot+Landing,+Skaneateles+NY+13152" target="_blank" rel="noopener"
+    <a href="https://maps.google.com/?q=91+Woodlot+Landing,+Skaneateles+NY+13152" target="_blank" rel="noopener"
        class="hero-cta" style="margin-top:.75rem;background:transparent;color:var(--gold);border-color:var(--gold);box-shadow:4px 4px 0 var(--gold);transform:rotate(1.5deg);">
       📍 Where is that?! →
     </a>
@@ -443,12 +450,12 @@
       <div class="travel-card pop d1">
         <div class="airport-code">SYR</div>
         <h3>Syracuse Hancock International</h3>
-        <p>~25 minutes from Skaneateles. The closest airport with direct routes from most cities.</p>
+        <p>The closest airport with direct routes from most cities. ~25 min to Skaneateles, ~40 min to the Glen Cove properties.</p>
       </div>
       <div class="travel-card pop d2">
         <div class="airport-code">ITH</div>
         <h3>Ithaca Tompkins Regional</h3>
-        <p>~1 hour away. Smaller airport, beautiful drive north through Finger Lakes wine country.</p>
+        <p>Smaller airport, beautiful drive north through Finger Lakes wine country. ~55 min to Skaneateles, ~45 min to Glen Cove.</p>
       </div>
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
@@ -525,13 +532,9 @@
             <div class="stay-detail-label">Your Room</div>
             <div id="stay-room" class="stay-detail-value"></div>
           </div>
-          <div class="stay-detail">
-            <div class="stay-detail-label">Beds</div>
-            <div id="stay-beds" class="stay-detail-value"></div>
-          </div>
-          <div class="stay-detail">
-            <div class="stay-detail-label">Sharing Room With</div>
-            <div id="stay-sharing-room" class="stay-detail-value"></div>
+          <div class="stay-detail" style="grid-column:1/-1;">
+            <div class="stay-detail-label">Who's in your unit</div>
+            <div id="stay-unit-breakdown" class="stay-detail-value"></div>
           </div>
           <div class="stay-detail" style="grid-column:1/-1;">
             <div class="stay-detail-label">Sharing House With</div>
@@ -781,10 +784,10 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Unit 1': { beds: {'Greta & Matilda':'Queen','Iris':'Full + Full + Twin','Chloe':'Full + Full + Twin','Leven':'Full + Full + Twin'}, guests: ['Greta & Matilda','Iris','Chloe','Leven'] },
-      'Unit 2': { beds: {'Dad & Melissa':'Queen','Drew':'Full + two empty beds'}, guests: ['Dad & Melissa','Drew'] },
-      'Unit 3': { beds: {'Mike & Corrie':'Queen','Thomas':'Full + Twin','Matthew':'Full + Twin'}, guests: ['Mike & Corrie','Thomas','Matthew'], aliases: ['Michael'] },
-      'Unit 4': { beds: {'Nick & Elena':'Queen','Sam & Marty':'Full + two empty beds'}, guests: ['Nick & Elena','Sam & Marty'], aliases: ['Pick'] },
+      'Unit 1': { beds: {'Greta & Matilda':'Queen','Iris':'Full + Full + Twin','Chloe':'Full + Full + Twin','Leven':'Full + Full + Twin'}, guests: ['Greta & Matilda','Iris','Chloe','Leven'], rooms: [{label:'Bedroom 1',guests:['Greta & Matilda']},{label:'Bedroom 2',guests:['Iris','Chloe','Leven']}] },
+      'Unit 2': { beds: {'Dad & Melissa':'Queen','Drew':'Full + two empty beds'}, guests: ['Dad & Melissa','Drew'], rooms: [{label:'Bedroom 1',guests:['Dad & Melissa']},{label:'Bedroom 2',guests:['Drew']}] },
+      'Unit 3': { beds: {'Mike & Corrie':'Queen','Thomas':'Full + Twin','Matthew':'Full + Twin'}, guests: ['Mike & Corrie','Thomas','Matthew'], aliases: ['Michael'], rooms: [{label:'Bedroom 1',guests:['Mike & Corrie']},{label:'Bedroom 2',guests:['Thomas','Matthew']}] },
+      'Unit 4': { beds: {'Nick & Elena':'Queen','Sam & Marty':'Full + two empty beds'}, guests: ['Nick & Elena','Sam & Marty'], aliases: ['Pick'], rooms: [{label:'Bedroom 1',guests:['Nick & Elena']},{label:'Bedroom 2',guests:['Sam & Marty']}] },
     }
   },
   'fire-lane-85': {
@@ -811,7 +814,7 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'The House': { beds: {'Karly & Todd':'Bedroom 1','Eli':'Bedroom 2'}, guests: ['Karly & Todd','Eli'] },
+      'The House': { beds: {'Karly & Todd':'Bedroom 1','Eli':'Bedroom 2'}, guests: ['Karly & Todd','Eli'], rooms: [{label:'Bedroom 1',guests:['Karly & Todd']},{label:'Bedroom 2',guests:['Eli']}] },
     }
   },
   'fire-lane-71': {
@@ -860,9 +863,14 @@ stayInput.addEventListener('input', ()=>{
   if(!q){ staySugg.classList.remove('open'); return; }
   const matches = ALL_NAMES.filter(n=>n.toLowerCase().startsWith(q));
   if(!matches.length){ staySugg.classList.remove('open'); return; }
+  // Dedupe by canonical so couples don't appear twice (e.g. Steve + Juli both matching "S")
+  const seen = new Set();
   matches.forEach(n=>{
+    const canonical = (GUEST_MAP[n.toLowerCase()]||{}).canonical || n;
+    if(seen.has(canonical)) return;
+    seen.add(canonical);
     const d=document.createElement('div');
-    d.className='stay-suggestion'; d.textContent=n;
+    d.className='stay-suggestion'; d.textContent=canonical;
     d.addEventListener('click',()=>{ stayInput.value=n; staySugg.classList.remove('open'); showStay(n); });
     staySugg.appendChild(d);
   });
@@ -889,14 +897,27 @@ function showStay(name){
   if(prop.airbnb){ ab.href=prop.airbnb; ab.style.display='inline-block'; }
   else { ab.style.display='none'; }
   // Per-guest bed
-  const myBed = unit.beds[canonical] || '—';
-  document.getElementById('stay-room').textContent = unitName;
-  document.getElementById('stay-beds').textContent = myBed;
-
-  // Sharing room with = unit-mates (excluding self's couple entry)
   const isCouple = canonical.includes(' & ');
-  const roomOthers = unit.guests.filter(g => g !== canonical);
-  document.getElementById('stay-sharing-room').textContent = roomOthers.length ? roomOthers.join(', ') : (isCouple ? 'Just the two of you! 🎉' : 'Just you! 🎉');
+  document.getElementById('stay-room').textContent = unitName;
+
+  // Unit breakdown — bedroom-grouped if rooms data exists, flat otherwise
+  const bdEl = document.getElementById('stay-unit-breakdown');
+  if(unit.rooms){
+    bdEl.innerHTML = unit.rooms.map(room => {
+      const guestRows = room.guests.map(g => {
+        const bed = unit.beds[g] || '';
+        const isSelf = g === canonical;
+        return `<div class="unit-guest${isSelf?' unit-self':''}"><span class="unit-guest-name">${g}</span><span class="unit-guest-bed">${bed}</span></div>`;
+      }).join('');
+      return `<div class="unit-room"><div class="unit-room-label">${room.label}</div>${guestRows}</div>`;
+    }).join('');
+  } else {
+    bdEl.innerHTML = unit.guests.map(g => {
+      const bed = unit.beds[g] || '';
+      const isSelf = g === canonical;
+      return `<div class="unit-guest${isSelf?' unit-self':''}"><span class="unit-guest-name">${g}</span><span class="unit-guest-bed">${bed}</span></div>`;
+    }).join('');
+  }
 
   // Sharing house with = everyone at property in other units
   const houseOthers = [];
@@ -923,7 +944,8 @@ function showStay(name){
     const email = document.getElementById('stay-email').value.trim();
     const statusEl = document.getElementById('stay-email-status');
     if(!email){ statusEl.textContent='Please enter your email address first!'; statusEl.style.display='block'; return; }
-    const body = `Hi ${canonical}!\n\nHere are your lodging details for Anna & Steve's wedding weekend:\n\n🏠 ${prop.name}\n📍 ${prop.address}\n${prop.airbnb ? '🔗 Airbnb: '+prop.airbnb+'\n' : ''}🛏 ${unitName} · Your bed: ${myBed}\n👥 Sharing room with: ${roomOthers.length ? roomOthers.join(', ') : 'just you!'}\n🏡 Sharing house with: ${houseOthers.length ? houseOthers.join(', ') : '—'}\n⛵ Boats at this property: ${prop.boats}\n\n📅 Check-in: ${prop.checkin}\n📅 Check-out: ${prop.checkout}\n\nSee you at the lake! 🌊\nAnna & Steve`;
+    const unitLines = (unit.rooms ? unit.rooms.flatMap(r => [`${r.label}:`, ...r.guests.map(g => `  ${g} — ${unit.beds[g]||''}`)]) : unit.guests.map(g => `  ${g} — ${unit.beds[g]||''}`)).join('\n');
+    const body = `Hi ${canonical}!\n\nHere are your lodging details for Anna & Steve's wedding weekend:\n\n🏠 ${prop.name}\n📍 ${prop.address}\n${prop.airbnb ? '🔗 Airbnb: '+prop.airbnb+'\n' : ''}🛏 ${unitName}:\n${unitLines}\n\n🏡 Sharing house with: ${houseOthers.length ? houseOthers.join(', ') : '—'}\n⛵ Boats at this property: ${prop.boats}\n\n📅 Check-in: ${prop.checkin}\n📅 Check-out: ${prop.checkout}\n\nSee you at the lake! 🌊\nAnna & Steve`;
     window.location.href = 'mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('Your Lodging · Anna & Steve Wedding Weekend')+'&body='+encodeURIComponent(body);
     statusEl.textContent = '✓ Opening your email app…'; statusEl.style.display='block';
   };
@@ -1001,7 +1023,7 @@ const RESP=[
     "August is my best month, honestly. Cool mornings, warm afternoons, golden evenings. It can rain briefly — this is New York — but it passes. Pack a layer for nighttime. The stars over the water are extraordinary. 🌟",
   ]},
   {k:['parking','park','drive','directions','address'],a:[
-    "The Woodlot address is 75 Woodlot Landing, Skaneateles NY — useful for getting to your Airbnb. But the arrival to the Woodlot itself? By boat, across the lake. I highly recommend this. I am the lake. 🛥️",
+    "The Woodlot address is 91 Woodlot Landing, Skaneateles NY 13152 — useful for getting your bearings. But the arrival to the Woodlot itself? By boat, across the lake. I highly recommend this. I am the lake. 🛥️",
     "You'll park at your Airbnb and arrive at the Woodlot by water. Boat rentals come to you. This is the correct way to arrive at a lakeside wedding and I will not hear otherwise. 🅿️🌊",
   ]},
   {k:['kids','children','child','baby','parents','mom','dad','bring'],a:[
