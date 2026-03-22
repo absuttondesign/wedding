@@ -495,8 +495,8 @@
 
 <section class="section-wood" id="your-stay">
   <div class="section-inner">
-    <p class="diner-label pop">Your Lodging</p>
-    <h2 class="section-title pop d1">Find <em>Your Stay</em></h2>
+    <p class="diner-label pop">Out-of-Towners</p>
+    <h2 class="section-title pop d1">Get Your <em>Lodging Deets</em></h2>
     <p class="pop d2" style="font-size:1.05rem;line-height:1.75;color:rgba(253,248,238,.85);max-width:56ch;margin-bottom:2rem;">Type your first name below to find your accommodation details, Airbnb link, and what to expect when you arrive.</p>
 
     <div class="stay-search pop d2">
@@ -713,10 +713,10 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Unit 1': { beds: {'Greta':'Queen','Matilda':'Queen','Iris':'Full','Chloe':'Full','Leven':'Twin'}, guests: ['Greta','Matilda','Iris','Leven','Chloe'] },
-      'Unit 2': { beds: {'Dad':'Queen','Melissa':'Full','Drew':'Twin'}, guests: ['Dad','Melissa','Drew'] },
-      'Unit 3': { beds: {'Mike':'Queen','Corrie':'Full','Thomas':'Full','Matthew':'Twin'}, guests: ['Mike','Corrie','Thomas','Matthew'] },
-      'Unit 4': { beds: {'Nick':'Queen','Elena':'Full','Sam':'Full','Marty':'Twin'}, guests: ['Nick','Elena','Sam','Marty'] },
+      'Unit 1': { beds: {'Greta & Matilda':'Queen','Iris':'Full','Chloe':'Full','Leven':'Twin'}, guests: ['Greta & Matilda','Iris','Chloe','Leven'] },
+      'Unit 2': { beds: {'Dad & Melissa':'Queen','Drew':'Full'}, guests: ['Dad & Melissa','Drew'] },
+      'Unit 3': { beds: {'Mike & Corrie':'Queen','Thomas':'Full','Matthew':'Twin'}, guests: ['Mike & Corrie','Thomas','Matthew'], aliases: ['Michael'] },
+      'Unit 4': { beds: {'Nick & Elena':'Queen','Sam & Marty':'Full'}, guests: ['Nick & Elena','Sam & Marty'], aliases: ['Pick'] },
     }
   },
   'fire-lane-85': {
@@ -728,9 +728,9 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Room 1': { beds: {'Jonah':'Queen','Makalah':'Queen'}, guests: ['Jonah','Makalah'] },
-      'Room 2': { beds: {'Jill':'Queen','Ziya':'Queen'}, guests: ['Jill','Ziya'] },
-      'Room 3': { beds: {'Grandma':'King','Grandpa':'King'}, guests: ['Grandma','Grandpa'] },
+      'Room 1': { beds: {'Jonah & Makalah':'Queen'}, guests: ['Jonah & Makalah'] },
+      'Room 2': { beds: {'Jill & Ziya':'Queen'}, guests: ['Jill & Ziya'] },
+      'Room 3': { beds: {'Tom & Susie Sonke':'King'}, guests: ['Tom & Susie Sonke'], aliases: ['Grandma Sonke','Grandpa Sonke'] },
       'Room 4': { beds: {'Audrey':'Twin','Jaylin':'Twin'}, guests: ['Audrey','Jaylin'] },
     }
   },
@@ -743,7 +743,7 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'The House': { beds: {'Karly':'Bedroom 1','Todd':'Bedroom 1','Eli':'Bedroom 2'}, guests: ['Karly','Todd','Eli'] },
+      'The House': { beds: {'Karly & Todd':'Bedroom 1','Eli':'Bedroom 2'}, guests: ['Karly & Todd','Eli'] },
     }
   },
   'fire-lane-71': {
@@ -755,23 +755,33 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Room 1': { beds: {'Steve':'King','Juli':'King'}, guests: ['Steve','Juli'] },
-      'Room 2': { beds: {'Denise':'Queen','Jack':'Queen'}, guests: ['Denise','Jack'] },
+      'Room 1': { beds: {'Steve & Juli':'King'}, guests: ['Steve & Juli'] },
+      'Room 2': { beds: {'Denise & Jack':'Queen'}, guests: ['Denise & Jack'] },
       'Room 3': { beds: {'Hannah':'Twin','Marley':'Twin'}, guests: ['Hannah','Marley'] },
     }
   }
 };
 
 // Build flat guest → {propId, unitName} lookup
+// Couple entries ("Steve & Juli") map both individual names to the same record
 const GUEST_MAP = {};
+const _acNames = new Set();
 for(const [pid, prop] of Object.entries(PROPERTIES)){
   for(const [uname, unit] of Object.entries(prop.units)){
     for(const g of unit.guests){
-      GUEST_MAP[g.toLowerCase()] = { propId: pid, unitName: uname, canonical: g };
+      const entry = { propId: pid, unitName: uname, canonical: g };
+      GUEST_MAP[g.toLowerCase()] = entry;
+      if(g.includes(' & ')){
+        g.split(' & ').forEach(n => { n=n.trim(); GUEST_MAP[n.toLowerCase()]=entry; _acNames.add(n); });
+      } else {
+        _acNames.add(g);
+      }
+      // Aliases (e.g. Grandma Sonke → Tom & Susie Sonke)
+      (unit.aliases||[]).forEach(a => { GUEST_MAP[a.toLowerCase()]=entry; _acNames.add(a); });
     }
   }
 }
-const ALL_NAMES = Object.values(GUEST_MAP).map(v=>v.canonical).sort();
+const ALL_NAMES = [..._acNames].sort();
 
 // Autocomplete
 const stayInput = document.getElementById('stay-input');
@@ -815,9 +825,10 @@ function showStay(name){
   document.getElementById('stay-room').textContent = unitName;
   document.getElementById('stay-beds').textContent = myBed;
 
-  // Sharing room with = unit-mates (excluding self)
-  const roomOthers = unit.guests.filter(g => g.toLowerCase() !== key);
-  document.getElementById('stay-sharing-room').textContent = roomOthers.length ? roomOthers.join(', ') : 'Just you! 🎉';
+  // Sharing room with = unit-mates (excluding self's couple entry)
+  const isCouple = canonical.includes(' & ');
+  const roomOthers = unit.guests.filter(g => g !== canonical);
+  document.getElementById('stay-sharing-room').textContent = roomOthers.length ? roomOthers.join(', ') : (isCouple ? 'Just the two of you! 🎉' : 'Just you! 🎉');
 
   // Sharing house with = everyone at property in other units
   const houseOthers = [];
