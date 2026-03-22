@@ -3,1047 +3,558 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Anna & Steve — August 22, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Anybody:wght@400;700;900&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Anybody:wght@400;700;900&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy:   #1a1a2e;
-      --purple: #2d1b4e;
-      --gold:   #f4c842;
-      --coral:  #e85d4a;
-      --teal:   #2a9d8f;
-      --cream:  #fffdf5;
-      --warm:   #fef3e2;
-      --ink:    #1a1a2e;
-      --soft:   #6b5b7b;
+      --wood-1: #7a3d0e; --wood-2: #9b5219; --wood-3: #b8651f;
+      --gold: #f0c040; --cream: #fdf8ee; --ink: #1a0f00;
+      --pink: #e8608a; --green: #2a6b3f; --teal: #1a7a71;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Playfair Display', Georgia, serif;
-      background: var(--cream);
       color: var(--ink);
+      background-color: var(--wood-2);
+      background-image:
+        repeating-linear-gradient(1deg,
+          transparent 0px, transparent 6px,
+          rgba(0,0,0,.04) 6px, rgba(0,0,0,.04) 7px,
+          transparent 7px, transparent 24px,
+          rgba(0,0,0,.06) 24px, rgba(0,0,0,.06) 25px
+        ),
+        radial-gradient(ellipse at 15% 30%, rgba(60,20,5,.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 70%, rgba(60,20,5,.3) 0%, transparent 50%);
       overflow-x: hidden;
     }
-
-    /* ─── MARQUEE STRIP ─────────────────────────────────────── */
+    /* MARQUEE */
     .marquee-strip {
-      background: var(--gold);
-      color: var(--navy);
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 8px 0;
-      overflow: hidden;
-      white-space: nowrap;
+      background: var(--gold); color: var(--ink);
+      font-family: 'Anybody', sans-serif; font-weight: 900;
+      font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+      padding: 7px 0; overflow: hidden; white-space: nowrap;
+      border-bottom: 3px solid var(--ink); position: relative; z-index: 10;
     }
-    .marquee-inner {
-      display: inline-block;
-      animation: marquee 28s linear infinite;
+    .marquee-inner { display: inline-block; animation: marquee 32s linear infinite; }
+    .marquee-inner span { padding: 0 2rem; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    /* HERO */
+    #hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    @media (max-width: 700px) { #hero { grid-template-columns: 1fr; } }
+    .hero-photo-col { position: relative; overflow: hidden; min-height: 60vh; }
+    .hero-photo-col img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .hero-text-col {
+      background: var(--ink); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 3rem 2.5rem;
+      position: relative; overflow: hidden; text-align: center;
     }
-    .marquee-inner span { padding: 0 2.5rem; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .hero-text-col::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(180,90,20,.25) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(90,40,5,.4) 0%, transparent 55%);
     }
-
-    /* ─── HERO ──────────────────────────────────────────────── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      background: linear-gradient(160deg, var(--navy) 0%, var(--purple) 60%, #3d2060 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 4rem 1.5rem 6rem;
-      overflow: hidden;
-    }
-    #stars-canvas {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-content { position: relative; z-index: 1; }
-
-    .hero-eyebrow {
-      font-family: 'Caveat', cursive;
-      font-size: 1.6rem;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      opacity: 0.9;
-    }
+    .hero-text-col > * { position: relative; z-index: 1; }
+    .hero-kicker { font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--gold); margin-bottom: 1rem; }
     .hero-names {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(4rem, 12vw, 9rem);
-      font-weight: 900;
-      font-style: italic;
-      line-height: 0.9;
-      color: var(--cream);
-      margin-bottom: 0.4em;
-      text-shadow: 0 4px 30px rgba(244,200,66,0.25);
+      font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic;
+      font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: .88; color: var(--cream); margin-bottom: .6em;
     }
-    .hero-names .amp {
-      color: var(--gold);
-      font-size: 0.8em;
-    }
-    .hero-date {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-    }
-    .hero-location {
-      font-family: 'Caveat', cursive;
-      font-size: 1.5rem;
-      color: rgba(255,253,245,0.75);
-    }
+    .hero-names .amp { color: var(--gold); font-size: .75em; }
+    /* SPINNING DATE */
+    .spinning-date-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto 1.5rem; }
+    .spinning-ring { position: absolute; inset: 0; animation: spin-slow 18s linear infinite; }
+    .spinning-ring svg { width: 100%; height: 100%; }
+    .spinning-ring text { fill: var(--gold); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 5px; text-transform: uppercase; }
+    .date-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .date-big { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--gold); line-height: 1; }
+    .date-year { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--cream); opacity: .8; }
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .hero-location { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(253,248,238,.6); margin-bottom: 2rem; }
     .hero-cta {
-      margin-top: 2.5rem;
-      display: inline-block;
-      background: var(--gold);
-      color: var(--navy);
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 0.95rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.5rem;
-      border-radius: 3px;
-      text-decoration: none;
-      transform: rotate(-1deg);
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+      display: inline-block; background: var(--gold); color: var(--ink);
+      font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .9rem;
+      letter-spacing: .12em; text-transform: uppercase; padding: .9rem 2.2rem;
+      text-decoration: none; transform: rotate(-2deg); border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--gold); transition: transform .2s, box-shadow .2s;
     }
-    .hero-cta:hover { transform: rotate(0deg) scale(1.04); box-shadow: 6px 6px 0 rgba(0,0,0,0.35); }
-
-    /* ─── SECTION STYLES ────────────────────────────────────── */
-    section { padding: 5rem 1.5rem; }
-    section:nth-child(even) { background: var(--warm); }
-
-    .section-inner { max-width: 860px; margin: 0 auto; }
-
-    .section-label {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.6rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 900;
-      font-style: italic;
-      line-height: 1.05;
-      color: var(--navy);
-      margin-bottom: 1.5rem;
-    }
-    .section-title em { color: var(--coral); font-style: normal; }
-    .body-text {
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--soft);
-      max-width: 60ch;
-    }
-
-    /* ─── CARDS ─────────────────────────────────────────────── */
-    .card {
-      background: var(--cream);
-      border: 2px solid var(--navy);
-      border-radius: 4px;
-      padding: 1.75rem 2rem;
-      box-shadow: 5px 5px 0 var(--navy);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover { transform: translateY(-3px); box-shadow: 5px 8px 0 var(--navy); }
-    .card-tilt-l { transform: rotate(-1.5deg); }
-    .card-tilt-l:hover { transform: rotate(-0.5deg) translateY(-3px); }
-    .card-tilt-r { transform: rotate(1.2deg); }
-    .card-tilt-r:hover { transform: rotate(0.3deg) translateY(-3px); }
-
-    .card-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
-    @media (min-width: 600px) { .card-grid-2 { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 750px) { .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
-
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    .card-heading {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 0.35rem;
-    }
-    .card p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--soft);
-    }
-    .card a { color: var(--teal); font-weight: 700; text-underline-offset: 3px; }
-    .card a:hover { color: var(--coral); }
-
-    /* ─── VENUE ─────────────────────────────────────────────── */
-    .venue-hero {
-      background: linear-gradient(135deg, var(--teal) 0%, #1a7a71 100%);
-      border-radius: 6px;
-      padding: 3rem 2rem;
-      text-align: center;
-      color: var(--cream);
-      margin-bottom: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .venue-hero::before {
-      content: '🌊';
-      font-size: 8rem;
-      position: absolute;
-      right: -1rem;
-      bottom: -1rem;
-      opacity: 0.15;
-    }
-    .venue-hero h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      font-style: italic;
-      font-weight: 900;
-      margin-bottom: 0.4rem;
-    }
-    .venue-hero p { font-family: 'Caveat', cursive; font-size: 1.3rem; opacity: 0.85; }
-    .map-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 1rem;
-      background: rgba(255,255,255,0.15);
-      color: var(--cream);
-      padding: 0.5rem 1.2rem;
-      border-radius: 3px;
-      font-family: 'Anybody', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 2px solid rgba(255,255,255,0.3);
-      transition: background 0.2s;
-    }
-    .map-link:hover { background: rgba(255,255,255,0.25); }
-
-    /* ─── SCHEDULE ──────────────────────────────────────────── */
-    .schedule-day {
-      margin-bottom: 2.5rem;
-    }
-    .day-header {
-      display: flex;
-      align-items: baseline;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-    }
-    .day-name {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--navy);
-    }
-    .day-date {
-      font-family: 'Caveat', cursive;
-      font-size: 1.1rem;
-      color: var(--soft);
-    }
-    .day-badge {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.7rem;
-      border-radius: 2px;
-      margin-left: auto;
-    }
-    .badge-coral { background: var(--coral); color: white; }
-    .badge-gold  { background: var(--gold);  color: var(--navy); }
-    .badge-teal  { background: var(--teal);  color: white; }
-
-    .events-list { display: grid; gap: 0.75rem; }
-    .event-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: var(--cream);
-      border-left: 4px solid var(--gold);
-      border-radius: 0 4px 4px 0;
-    }
-    section:nth-child(even) .event-item { background: white; }
-    .event-time {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--teal);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding-top: 2px;
-    }
-    .event-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--navy);
-    }
-    .event-note {
-      font-family: 'Caveat', cursive;
-      font-size: 0.95rem;
-      color: var(--soft);
-      margin-top: 0.2rem;
-    }
-
-    /* ─── TRAVEL ────────────────────────────────────────────── */
-    .airport-chip {
-      display: inline-block;
-      background: var(--navy);
-      color: var(--gold);
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 1.6rem;
-      letter-spacing: 0.05em;
-      padding: 0.3rem 0.9rem;
-      border-radius: 4px;
-      margin-bottom: 0.3rem;
-    }
-
-    /* ─── FAQ ───────────────────────────────────────────────── */
-    .faq-list { display: grid; gap: 0.6rem; margin-top: 1.5rem; }
-    details {
-      background: var(--cream);
-      border: 2px solid var(--navy);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    section:nth-child(even) details { background: white; }
-    summary {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.03em;
-      padding: 1rem 1.25rem;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--navy);
-      user-select: none;
-    }
+    .hero-cta:hover { transform: rotate(0deg) scale(1.03); }
+    /* COUPLE STRIP */
+    .couple-strip { display: grid; grid-template-columns: repeat(3, 1fr); height: 280px; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
+    @media (max-width: 700px) { .couple-strip { grid-template-columns: 1fr 1fr; height: 200px; } }
+    .couple-strip img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; border-right: 3px solid var(--ink); filter: sepia(8%); }
+    .couple-strip img:last-child { border-right: none; }
+    /* PANO */
+    .pano-banner { width: 100%; height: 280px; object-fit: cover; object-position: center 40%; display: block; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
+    /* SECTIONS */
+    .section-wood { background-color: var(--wood-2); background-image: repeating-linear-gradient(1deg, transparent 0px, transparent 6px, rgba(0,0,0,.04) 6px, rgba(0,0,0,.04) 7px, transparent 7px, transparent 24px, rgba(0,0,0,.06) 24px, rgba(0,0,0,.06) 25px); border-top: 4px solid var(--ink); padding: 4rem 1.5rem; }
+    .section-cream { background: var(--cream); border-top: 4px solid var(--ink); padding: 4rem 1.5rem; }
+    .section-dark { background: var(--ink); border-top: 4px solid var(--gold); padding: 4rem 1.5rem; }
+    .section-pink { background: var(--pink); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); padding: 3rem 1.5rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .diner-label { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; background: var(--ink); color: var(--gold); display: inline-block; padding: 3px 10px; margin-bottom: .8rem; }
+    .section-wood .diner-label, .section-dark .diner-label { background: var(--gold); color: var(--ink); }
+    .section-title { font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic; font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1; margin-bottom: 1.5rem; color: var(--cream); }
+    .section-cream .section-title { color: var(--ink); }
+    .section-dark .section-title  { color: var(--cream); }
+    .section-pink .section-title  { color: var(--ink); }
+    .section-title em { color: var(--gold); font-style: normal; }
+    .section-cream .section-title em { color: var(--wood-1); }
+    /* FRAMES */
+    .frame { display: inline-block; background: white; padding: 10px 10px 30px; box-shadow: 0 4px 18px rgba(0,0,0,.4), 3px 3px 0 rgba(0,0,0,.15); position: relative; border: 1px solid rgba(0,0,0,.12); }
+    .frame img { display: block; width: 100%; height: auto; }
+    .frame-caption { font-family: 'Caveat', cursive; font-size: 1rem; color: #555; text-align: center; padding-top: 6px; }
+    .frame-tilt-l { transform: rotate(-2.5deg); } .frame-tilt-r { transform: rotate(2deg); }
+    .frames-grid { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: flex-start; justify-content: center; margin-top: 2.5rem; }
+    .frames-grid .frame { width: calc(33% - 2rem); min-width: 220px; }
+    @media (max-width: 700px) { .frames-grid .frame { width: 100%; max-width: 320px; } }
+    /* WATER SHOW */
+    .water-show { position: relative; height: 380px; overflow: hidden; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--gold); }
+    .water-show img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+    .water-show img.active { opacity: 1; }
+    .water-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(to bottom, rgba(0,0,0,.1) 0%, rgba(0,0,0,.4) 100%); z-index: 2; }
+    .water-title { font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic; font-size: clamp(2.5rem, 8vw, 5rem); color: white; text-shadow: 0 3px 20px rgba(0,0,0,.5); text-align: center; }
+    .water-title span { color: var(--gold); }
+    /* SCHEDULE */
+    .menu-section { margin-bottom: 2.5rem; }
+    .menu-day { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; background: var(--gold); color: var(--ink); display: inline-flex; align-items: center; padding: 4px 12px; margin-bottom: .8rem; }
+    .menu-divider { border: none; border-top: 2px dashed rgba(253,248,238,.25); margin: 1rem 0; }
+    .menu-item { display: grid; grid-template-columns: 1fr auto; gap: .5rem 1rem; padding: .6rem 0; align-items: baseline; }
+    .menu-item-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; color: var(--cream); }
+    .menu-item-time { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .08em; color: var(--gold); white-space: nowrap; text-transform: uppercase; }
+    .menu-item-note { font-family: 'Caveat', cursive; font-size: .95rem; color: rgba(253,248,238,.6); grid-column: 1; }
+    /* TRAVEL */
+    .travel-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
+    @media (min-width: 600px) { .travel-grid { grid-template-columns: 1fr 1fr; } }
+    .travel-card { background: var(--cream); border: 3px solid var(--ink); padding: 1.5rem; box-shadow: 5px 5px 0 var(--ink); }
+    .airport-code { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 2.5rem; color: var(--ink); background: var(--gold); display: inline-block; padding: 0 .4rem; margin-bottom: .4rem; line-height: 1.1; }
+    .travel-card h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink); margin-bottom: .4rem; }
+    .travel-card p { font-size: .95rem; line-height: 1.6; color: #444; }
+    /* FAQ */
+    .faq-list { display: grid; gap: 4px; margin-top: 1.5rem; }
+    details { background: rgba(255,255,255,.08); border: 2px solid rgba(253,248,238,.2); }
+    summary { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .9rem; letter-spacing: .04em; padding: 1rem 1.25rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--cream); user-select: none; }
     summary::-webkit-details-marker { display: none; }
-    summary::after {
-      content: '+';
-      font-size: 1.4rem;
-      line-height: 1;
-      transition: transform 0.2s;
-      flex-shrink: 0;
-    }
+    summary::after { content: '+'; font-size: 1.4rem; line-height: 1; transition: transform .2s; }
     details[open] summary::after { transform: rotate(45deg); }
-    details[open] summary { border-bottom: 2px solid var(--navy); }
-    .faq-answer {
-      padding: 1rem 1.25rem;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--soft);
-    }
-    .faq-answer strong { color: var(--navy); }
-
-    /* ─── HONEYMOON FUND ────────────────────────────────────── */
-    .fund-card {
-      background: linear-gradient(135deg, var(--coral) 0%, #c9472e 100%);
-      border-radius: 6px;
-      padding: 3rem 2rem;
-      text-align: center;
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-    .fund-card::before {
-      content: '✈️';
-      font-size: 8rem;
-      position: absolute;
-      left: -1.5rem;
-      top: -1rem;
-      opacity: 0.15;
-    }
-    .fund-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      font-style: italic;
-      font-weight: 900;
-      margin-bottom: 0.75rem;
-    }
-    .fund-card p { font-size: 1rem; line-height: 1.7; opacity: 0.9; margin-bottom: 1.5rem; }
-    .venmo-btn {
-      display: inline-block;
-      background: white;
-      color: var(--coral);
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.5rem;
-      border-radius: 3px;
-      text-decoration: none;
-      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .venmo-btn:hover { transform: translateY(-2px); box-shadow: 4px 6px 0 rgba(0,0,0,0.25); }
-
-    /* ─── FORM ──────────────────────────────────────────────── */
-    #form-section {
-      background: var(--navy);
-      color: var(--cream);
-    }
-    #form-section .section-label { color: var(--gold); }
-    #form-section .section-title { color: var(--cream); }
-    #form-section .section-title em { color: var(--gold); }
-    #form-section .body-text { color: rgba(255,253,245,0.7); }
-
-    .form-card {
-      background: rgba(255,255,255,0.07);
-      border: 2px solid rgba(255,255,255,0.15);
-      border-radius: 6px;
-      padding: 2.5rem;
-      margin-top: 2rem;
-    }
+    details[open] summary { border-bottom: 2px solid rgba(253,248,238,.2); }
+    .faq-body { padding: 1rem 1.25rem; font-size: .95rem; line-height: 1.7; color: rgba(253,248,238,.7); }
+    .faq-body strong { color: var(--cream); }
+    /* HONEYMOON */
+    .fund-inner { text-align: center; max-width: 600px; margin: 0 auto; }
+    .fund-inner p { font-size: 1.05rem; line-height: 1.75; color: var(--ink); margin-bottom: 1.8rem; }
+    .venmo-btn { display: inline-block; background: var(--ink); color: var(--gold); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .12em; text-transform: uppercase; padding: 1rem 2.8rem; text-decoration: none; border: 3px solid var(--ink); transform: rotate(-1deg); box-shadow: 5px 5px 0 var(--ink); transition: transform .2s; }
+    .venmo-btn:hover { transform: rotate(0deg) scale(1.03); }
+    /* FORM */
+    .form-wrap { background: rgba(255,255,255,.07); border: 2px solid rgba(253,248,238,.15); padding: 2.5rem; margin-top: 2rem; }
     .form-row { display: grid; gap: 1rem; margin-bottom: 1rem; }
     @media (min-width: 600px) { .form-row-2 { grid-template-columns: 1fr 1fr; } }
-
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-label {
-      font-family: 'Anybody', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .form-input, .form-select {
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.2);
-      border-radius: 4px;
-      color: var(--cream);
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      padding: 0.7rem 1rem;
-      width: 100%;
-      transition: border-color 0.2s;
-      appearance: none;
-    }
-    .form-input:focus, .form-select:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-    .form-input::placeholder { color: rgba(255,253,245,0.35); }
-    .form-select option { background: var(--navy); color: var(--cream); }
-    .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23f4c842' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: calc(100% - 1rem) center; padding-right: 2.5rem; }
-
-    .radio-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .radio-label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      font-size: 0.95rem;
-      color: var(--cream);
-    }
-    .radio-label input[type="radio"] { accent-color: var(--gold); width: 1.1rem; height: 1.1rem; }
-
-    .flight-fields { display: none; margin-top: 0.75rem; }
-    .flight-fields.visible { display: grid; gap: 1rem; }
-    @media (min-width: 600px) { .flight-fields { grid-template-columns: 1fr 1fr; } }
-
-    .form-submit {
-      margin-top: 1.5rem;
-      background: var(--gold);
-      color: var(--navy);
-      font-family: 'Anybody', sans-serif;
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 1rem 3rem;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      transform: rotate(-1deg);
-      box-shadow: 4px 4px 0 rgba(244,200,66,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .form-submit:hover { transform: rotate(0deg) scale(1.03); box-shadow: 6px 6px 0 rgba(244,200,66,0.35); }
-    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 3rem 1rem;
-    }
-    .form-success.visible { display: block; }
-    .success-icon { font-size: 4rem; margin-bottom: 1rem; display: block; }
-    .success-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-style: italic;
-      font-weight: 900;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
-    }
-    .success-note {
-      font-family: 'Caveat', cursive;
-      font-size: 1.3rem;
-      color: rgba(255,253,245,0.75);
-    }
-
-    /* ─── FOOTER ────────────────────────────────────────────── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,253,245,0.5);
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      font-family: 'Caveat', cursive;
-      font-size: 1.1rem;
-    }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-lbl { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+    .form-inp, .form-sel { background: rgba(255,255,255,.1); border: 2px solid rgba(253,248,238,.25); color: var(--cream); font-family: 'Playfair Display', serif; font-size: 1rem; padding: .65rem 1rem; width: 100%; appearance: none; transition: border-color .2s; }
+    .form-inp:focus, .form-sel:focus { outline: none; border-color: var(--gold); }
+    .form-inp::placeholder { color: rgba(253,248,238,.3); }
+    .form-sel option { background: #1a0f00; }
+    .form-sel { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23f0c040' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: calc(100% - 1rem) center; padding-right: 2.5rem; }
+    .radio-grp { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: .3rem; }
+    .radio-lbl { display: flex; align-items: center; gap: .4rem; font-size: .95rem; color: var(--cream); cursor: pointer; }
+    .radio-lbl input { accent-color: var(--gold); }
+    .flight-fields { display: none; }
+    .flight-fields.on { display: grid; gap: 1rem; }
+    @media (min-width: 600px) { .flight-fields.on { grid-template-columns: 1fr 1fr; } }
+    .form-btn { margin-top: 1.5rem; background: var(--gold); color: var(--ink); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .12em; text-transform: uppercase; padding: .95rem 3rem; border: none; cursor: pointer; transform: rotate(-1deg); box-shadow: 4px 4px 0 rgba(240,192,64,.4); transition: transform .2s; }
+    .form-btn:hover { transform: rotate(0deg) scale(1.03); }
+    .form-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .form-success { display: none; text-align: center; padding: 3rem 1rem; }
+    .form-success.on { display: block; }
+    .success-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+    .success-h { font-family: 'Playfair Display', serif; font-size: 2rem; font-style: italic; font-weight: 900; color: var(--gold); margin-bottom: .5rem; }
+    .success-note { font-family: 'Caveat', cursive; font-size: 1.3rem; color: rgba(253,248,238,.7); }
+    /* CHAT */
+    #chat-bubble { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; }
+    #chat-toggle { background: var(--gold); color: var(--ink); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; border: 3px solid var(--ink); padding: .8rem 1.2rem; cursor: pointer; box-shadow: 4px 4px 0 var(--ink); transition: transform .15s; white-space: nowrap; }
+    #chat-toggle:hover { transform: translate(-2px,-2px); }
+    #chat-panel { display: none; flex-direction: column; width: min(360px, 92vw); background: var(--ink); border: 3px solid var(--gold); box-shadow: 6px 6px 0 rgba(0,0,0,.5); max-height: 500px; }
+    #chat-panel.open { display: flex; }
+    .chat-header { background: var(--gold); color: var(--ink); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; padding: .6rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--ink); }
+    .chat-close { background: none; border: none; cursor: pointer; font-size: 1.2rem; line-height: 1; color: var(--ink); }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: .75rem; }
+    .msg { max-width: 90%; padding: .6rem .9rem; font-size: .9rem; line-height: 1.5; font-family: 'Playfair Display', serif; }
+    .msg.bot { align-self: flex-start; background: rgba(255,255,255,.09); border: 1px solid rgba(253,248,238,.15); color: var(--cream); }
+    .msg.bot .msg-name { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: .25rem; }
+    .msg.user { align-self: flex-end; background: var(--gold); color: var(--ink); font-family: 'Caveat', cursive; font-size: 1rem; }
+    .chat-input-row { display: flex; border-top: 3px solid var(--gold); }
+    #chat-input { flex: 1; background: rgba(255,255,255,.08); border: none; color: var(--cream); font-family: 'Playfair Display', serif; font-size: .9rem; padding: .75rem 1rem; }
+    #chat-input:focus { outline: none; }
+    #chat-input::placeholder { color: rgba(253,248,238,.35); }
+    #chat-send { background: var(--gold); color: var(--ink); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; border: none; padding: 0 1.2rem; cursor: pointer; border-left: 3px solid var(--gold); }
+    /* FOOTER */
+    footer { background: var(--ink); border-top: 4px solid var(--gold); text-align: center; padding: 2.5rem 1.5rem; font-family: 'Caveat', cursive; font-size: 1.1rem; color: rgba(253,248,238,.5); }
     footer strong { color: var(--gold); }
-
-    /* ─── ANIMATIONS ────────────────────────────────────────── */
-    .pop-in {
-      opacity: 0;
-      transform: translateY(28px) scale(0.97);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    .pop-in.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    .pop-in-delay-1 { transition-delay: 0.1s; }
-    .pop-in-delay-2 { transition-delay: 0.2s; }
-    .pop-in-delay-3 { transition-delay: 0.3s; }
-
-    /* ─── RESPONSIVE ────────────────────────────────────────── */
-    @media (max-width: 599px) {
-      .card-tilt-l, .card-tilt-r { transform: none; }
-      .card-tilt-l:hover, .card-tilt-r:hover { transform: translateY(-2px); }
-      .event-item { grid-template-columns: 70px 1fr; }
-    }
+    /* POP-IN */
+    .pop { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+    .pop.d1 { transition-delay: .1s; } .pop.d2 { transition-delay: .2s; } .pop.d3 { transition-delay: .3s; }
+    .pop.visible { opacity: 1; transform: none; }
   </style>
 </head>
 <body>
 
-<!-- MARQUEE -->
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-inner">
-    <span>Anna &amp; Steve</span><span>✦</span>
-    <span>August 22, 2026</span><span>✦</span>
-    <span>Skaneateles Lake</span><span>✦</span>
-    <span>The Woodlot</span><span>✦</span>
-    <span>Anna &amp; Steve</span><span>✦</span>
-    <span>August 22, 2026</span><span>✦</span>
-    <span>Skaneateles Lake</span><span>✦</span>
-    <span>The Woodlot</span><span>✦</span>
-    <span>Anna &amp; Steve</span><span>✦</span>
-    <span>August 22, 2026</span><span>✦</span>
-    <span>Skaneateles Lake</span><span>✦</span>
-    <span>The Woodlot</span><span>✦</span>
+    <span>Anna &amp; Steve</span><span>✦</span><span>August 22, 2026</span><span>✦</span>
+    <span>Skaneateles Lake</span><span>✦</span><span>The Woodlot</span><span>✦</span>
+    <span>Get Married</span><span>✦</span><span>You're Invited</span><span>✦</span>
+    <span>Anna &amp; Steve</span><span>✦</span><span>August 22, 2026</span><span>✦</span>
+    <span>Skaneateles Lake</span><span>✦</span><span>The Woodlot</span><span>✦</span>
+    <span>Get Married</span><span>✦</span><span>You're Invited</span><span>✦</span>
   </div>
 </div>
 
-<!-- HERO -->
 <section id="hero">
-  <canvas id="stars-canvas"></canvas>
-  <div class="hero-content">
-    <p class="hero-eyebrow">You're invited to celebrate</p>
-    <h1 class="hero-names">
-      Anna<br>
-      <span class="amp">&amp;</span><br>
-      Steve
-    </h1>
-    <p class="hero-date">August 22, 2026</p>
+  <div class="hero-photo-col">
+    <img src="assets/web/couple-ring-1.jpg" alt="Anna and Steve" />
+  </div>
+  <div class="hero-text-col">
+    <p class="hero-kicker">you are invited to celebrate</p>
+    <h1 class="hero-names">Anna<br><span class="amp">&amp;</span><br>Steve</h1>
+    <div class="spinning-date-wrap">
+      <div class="spinning-ring">
+        <svg viewBox="0 0 180 180">
+          <defs><path id="cp" d="M 90,90 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" /></defs>
+          <text><textPath href="#cp" startOffset="0%">SAVE THE DATE ✦ SAVE THE DATE ✦ SAVE THE DATE ✦</textPath></text>
+        </svg>
+      </div>
+      <div class="date-center">
+        <span class="date-big">AUG 22</span>
+        <span class="date-year">2026</span>
+      </div>
+    </div>
     <p class="hero-location">The Woodlot · Skaneateles Lake, NY</p>
-    <a href="#travel-form" class="hero-cta">Share your travel plans</a>
+    <a href="#travel-form" class="hero-cta">Share your travel plans →</a>
   </div>
 </section>
 
-<!-- VENUE -->
-<section id="venue">
+<div class="couple-strip">
+  <img src="assets/web/couple-2.jpg" alt="Anna and Steve" />
+  <img src="assets/web/couple-ring-2.jpg" alt="Anna and Steve" />
+  <img src="assets/web/couple-1.jpg" alt="Anna and Steve" />
+</div>
+
+<img class="pano-banner" src="assets/web/venue-panorama.jpg" alt="The Woodlot grounds" />
+
+<section class="section-cream">
   <div class="section-inner">
-    <p class="section-label pop-in">The Place</p>
-    <h2 class="section-title pop-in pop-in-delay-1">Where we're <em>gathering</em></h2>
-
-    <div class="venue-hero pop-in pop-in-delay-2">
-      <h3>The Woodlot</h3>
-      <p>Blakney Sisters Cabin · Skaneateles Lake, New York</p>
-      <a class="map-link" href="https://maps.google.com/?q=Skaneateles+Lake+NY" target="_blank" rel="noopener">
-        📍 Open in Maps
-      </a>
-    </div>
-
-    <div class="card-grid card-grid-2">
-      <div class="card card-tilt-l pop-in pop-in-delay-1">
-        <span class="card-icon">🌲</span>
-        <p class="card-heading">The Venue</p>
-        <p>A beautiful cabin nestled in the woods right on Skaneateles Lake — one of the Finger Lakes' most stunning jewels. Expect blue water, tall trees, and good people.</p>
+    <p class="diner-label pop">The Place</p>
+    <h2 class="section-title pop d1">Where we're <em>getting married</em></h2>
+    <p class="pop d2" style="font-size:1.05rem;line-height:1.75;color:#444;max-width:60ch;">
+      The Woodlot — the Blakney Sisters Cabin on the western shore of Skaneateles Lake.
+      Woods down to the water. A dock. A firepit. One of the most beautiful small lakes
+      in North America. Come for the whole weekend.
+    </p>
+    <div class="frames-grid">
+      <div class="frame frame-tilt-l pop d1">
+        <img src="assets/web/venue-cabin-water.jpg" alt="The cabin from the water" />
+        <p class="frame-caption">the woodlot from the dock</p>
       </div>
-      <div class="card card-tilt-r pop-in pop-in-delay-2">
-        <span class="card-icon">🛖</span>
-        <p class="card-heading">Stay Onsite</p>
-        <p>The Woodlot cabin is available on Airbnb for the weekend. Sleeping close to the action is highly recommended — you won't want to leave.<br><br>
-        <a href="https://www.airbnb.com/rooms/1642913184393041864" target="_blank" rel="noopener">View the Blakney Sisters Cabin →</a></p>
+      <div class="frame frame-tilt-r pop d2">
+        <img src="assets/web/venue-cabin-interior.jpg" alt="Inside the cabin" />
+        <p class="frame-caption">inside looking out</p>
+      </div>
+      <div class="frame frame-tilt-l pop d3">
+        <img src="assets/web/venue-lake-dock.jpg" alt="Skaneateles Lake" />
+        <p class="frame-caption">the lake ✦ aug 2026</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- SCHEDULE -->
-<section id="schedule">
-  <div class="section-inner">
-    <p class="section-label pop-in">The Weekend</p>
-    <h2 class="section-title pop-in pop-in-delay-1">Three days of <em>joy</em></h2>
-    <p class="body-text pop-in pop-in-delay-2">The whole weekend is the celebration. Here's the plan — come for as much as you can.</p>
-
-    <div style="margin-top: 2.5rem;">
-
-      <!-- Friday -->
-      <div class="schedule-day pop-in">
-        <div class="day-header">
-          <span class="day-name">Friday</span>
-          <span class="day-date">August 21, 2026</span>
-          <span class="day-badge badge-teal">Arrival Day</span>
-        </div>
-        <div class="events-list">
-          <div class="event-item">
-            <span class="event-time">Afternoon</span>
-            <div>
-              <p class="event-name">Arrive & Settle In</p>
-              <p class="event-note">Check in, explore the lake, meet your people</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <span class="event-time">Evening</span>
-            <div>
-              <p class="event-name">Rehearsal Dinner</p>
-              <p class="event-note">Dinner with the wedding party and close family</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Saturday -->
-      <div class="schedule-day pop-in pop-in-delay-1">
-        <div class="day-header">
-          <span class="day-name">Saturday</span>
-          <span class="day-date">August 22, 2026</span>
-          <span class="day-badge badge-gold">The Big Day</span>
-        </div>
-        <div class="events-list">
-          <div class="event-item">
-            <span class="event-time">Afternoon</span>
-            <div>
-              <p class="event-name">Wedding Ceremony</p>
-              <p class="event-note">Anna &amp; Steve say yes</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <span class="event-time">Evening</span>
-            <div>
-              <p class="event-name">Dinner &amp; Dancing</p>
-              <p class="event-note">Eat, drink, celebrate, repeat</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <span class="event-time">Late</span>
-            <div>
-              <p class="event-name">Keep the party going</p>
-              <p class="event-note">Don't let it end</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sunday -->
-      <div class="schedule-day pop-in pop-in-delay-2">
-        <div class="day-header">
-          <span class="day-name">Sunday</span>
-          <span class="day-date">August 23, 2026</span>
-          <span class="day-badge badge-coral">Farewell</span>
-        </div>
-        <div class="events-list">
-          <div class="event-item">
-            <span class="event-time">Morning</span>
-            <div>
-              <p class="event-name">Lazy Morning</p>
-              <p class="event-note">Coffee, lake views, good conversation</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <span class="event-time">Midday</span>
-            <div>
-              <p class="event-name">Farewell Lunch</p>
-              <p class="event-note">Venue TBD — details coming soon!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRAVEL -->
-<section id="travel">
-  <div class="section-inner">
-    <p class="section-label pop-in">Getting Here</p>
-    <h2 class="section-title pop-in pop-in-delay-1">How to <em>arrive</em></h2>
-    <p class="body-text pop-in pop-in-delay-2">Skaneateles is a small town in the Finger Lakes. You'll want to fly into one of the nearby airports and rent a car or arrange a ride.</p>
-
-    <div class="card-grid card-grid-2" style="margin-top: 2rem;">
-      <div class="card card-tilt-r pop-in pop-in-delay-1">
-        <span class="airport-chip">SYR</span>
-        <p class="card-heading">Syracuse Hancock International</p>
-        <p>About 25 minutes from Skaneateles. The closest major airport — most direct routes fly through here.</p>
-      </div>
-      <div class="card card-tilt-l pop-in pop-in-delay-2">
-        <span class="airport-chip">ITH</span>
-        <p class="card-heading">Ithaca Tompkins Regional</p>
-        <p>About 1 hour from Skaneateles. Smaller airport, fewer direct routes, but a beautiful drive through the Finger Lakes wine country.</p>
-      </div>
-    </div>
-
-    <div class="card pop-in" style="margin-top: 1.5rem;">
-      <p class="card-heading">🚗 Getting from the airport to the venue</p>
-      <p>We recommend renting a car — you'll want the flexibility to explore. Rideshare (Uber/Lyft) is available from SYR. If you need a pickup, let us know in the travel form below and we'll do our best to coordinate!</p>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="section-inner">
-    <p class="section-label pop-in">Questions</p>
-    <h2 class="section-title pop-in pop-in-delay-1">We've got <em>answers</em></h2>
-
-    <div class="faq-list pop-in pop-in-delay-2">
-      <details>
-        <summary>What's the dress code?</summary>
-        <div class="faq-answer">
-          <p><strong>Outdoor cocktail / garden party.</strong> Think: something you'd feel great in while standing on a lakeside lawn. Sundresses, linen suits, flowy fabrics — yes. Stilettos on a grassy lawn — up to you (but maybe bring a backup). The vibe is celebratory and joyful. Express yourself.</p>
-        </div>
-      </details>
-      <details>
-        <summary>Is there food for dietary restrictions?</summary>
-        <div class="faq-answer">
-          <p>Yes — we'll have vegetarian, vegan, and gluten-free options. If you have a serious allergy or specific need, please note it in your travel form and we'll make sure you're taken care of.</p>
-        </div>
-      </details>
-      <details>
-        <summary>What's the weather like in August?</summary>
-        <div class="faq-answer">
-          <p>August in the Finger Lakes is <strong>beautiful</strong> — typically 70–85°F (21–29°C), low humidity, long golden evenings. Bring a light layer for the evening if you run cool. The occasional afternoon thunderstorm is possible but usually brief.</p>
-        </div>
-      </details>
-      <details>
-        <summary>Is there parking at the venue?</summary>
-        <div class="faq-answer">
-          <p>Yes, there's parking available at The Woodlot. More details on logistics will come closer to the date. If you're staying onsite or nearby, you won't need to worry about a thing.</p>
-        </div>
-      </details>
-      <details>
-        <summary>Can I bring kids?</summary>
-        <div class="faq-answer">
-          <p>This is an adult-focused celebration, but if you have a specific situation, reach out to us directly and we'll talk through it. We want everyone to be present and relaxed — including parents.</p>
-        </div>
-      </details>
-      <details>
-        <summary>Is the wedding indoors or outdoors?</summary>
-        <div class="faq-answer">
-          <p>The ceremony will be outside on the lakefront. The reception will be a mix — outdoors for the golden hour, and we'll move inside as the evening cools. Wear your comfy shoes.</p>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- HONEYMOON FUND -->
-<section id="gifts">
-  <div class="section-inner">
-    <p class="section-label pop-in">Gifts</p>
-    <h2 class="section-title pop-in pop-in-delay-1">The <em>honeymoon fund</em></h2>
-
-    <div class="fund-card pop-in pop-in-delay-2">
-      <h3>Send us on an adventure</h3>
-      <p>Your presence is truly the best gift. But if you'd like to contribute to our honeymoon, we'd be so grateful. We're dreaming of somewhere with good food and better sunsets.</p>
-      <!-- REPLACE @your-venmo-handle with the real handle before deploying -->
-      <a href="https://www.venmo.com/your-venmo-handle" target="_blank" rel="noopener" class="venmo-btn">
-        💸 Venmo Us
+    <div style="margin-top:2.5rem;" class="pop d2">
+      <a href="https://www.airbnb.com/rooms/1642913184393041864" target="_blank" rel="noopener"
+         style="display:inline-block;background:var(--ink);color:var(--gold);font-family:'Anybody',sans-serif;font-weight:900;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;padding:.8rem 1.8rem;text-decoration:none;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transform:rotate(1deg);">
+        🛖 Book the Cabin on Airbnb →
       </a>
     </div>
   </div>
 </section>
 
-<!-- TRAVEL INFO FORM -->
-<section id="travel-form" style="background: var(--navy);">
-  <div class="section-inner">
-    <p class="section-label pop-in" style="color: var(--gold);">Travel Info</p>
-    <h2 class="section-title pop-in pop-in-delay-1" style="color: var(--cream);">Help us plan <em style="color: var(--gold);">for you</em></h2>
-    <p class="body-text pop-in pop-in-delay-2" style="color: rgba(255,253,245,0.7);">Let us know how you're getting here so we can plan pickups and make sure everyone arrives safely.</p>
+<div class="water-show" id="water-show">
+  <img src="assets/web/venue-lake-dock.jpg" class="active" alt="The lake" />
+  <img src="assets/web/venue-sunset.jpg" alt="Sunset" />
+  <img src="assets/web/venue-lake-reflection.jpg" alt="Reflection" />
+  <img src="assets/web/venue-floating-dock.jpg" alt="Floating dock" />
+  <img src="assets/web/venue-clouds.jpg" alt="Summer sky" />
+  <div class="water-overlay">
+    <h2 class="water-title">Skaneateles Lake<br><span>New York</span></h2>
+  </div>
+</div>
 
-    <div class="form-card pop-in pop-in-delay-3">
-      <form id="travel-form-el">
-        <!-- Row 1: Name + Party -->
+<!-- ANIMATED WATER STRIP -->
+<div style="display:grid;grid-template-columns:1fr 2fr;border-top:4px solid var(--ink);border-bottom:4px solid var(--ink);background:var(--ink);max-height:480px;overflow:hidden;">
+  <div style="overflow:hidden;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem 2rem 2rem;">
+    <div style="max-width:240px;">
+      <p style="font-family:'Anybody',sans-serif;font-weight:900;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;">The Water</p>
+      <h3 style="font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(1.6rem,4vw,2.6rem);color:var(--cream);line-height:1.05;margin-bottom:.8rem;">The lake is<br><em style="color:var(--gold);">crystal clear</em></h3>
+      <p style="font-family:'Caveat',cursive;font-size:1.1rem;color:rgba(253,248,238,.65);line-height:1.6;">Skaneateles is one of the cleanest lakes in the United States. You can see straight to the bottom. You will be in it.</p>
+    </div>
+  </div>
+  <div style="overflow:hidden;display:flex;align-items:stretch;">
+    <img src="assets/web/water-animated.gif" alt="Crystal clear water of Skaneateles Lake"
+         style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+  </div>
+</div>
+
+<section class="section-wood">
+  <div class="section-inner">
+    <p class="diner-label pop">The Weekend</p>
+    <h2 class="section-title pop d1">Three days of <em>joy</em></h2>
+    <p class="pop d2" style="font-size:1rem;line-height:1.75;color:rgba(253,248,238,.7);max-width:58ch;margin-bottom:2.5rem;">
+      The whole weekend is the celebration. Come for as much as you can.
+    </p>
+    <div class="menu-section pop">
+      <div class="menu-day">Friday, August 21 — Arrival</div>
+      <div class="menu-item"><span class="menu-item-name">Arrive &amp; Settle In</span><span class="menu-item-time">Afternoon</span><span class="menu-item-note">check in, explore the lake, find your people</span></div>
+      <hr class="menu-divider">
+      <div class="menu-item"><span class="menu-item-name">Rehearsal Dinner</span><span class="menu-item-time">Evening</span><span class="menu-item-note">dinner with the wedding party &amp; close family</span></div>
+    </div>
+    <div class="menu-section pop d1">
+      <div class="menu-day">Saturday, August 22 — The Big Day ✦</div>
+      <div class="menu-item"><span class="menu-item-name">Wedding Ceremony</span><span class="menu-item-time">Afternoon</span><span class="menu-item-note">anna &amp; steve say yes</span></div>
+      <hr class="menu-divider">
+      <div class="menu-item"><span class="menu-item-name">Dinner &amp; Dancing</span><span class="menu-item-time">Evening</span><span class="menu-item-note">eat, drink, dance, repeat</span></div>
+      <hr class="menu-divider">
+      <div class="menu-item"><span class="menu-item-name">Keep it going</span><span class="menu-item-time">Late Night</span><span class="menu-item-note">don't let it end</span></div>
+    </div>
+    <div class="menu-section pop d2">
+      <div class="menu-day">Sunday, August 23 — Farewell</div>
+      <div class="menu-item"><span class="menu-item-name">Lazy Morning</span><span class="menu-item-time">Morning</span><span class="menu-item-note">coffee, lake views, slow goodbyes</span></div>
+      <hr class="menu-divider">
+      <div class="menu-item"><span class="menu-item-name">Farewell Lunch</span><span class="menu-item-time">Midday</span><span class="menu-item-note">venue TBD — details coming soon</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-cream">
+  <div class="section-inner">
+    <p class="diner-label pop">Getting Here</p>
+    <h2 class="section-title pop d1">How to <em>arrive</em></h2>
+    <p class="pop d2" style="font-size:1rem;line-height:1.75;color:#555;max-width:58ch;">
+      Fly in and rent a car. The drive to Skaneateles is gorgeous either way.
+    </p>
+    <div class="travel-grid">
+      <div class="travel-card pop d1">
+        <div class="airport-code">SYR</div>
+        <h3>Syracuse Hancock International</h3>
+        <p>~25 minutes from Skaneateles. The closest airport with direct routes from most cities.</p>
+      </div>
+      <div class="travel-card pop d2">
+        <div class="airport-code">ITH</div>
+        <h3>Ithaca Tompkins Regional</h3>
+        <p>~1 hour away. Smaller airport, beautiful drive north through Finger Lakes wine country.</p>
+      </div>
+    </div>
+    <div class="travel-card pop" style="margin-top:1.5rem;">
+      <h3>🚗 Getting to the Venue</h3>
+      <p>We recommend renting a car — you'll want the freedom to explore. Rideshare (Uber/Lyft) is available from SYR. Need an airport pickup? Fill out the travel form and we'll coordinate!</p>
+    </div>
+    <div class="frames-grid" style="margin-top:3rem;">
+      <div class="frame frame-tilt-r pop d1"><img src="assets/web/venue-sunset.jpg" alt="Sunset on the lake" /><p class="frame-caption">sunset on the lake</p></div>
+      <div class="frame frame-tilt-l pop d2"><img src="assets/web/venue-shore-fern.jpg" alt="Shore" /><p class="frame-caption">the shore</p></div>
+      <div class="frame frame-tilt-r pop d3"><img src="assets/web/venue-firepit.jpg" alt="The firepit" /><p class="frame-caption">firepit circle</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="section-inner">
+    <p class="diner-label pop">Questions</p>
+    <h2 class="section-title pop d1">We've got <em>answers</em></h2>
+    <div class="faq-list pop d2">
+      <details><summary>What's the dress code?</summary><div class="faq-body"><strong>Outdoor cocktail / garden party.</strong> Something you'd feel great in on a lakeside lawn. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself.</div></details>
+      <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — vegetarian, vegan, and gluten-free options will be available. Put any serious allergies in the notes section of the travel form.</div></details>
+      <details><summary>What's the weather like in August?</summary><div class="faq-body"><strong>Gorgeous.</strong> 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible but usually brief.</div></details>
+      <details><summary>Is there parking?</summary><div class="faq-body">Yes, parking is available at The Woodlot. More logistics details will come closer to the date.</div></details>
+      <details><summary>Can I bring kids?</summary><div class="faq-body">This is an adult-focused celebration. If you have a specific situation, reach out directly and we'll talk it through.</div></details>
+      <details><summary>Indoors or outdoors?</summary><div class="faq-body">Ceremony is outside on the lakefront. The reception starts outdoors for the golden hour and moves inside as the evening cools. Comfortable shoes are your friend.</div></details>
+      <details><summary>What should I bring for the weekend?</summary><div class="faq-body"><strong>Swimsuit</strong> — the lake is crystal clear and you will want to be in it. Also: sunscreen, layers for the evening, comfortable shoes, and a camera.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="section-pink">
+  <div class="fund-inner">
+    <p class="diner-label pop" style="background:var(--ink);color:var(--gold);">Gifts</p>
+    <h2 class="section-title pop d1" style="color:var(--ink);">The <em style="color:white;">honeymoon fund</em></h2>
+    <p class="pop d2">Your presence is genuinely the best gift. But if you'd like to send us somewhere extraordinary, we would be so grateful. We're dreaming big.</p>
+    <!-- SWAP @your-venmo-handle before deploying -->
+    <a href="https://www.venmo.com/your-venmo-handle" target="_blank" rel="noopener" class="venmo-btn pop d3">💸 Venmo Us</a>
+  </div>
+</section>
+
+<section class="section-dark" id="travel-form">
+  <div class="section-inner">
+    <p class="diner-label pop">Travel Info</p>
+    <h2 class="section-title pop d1">Help us plan <em>for you</em></h2>
+    <p class="pop d2" style="font-size:1rem;line-height:1.75;color:rgba(253,248,238,.65);max-width:58ch;">Let us know how you're getting here. We'll coordinate pickups and make sure everyone arrives well.</p>
+    <div class="form-wrap pop d3">
+      <form id="tform">
         <div class="form-row form-row-2">
-          <div class="form-group">
-            <label class="form-label" for="field-name">Your Name</label>
-            <input class="form-input" type="text" id="field-name" name="name" placeholder="First & Last" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="field-party">Your Party / Group</label>
-            <select class="form-select" id="field-party" name="party" required>
+          <div class="form-group"><label class="form-lbl" for="fn">Your Name</label><input class="form-inp" type="text" id="fn" name="name" placeholder="First &amp; Last" required /></div>
+          <div class="form-group"><label class="form-lbl" for="fp">Your Group</label>
+            <select class="form-sel" id="fp" name="party" required>
               <option value="" disabled selected>Select your group…</option>
-              <option>Anna's Family</option>
-              <option>Steve's Family</option>
-              <option>Anna's Friends</option>
-              <option>Steve's Friends</option>
-              <option>Portland Friends</option>
-              <option>College Friends</option>
-              <option>Work Friends</option>
-              <option>Other</option>
+              <option>Anna's Family</option><option>Steve's Family</option>
+              <option>Anna's Friends</option><option>Steve's Friends</option>
+              <option>Portland Friends</option><option>College Friends</option>
+              <option>Work Friends</option><option>Other</option>
             </select>
           </div>
         </div>
-
-        <!-- Row 2: Guest count -->
         <div class="form-row form-row-2">
-          <div class="form-group">
-            <label class="form-label" for="field-guests">How many guests in your group?</label>
-            <select class="form-select" id="field-guests" name="guests" required>
-              <option value="" disabled selected>Number of guests…</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5+</option>
+          <div class="form-group"><label class="form-lbl" for="fg">Guests in your group</label>
+            <select class="form-sel" id="fg" name="guests" required>
+              <option value="" disabled selected>How many?</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
             </select>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="field-staying">Where are you staying?</label>
-            <select class="form-select" id="field-staying" name="staying">
+          <div class="form-group"><label class="form-lbl" for="fs">Staying…</label>
+            <select class="form-sel" id="fs" name="staying">
               <option value="" disabled selected>Select…</option>
               <option>The Woodlot / Blakney Sisters Cabin</option>
-              <option>Nearby Airbnb / Hotel</option>
+              <option>Nearby Airbnb or Hotel</option>
               <option>With family or friends locally</option>
-              <option>Day trip (not staying overnight)</option>
+              <option>Day trip (not overnight)</option>
               <option>Not sure yet</option>
             </select>
           </div>
         </div>
-
-        <!-- Airport pickup -->
-        <div class="form-row" style="margin-bottom: 0.5rem;">
+        <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Do you need an airport pickup?</label>
-            <div class="radio-group" style="margin-top: 0.4rem;">
-              <label class="radio-label">
-                <input type="radio" name="pickup" value="yes" id="pickup-yes" /> Yes please!
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="pickup" value="no" id="pickup-no" /> No, I'm all set
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="pickup" value="maybe" id="pickup-maybe" /> Not sure yet
-              </label>
+            <label class="form-lbl">Airport pickup needed?</label>
+            <div class="radio-grp" style="margin-top:.35rem;">
+              <label class="radio-lbl"><input type="radio" name="pickup" value="yes"> Yes please!</label>
+              <label class="radio-lbl"><input type="radio" name="pickup" value="no"> No, I'm set</label>
+              <label class="radio-lbl"><input type="radio" name="pickup" value="maybe"> Not sure yet</label>
             </div>
           </div>
         </div>
-
-        <!-- Flight details (conditional) -->
-        <div class="flight-fields" id="flight-fields">
-          <div class="form-group">
-            <label class="form-label" for="field-airport">Airport</label>
-            <select class="form-select" id="field-airport" name="airport">
-              <option value="" disabled selected>Select airport…</option>
-              <option>SYR — Syracuse Hancock</option>
-              <option>ITH — Ithaca Tompkins</option>
-              <option>Other</option>
+        <div class="flight-fields" id="ffields">
+          <div class="form-group"><label class="form-lbl" for="fap">Airport</label>
+            <select class="form-sel" id="fap" name="airport">
+              <option value="" disabled selected>Select…</option>
+              <option>SYR — Syracuse Hancock</option><option>ITH — Ithaca Tompkins</option><option>Other</option>
             </select>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="field-arrival">Arrival Date &amp; Time</label>
-            <input class="form-input" type="text" id="field-arrival" name="arrival" placeholder="e.g. Friday Aug 21, ~3pm" />
-          </div>
-          <div class="form-group" style="grid-column: 1 / -1;">
-            <label class="form-label" for="field-flight">Flight Number (optional)</label>
-            <input class="form-input" type="text" id="field-flight" name="flight" placeholder="e.g. AA 1234" />
-          </div>
+          <div class="form-group"><label class="form-lbl" for="farr">Arrival Date &amp; Time</label><input class="form-inp" type="text" id="farr" name="arrival" placeholder="e.g. Friday Aug 21, ~3pm" /></div>
+          <div class="form-group" style="grid-column:1/-1;"><label class="form-lbl" for="fflt">Flight Number (optional)</label><input class="form-inp" type="text" id="fflt" name="flight" placeholder="e.g. AA 1234" /></div>
         </div>
-
-        <!-- Notes -->
-        <div class="form-row" style="margin-top: 1rem;">
-          <div class="form-group">
-            <label class="form-label" for="field-notes">Anything else we should know?</label>
-            <input class="form-input" type="text" id="field-notes" name="notes" placeholder="Dietary needs, questions, excitement levels…" />
-          </div>
+        <div class="form-row" style="margin-top:1rem;">
+          <div class="form-group"><label class="form-lbl" for="fnotes">Anything else?</label><input class="form-inp" type="text" id="fnotes" name="notes" placeholder="Dietary needs, questions, excitement level…" /></div>
         </div>
-
-        <button type="submit" class="form-submit" id="form-submit-btn">
-          Send it our way ✦
-        </button>
+        <button type="submit" class="form-btn" id="fsubmit">Send it our way ✦</button>
       </form>
-
-      <!-- Success screen -->
-      <div class="form-success" id="form-success">
+      <div class="form-success" id="fsuccess">
         <span class="success-icon">🎉</span>
-        <p class="success-title">You're on our radar!</p>
-        <p class="success-note">Thanks for sharing your travel plans. We can't wait to celebrate with you.</p>
+        <p class="success-h">You're on our radar!</p>
+        <p class="success-note">Can't wait to celebrate with you.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>Made with love for <strong>Anna &amp; Steve</strong> · August 22, 2026</p>
-  <p style="margin-top: 0.4rem; font-size: 0.9rem;">Questions? Reach out to us directly.</p>
+  <p>Made with love for <strong>Anna &amp; Steve</strong> · August 22, 2026 · Skaneateles Lake, NY</p>
+  <p style="margin-top:.5rem;font-size:.9rem;">Questions? Ask the Lake 👇 or reach out to us directly.</p>
 </footer>
 
+<div id="chat-bubble">
+  <div id="chat-panel">
+    <div class="chat-header">
+      <span>💬 Ask the Lake</span>
+      <button class="chat-close" id="chat-close-btn">×</button>
+    </div>
+    <div class="chat-messages" id="chat-msgs">
+      <div class="msg bot"><span class="msg-name">The Lake</span>Hi! I'm the Woodlot's resident answer-bot. Ask me anything about the wedding weekend — travel, dress code, what to pack, the schedule… I know things. 🌊</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Ask a question…" autocomplete="off" />
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+  <button id="chat-toggle">💬 Ask the Lake</button>
+</div>
+
 <script>
-// ── TWINKLING STARS ──────────────────────────────────────────────
-(function() {
-  const canvas = document.getElementById('stars-canvas');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-  let W, H;
-
-  function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-
-  function randomStar() {
-    return {
-      x:       Math.random() * W,
-      y:       Math.random() * H,
-      r:       Math.random() * 1.6 + 0.3,
-      alpha:   Math.random(),
-      delta:   (Math.random() * 0.008 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
-      color:   Math.random() < 0.15 ? '#f4c842' : 'white'
-    };
-  }
-
-  function init() {
-    resize();
-    stars = [];
-    const count = Math.floor((W * H) / 5000);
-    for (let i = 0; i < count; i++) stars.push(randomStar());
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    stars.forEach(s => {
-      s.alpha += s.delta;
-      if (s.alpha <= 0 || s.alpha >= 1) s.delta *= -1;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.color;
-      ctx.globalAlpha = Math.max(0, Math.min(1, s.alpha));
-      ctx.fill();
-    });
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', () => { init(); });
-  init();
-  draw();
+(function(){
+  const imgs = document.querySelectorAll('#water-show img');
+  let cur = 0;
+  setInterval(() => { imgs[cur].classList.remove('active'); cur=(cur+1)%imgs.length; imgs[cur].classList.add('active'); }, 3200);
 })();
 
-// ── POP-IN ANIMATIONS ────────────────────────────────────────────
-(function() {
-  const els = document.querySelectorAll('.pop-in');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(el => obs.observe(el));
+(function(){
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, {threshold:.1});
+  document.querySelectorAll('.pop').forEach(el => obs.observe(el));
 })();
 
-// ── AIRPORT PICKUP CONDITIONAL FIELDS ────────────────────────────
-document.querySelectorAll('input[name="pickup"]').forEach(radio => {
-  radio.addEventListener('change', function() {
-    const fields = document.getElementById('flight-fields');
-    if (this.value === 'yes') {
-      fields.classList.add('visible');
-    } else {
-      fields.classList.remove('visible');
-    }
-  });
+document.querySelectorAll('input[name="pickup"]').forEach(r => {
+  r.addEventListener('change', function(){ document.getElementById('ffields').classList.toggle('on', this.value==='yes'); });
 });
 
-// ── FORM SUBMIT ───────────────────────────────────────────────────
-document.getElementById('travel-form-el').addEventListener('submit', function(e) {
+document.getElementById('tform').addEventListener('submit', function(e){
   e.preventDefault();
-
-  const btn = document.getElementById('form-submit-btn');
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-
-  const data = new FormData(this);
-  const payload = {};
-  data.forEach((v, k) => { payload[k] = v; });
-
-  // ── REPLACE THIS URL with your Google Apps Script webhook URL ──
-  const WEBHOOK_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL';
-
-  if (WEBHOOK_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL') {
-    // Demo mode — show success without actually submitting
-    showSuccess();
-    return;
-  }
-
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(() => showSuccess())
-  .catch(() => showSuccess()); // no-cors always catches, still show success
-
-  function showSuccess() {
-    document.getElementById('travel-form-el').style.display = 'none';
-    document.getElementById('form-success').classList.add('visible');
-  }
+  const btn = document.getElementById('fsubmit');
+  btn.disabled=true; btn.textContent='Sending…';
+  const WEBHOOK='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL';
+  const payload={};
+  new FormData(this).forEach((v,k) => payload[k]=v);
+  function ok(){ document.getElementById('tform').style.display='none'; document.getElementById('fsuccess').classList.add('on'); }
+  if(WEBHOOK==='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL'){ ok(); return; }
+  fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(ok).catch(ok);
 });
-</script>
 
+document.getElementById('chat-toggle').addEventListener('click',()=>document.getElementById('chat-panel').classList.toggle('open'));
+document.getElementById('chat-close-btn').addEventListener('click',()=>document.getElementById('chat-panel').classList.remove('open'));
+
+const RESP=[
+  {k:['dress','wear','outfit','clothes','attire','formal','casual'],a:"Outdoor cocktail / garden party! Think: something you'd feel great in on a lakeside lawn. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself. 👗✨"},
+  {k:['when','time','ceremony','what time','start'],a:"The ceremony is Saturday afternoon, August 22. Full weekend: Friday evening rehearsal dinner → Saturday afternoon ceremony + evening reception → Sunday farewell lunch. Come for all of it! 📅"},
+  {k:['schedule','weekend','friday','saturday','sunday','rehearsal','dancing'],a:"Three days! 🎉 Fri: arrive + rehearsal dinner. Sat: ceremony in the afternoon, dinner + dancing through the night. Sun: lazy morning + farewell lunch. Come for the whole thing."},
+  {k:['airport','fly','flight','travel','syr','ith','drive','car','uber','rideshare'],a:"Two airports: SYR (Syracuse, ~25 min) has the most routes. ITH (Ithaca, ~1hr) is a beautiful drive through wine country. Rent a car — you'll want it. Need a pickup? Fill out the travel form! ✈️🚗"},
+  {k:['stay','hotel','airbnb','cabin','woodlot','accommodation','sleep','lodging'],a:"The Woodlot cabin (Blakney Sisters Cabin) is on Airbnb — staying onsite is HIGHLY recommended. You won't want to leave. Plenty of other options in Skaneateles village (~10 min away). 🛖"},
+  {k:['bring','pack','what to bring','swim','swimming','lake','swimsuit'],a:"SWIMSUIT first — the lake is crystal clear and incredible. Also: sunscreen, layers for evening, comfortable shoes for the lawn, and a camera. The dock is excellent for jumping off of. 🏊🌊"},
+  {k:['food','eat','diet','vegetarian','vegan','gluten','allergy','dietary'],a:"Yes! Veg, vegan, and GF options will be available. Serious allergy or specific need? Put it in the travel form notes and Anna & Steve will make sure you're taken care of. 🥗"},
+  {k:['weather','hot','cold','rain','temperature','august','climate'],a:"August in the Finger Lakes is genuinely beautiful — 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible. Mostly: perfect. ☀️"},
+  {k:['parking','park'],a:"Yes, parking at The Woodlot. If you're staying onsite, you won't need to think about it at all. 🅿️"},
+  {k:['kids','children','child','baby'],a:"Adult-focused celebration, but if you have a specific situation reach out to Anna & Steve directly. They want everyone — including parents — fully present and relaxed. 💛"},
+  {k:['venmo','gift','money','honeymoon','present'],a:"Your presence is the best gift! But if you'd like to contribute to their honeymoon, there's a Venmo button on the site. They're dreaming big. ✈️💸"},
+  {k:['where','location','address','skaneateles','woodlot','venue','map'],a:"The Woodlot — Blakney Sisters Cabin, western shore of Skaneateles Lake, Finger Lakes, New York. ~25 min from SYR. There's a map link in the venue section! 📍"},
+  {k:['who','anna','steve','couple','engaged'],a:"Anna and Steve! Two people who really like each other, good food, good adventures, and being near water. Getting married at a place they love, with people they love. That's the whole thing. 💛"},
+  {k:['rsvp','form','travel form','tell you','let you know'],a:"Scroll down to the travel form on this page! Share your group, guest count, where you're staying, and if you need an airport pickup. Best way to keep them in the loop. 📝"},
+  {k:['hello','hi','hey','howdy','hola','good morning'],a:"Hi! 👋 I'm the Woodlot's know-it-all lake oracle. Ask me about travel, dress code, the schedule, what to bring, or anything about the wedding weekend!"},
+];
+
+function getR(input){
+  const q=input.toLowerCase();
+  for(const r of RESP){ if(r.k.some(k=>q.includes(k))) return r.a; }
+  return "Hmm, I'm just a lake! 🌊 Try asking about: travel, dress code, schedule, accommodations, weather, food, what to pack, or gifts!";
+}
+function addMsg(text,type){
+  const msgs=document.getElementById('chat-msgs');
+  const div=document.createElement('div');
+  div.className='msg '+type;
+  if(type==='bot') div.innerHTML='<span class="msg-name">The Lake</span>'+text;
+  else div.textContent=text;
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+function sendChat(){
+  const inp=document.getElementById('chat-input');
+  const val=inp.value.trim();
+  if(!val) return;
+  addMsg(val,'user'); inp.value='';
+  setTimeout(()=>addMsg(getR(val),'bot'),380);
+}
+document.getElementById('chat-send').addEventListener('click',sendChat);
+document.getElementById('chat-input').addEventListener('keydown',e=>{ if(e.key==='Enter') sendChat(); });
+</script>
 </body>
 </html>

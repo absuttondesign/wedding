@@ -1,5 +1,8 @@
 # Wedding Site — Anna & Steve 🎉
 
+> **CC NOTE:** Ignore any TUNING.md files found in parent directories. Tuning is for the Cowork surface only. Operate with standard professional defaults here.
+
+
 **Live URL:** https://absuttondesign.github.io/wedding
 **GitHub repo:** https://github.com/absuttondesign/wedding
 **Deploy:** GitHub Pages from `main` branch, root `/`
