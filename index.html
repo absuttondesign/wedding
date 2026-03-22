@@ -221,6 +221,23 @@
     .success-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
     .success-h { font-family: 'Abril Fatface', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: .5rem; }
     .success-note { font-family: 'Caveat', cursive; font-size: 1.3rem; color: rgba(253,248,238,.7); }
+    /* STAY LOOKUP */
+    .stay-search { max-width: 420px; }
+    .stay-suggestions { position:absolute; top:100%; left:0; right:0; background:var(--ink); border:2px solid var(--gold); z-index:100; display:none; }
+    .stay-suggestions.open { display:block; }
+    .stay-suggestion { padding:.75rem 1rem; font-family:'Playfair Display',serif; font-size:1rem; color:var(--cream); cursor:pointer; border-bottom:1px solid rgba(253,248,238,.1); }
+    .stay-suggestion:hover { background:rgba(240,192,64,.15); }
+    .stay-card { background:rgba(0,0,0,.35); border:2px solid rgba(240,192,64,.4); padding:2rem; }
+    .stay-card-header { margin-bottom:1.5rem; }
+    .stay-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media(max-width:600px){ .stay-grid { grid-template-columns:1fr; } }
+    .stay-detail { background:rgba(255,255,255,.06); padding:1rem; border-left:3px solid var(--gold); }
+    .stay-detail-label { font-family:'Anybody',sans-serif; font-weight:700; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:.3rem; }
+    .stay-detail-value { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--cream); line-height:1.4; }
+    .stay-link-btn { display:inline-block; background:rgba(255,255,255,.1); color:var(--cream); font-family:'Anybody',sans-serif; font-weight:700; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; padding:.6rem 1.2rem; text-decoration:none; border:2px solid rgba(253,248,238,.3); transition:background .2s; }
+    .stay-link-btn:hover { background:rgba(255,255,255,.2); }
+    .stay-link-gold { background:var(--gold); color:var(--ink); border-color:var(--gold); }
+    .stay-link-gold:hover { background:#e0b030; }
     /* CHAT */
     #chat-bubble { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; }
     #chat-toggle {
@@ -476,6 +493,76 @@
   </div>
 </section>
 
+<section class="section-wood" id="your-stay">
+  <div class="section-inner">
+    <p class="diner-label pop">Your Lodging</p>
+    <h2 class="section-title pop d1">Find <em>Your Stay</em></h2>
+    <p class="pop d2" style="font-size:1.05rem;line-height:1.75;color:rgba(253,248,238,.85);max-width:56ch;margin-bottom:2rem;">Type your first name below to find your accommodation details, Airbnb link, and what to expect when you arrive.</p>
+
+    <div class="stay-search pop d2">
+      <div style="position:relative;">
+        <input type="text" id="stay-input" class="form-inp" placeholder="Enter your first name…" autocomplete="off" style="font-size:1.1rem;padding:1rem 1.2rem;" />
+        <div id="stay-suggestions" class="stay-suggestions"></div>
+      </div>
+      <button id="stay-btn" class="form-btn" style="margin-top:.75rem;transform:none;">Find My Stay →</button>
+    </div>
+
+    <div id="stay-result" style="display:none;margin-top:2rem;" class="pop">
+      <div class="stay-card">
+        <div class="stay-card-header">
+          <span id="stay-prop-label" class="diner-label" style="margin-bottom:.5rem;display:inline-block;"></span>
+          <h3 id="stay-prop-name" style="font-family:'Abril Fatface',serif;font-size:1.8rem;color:var(--cream);line-height:1;margin-bottom:.3rem;"></h3>
+          <p id="stay-prop-address" style="font-family:'Anybody',sans-serif;font-size:.9rem;color:var(--gold);letter-spacing:.05em;margin-bottom:1rem;"></p>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+            <a id="stay-map-link" href="#" target="_blank" rel="noopener" class="stay-link-btn">📍 Directions</a>
+            <a id="stay-airbnb-link" href="#" target="_blank" rel="noopener" class="stay-link-btn stay-link-gold">🏠 View Listing</a>
+          </div>
+        </div>
+        <div class="stay-grid">
+          <div class="stay-detail">
+            <div class="stay-detail-label">Your Room</div>
+            <div id="stay-room" class="stay-detail-value"></div>
+          </div>
+          <div class="stay-detail">
+            <div class="stay-detail-label">Beds</div>
+            <div id="stay-beds" class="stay-detail-value"></div>
+          </div>
+          <div class="stay-detail">
+            <div class="stay-detail-label">Sharing with</div>
+            <div id="stay-sharing" class="stay-detail-value"></div>
+          </div>
+          <div class="stay-detail">
+            <div class="stay-detail-label">Boats at this property</div>
+            <div id="stay-boats" class="stay-detail-value"></div>
+          </div>
+          <div class="stay-detail">
+            <div class="stay-detail-label">Check-in</div>
+            <div id="stay-checkin" class="stay-detail-value"></div>
+          </div>
+          <div class="stay-detail">
+            <div class="stay-detail-label">Check-out</div>
+            <div id="stay-checkout" class="stay-detail-value"></div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px dashed rgba(253,248,238,.2);">
+          <p style="font-family:'Anybody',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;">📧 Email this to yourself</p>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:flex-end;">
+            <div style="flex:1;min-width:200px;">
+              <input type="email" id="stay-email" class="form-inp" placeholder="your@email.com" style="font-size:1rem;" />
+            </div>
+            <button id="stay-email-btn" class="form-btn" style="margin-top:0;transform:none;white-space:nowrap;">Send It →</button>
+          </div>
+          <p id="stay-email-status" style="font-family:'Caveat',cursive;font-size:1.1rem;color:var(--gold);margin-top:.6rem;display:none;"></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="stay-not-found" style="display:none;margin-top:1.5rem;">
+      <p style="font-family:'Caveat',cursive;font-size:1.3rem;color:rgba(253,248,238,.7);">Hmm, couldn't find that name. Try a different spelling, or reach out to Anna & Steve directly! 💛</p>
+    </div>
+  </div>
+</section>
+
 <section class="section-dark" id="travel-form">
   <div class="section-inner">
     <p class="diner-label pop">Travel Info</p>
@@ -610,6 +697,136 @@ document.getElementById('tform').addEventListener('submit', function(e){
   if(WEBHOOK==='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL'){ ok(); return; }
   fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(ok).catch(ok);
 });
+
+// ── STAY LOOKUP ──────────────────────────────────────────
+const PROPERTIES = {
+  'glen-cove': {
+    label: 'Property 1 of 4',
+    name: 'Glen Cove House',
+    address: '6518 Glen Cove Rd, Moravia, NY 13118',
+    airbnb: 'https://www.airbnb.com/rooms/48860896',
+    boats: '2 boats',
+    checkin: 'Thursday, Aug 21 · exact time TBD',
+    checkout: 'Sunday, Aug 24 · exact time TBD',
+    units: {
+      'Unit 1': { beds: 'Queen, Full ×2, Twin', guests: ['Greta','Matilda','Iris','Leven','Chloe'] },
+      'Unit 2': { beds: 'Queen, Full ×2, Twin', guests: ['Dad','Melissa','Drew'] },
+      'Unit 3': { beds: 'Queen, Full ×2, Twin', guests: ['Mike','Corrie','Thomas','Matthew'] },
+      'Unit 4': { beds: 'Queen, Full ×2, Twin', guests: ['Nick','Elena','Sam','Marty'] },
+    }
+  },
+  'fire-lane-85': {
+    label: 'Property 2 of 4',
+    name: 'Fire Lane 21B (Upper)',
+    address: '85 Fire Lane 21B, Skaneateles, NY 13152',
+    airbnb: 'https://www.airbnb.com/trips/shared/c13c0c30-5f65-4de2-947e-522881d746e5',
+    boats: '½ boat (shared)',
+    checkin: 'Thursday, Aug 21 · exact time TBD',
+    checkout: 'Sunday, Aug 24 · exact time TBD',
+    units: {
+      'Room 1': { beds: 'Queen', guests: ['Jonah','Makalah'] },
+      'Room 2': { beds: 'Queen', guests: ['Jill','Ziya'] },
+      'Room 3': { beds: 'King', guests: ['Grandma','Grandpa'] },
+      'Room 4': { beds: 'Two twins', guests: ['Audrey','Jaylin'] },
+    }
+  },
+  'five-mile': {
+    label: 'Property 3 of 4',
+    name: '5 Mile Point',
+    address: '146 5 Mile Point Road, Skaneateles, NY 13152',
+    airbnb: null,
+    boats: '1 boat',
+    checkin: 'Thursday, Aug 21 · exact time TBD',
+    checkout: 'Sunday, Aug 24 · exact time TBD',
+    units: {
+      'The House': { beds: 'Two bedrooms', guests: ['Karly','Todd','Eli'] },
+    }
+  },
+  'fire-lane-71': {
+    label: 'Property 4 of 4',
+    name: 'Fire Lane 21B (Lower)',
+    address: '71 Fire Lane 21B, Skaneateles, NY 13152',
+    airbnb: 'https://www.airbnb.com/rooms/654184779549787705',
+    boats: '½ boat (shared)',
+    checkin: 'Thursday, Aug 21 · exact time TBD',
+    checkout: 'Sunday, Aug 24 · exact time TBD',
+    units: {
+      'Room 1': { beds: 'King', guests: ['Steve','Juli'] },
+      'Room 2': { beds: 'Queen', guests: ['Denise','Jack'] },
+      'Room 3': { beds: 'Two twins', guests: ['Hannah','Marley'] },
+    }
+  }
+};
+
+// Build flat guest → {propId, unitName} lookup
+const GUEST_MAP = {};
+for(const [pid, prop] of Object.entries(PROPERTIES)){
+  for(const [uname, unit] of Object.entries(prop.units)){
+    for(const g of unit.guests){
+      GUEST_MAP[g.toLowerCase()] = { propId: pid, unitName: uname, canonical: g };
+    }
+  }
+}
+const ALL_NAMES = Object.values(GUEST_MAP).map(v=>v.canonical).sort();
+
+// Autocomplete
+const stayInput = document.getElementById('stay-input');
+const staySugg = document.getElementById('stay-suggestions');
+stayInput.addEventListener('input', ()=>{
+  const q = stayInput.value.trim().toLowerCase();
+  staySugg.innerHTML = '';
+  if(!q){ staySugg.classList.remove('open'); return; }
+  const matches = ALL_NAMES.filter(n=>n.toLowerCase().startsWith(q));
+  if(!matches.length){ staySugg.classList.remove('open'); return; }
+  matches.forEach(n=>{
+    const d=document.createElement('div');
+    d.className='stay-suggestion'; d.textContent=n;
+    d.addEventListener('click',()=>{ stayInput.value=n; staySugg.classList.remove('open'); showStay(n); });
+    staySugg.appendChild(d);
+  });
+  staySugg.classList.add('open');
+});
+document.addEventListener('click', e=>{ if(!e.target.closest('.stay-search')) staySugg.classList.remove('open'); });
+
+function showStay(name){
+  const key = name.trim().toLowerCase();
+  const result = document.getElementById('stay-result');
+  const notFound = document.getElementById('stay-not-found');
+  if(!GUEST_MAP[key]){ result.style.display='none'; notFound.style.display='block'; return; }
+  notFound.style.display='none';
+  const { propId, unitName, canonical } = GUEST_MAP[key];
+  const prop = PROPERTIES[propId];
+  const unit = prop.units[unitName];
+  const others = unit.guests.filter(g=>g.toLowerCase()!==key);
+
+  document.getElementById('stay-prop-label').textContent = prop.label;
+  document.getElementById('stay-prop-name').textContent = prop.name;
+  document.getElementById('stay-prop-address').textContent = prop.address;
+  document.getElementById('stay-map-link').href = 'https://maps.google.com/?q='+encodeURIComponent(prop.address);
+  const ab = document.getElementById('stay-airbnb-link');
+  if(prop.airbnb){ ab.href=prop.airbnb; ab.style.display='inline-block'; }
+  else { ab.style.display='none'; }
+  document.getElementById('stay-room').textContent = unitName;
+  document.getElementById('stay-beds').textContent = unit.beds;
+  document.getElementById('stay-sharing').textContent = others.length ? others.join(', ') : 'Just you! 🎉';
+  document.getElementById('stay-boats').textContent = prop.boats;
+  document.getElementById('stay-checkin').textContent = prop.checkin;
+  document.getElementById('stay-checkout').textContent = prop.checkout;
+  result.style.display='block';
+
+  // Email button
+  document.getElementById('stay-email-btn').onclick = ()=>{
+    const email = document.getElementById('stay-email').value.trim();
+    const statusEl = document.getElementById('stay-email-status');
+    if(!email){ statusEl.textContent='Please enter your email address first!'; statusEl.style.display='block'; return; }
+    const body = `Hi ${canonical}!\n\nHere are your lodging details for Anna & Steve's wedding weekend:\n\n🏠 ${prop.name}\n📍 ${prop.address}\n${prop.airbnb ? '🔗 Airbnb: '+prop.airbnb+'\n' : ''}🛏 ${unitName} · ${unit.beds}\n👥 Sharing with: ${others.length ? others.join(', ') : 'just you!'}\n⛵ Boats at this property: ${prop.boats}\n\n📅 Check-in: ${prop.checkin}\n📅 Check-out: ${prop.checkout}\n\nSee you at the lake! 🌊\nAnna & Steve`;
+    window.location.href = 'mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('Your Lodging · Anna & Steve Wedding Weekend')+'&body='+encodeURIComponent(body);
+    statusEl.textContent = '✓ Opening your email app…'; statusEl.style.display='block';
+  };
+}
+
+document.getElementById('stay-btn').addEventListener('click',()=>showStay(stayInput.value));
+stayInput.addEventListener('keydown',e=>{ if(e.key==='Enter') showStay(stayInput.value); });
 
 document.getElementById('chat-toggle').addEventListener('click',()=>document.getElementById('chat-panel').classList.toggle('open'));
 document.getElementById('chat-close-btn').addEventListener('click',()=>document.getElementById('chat-panel').classList.remove('open'));
