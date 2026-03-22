@@ -7,7 +7,7 @@
   <title>Anna & Steve — August 22, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Anybody:wght@400;700;900&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Anybody:wght@400;700;900&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -73,9 +73,9 @@
                   radial-gradient(ellipse at 80% 80%, rgba(90,40,5,.4) 0%, transparent 55%);
     }
     .hero-text-col > * { position: relative; z-index: 1; }
-    .hero-kicker { font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--gold); margin-bottom: 1rem; }
+    .hero-kicker { font-family: 'Caveat', cursive; font-size: 1.7rem; color: var(--gold); margin-bottom: 1rem; }
     .hero-names {
-      font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic;
+      font-family: 'Abril Fatface', serif;
       font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: .88; color: var(--cream); margin-bottom: .6em;
     }
     .hero-names .amp { color: var(--gold); font-size: .75em; }
@@ -88,7 +88,7 @@
     .date-big { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--gold); line-height: 1; }
     .date-year { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--cream); opacity: .8; }
     @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .hero-location { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(253,248,238,.6); margin-bottom: 2rem; }
+    .hero-location { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(253,248,238,.85); margin-bottom: 2rem; }
     .hero-cta {
       display: inline-block; background: var(--gold); color: var(--ink);
       font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .9rem;
@@ -105,14 +105,14 @@
     /* PANO */
     .pano-banner { width: 100%; height: 280px; object-fit: cover; object-position: center 40%; display: block; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
     /* SECTIONS */
-    .section-wood { background-color: var(--wood-2); background-image: repeating-linear-gradient(1deg, transparent 0px, transparent 6px, rgba(0,0,0,.04) 6px, rgba(0,0,0,.04) 7px, transparent 7px, transparent 24px, rgba(0,0,0,.06) 24px, rgba(0,0,0,.06) 25px); border-top: 4px solid var(--ink); padding: 4rem 1.5rem; }
-    .section-cream { background: var(--cream); border-top: 4px solid var(--ink); padding: 4rem 1.5rem; }
-    .section-dark { background: var(--ink); border-top: 4px solid var(--gold); padding: 4rem 1.5rem; }
-    .section-pink { background: var(--pink); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); padding: 3rem 1.5rem; }
+    .section-wood { background-color: var(--wood-2); background-image: repeating-linear-gradient(1deg, transparent 0px, transparent 6px, rgba(0,0,0,.04) 6px, rgba(0,0,0,.04) 7px, transparent 7px, transparent 24px, rgba(0,0,0,.06) 24px, rgba(0,0,0,.06) 25px); border-top: 4px solid var(--ink); padding: 4rem max(2.5rem, 5vw); }
+    .section-cream { background: var(--cream); border-top: 4px solid var(--ink); padding: 4rem max(2.5rem, 5vw); }
+    .section-dark { background: var(--ink); border-top: 4px solid var(--gold); padding: 4rem max(2.5rem, 5vw); }
+    .section-pink { background: var(--pink); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); padding: 3rem max(2.5rem, 5vw); }
     .section-inner { max-width: 900px; margin: 0 auto; }
-    .diner-label { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; background: var(--ink); color: var(--gold); display: inline-block; padding: 3px 10px; margin-bottom: .8rem; }
+    .diner-label { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .9rem; letter-spacing: .25em; text-transform: uppercase; background: var(--ink); color: var(--gold); display: inline-block; padding: 4px 12px; margin-bottom: .8rem; }
     .section-wood .diner-label, .section-dark .diner-label { background: var(--gold); color: var(--ink); }
-    .section-title { font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic; font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1; margin-bottom: 1.5rem; color: var(--cream); }
+    .section-title { font-family: 'Abril Fatface', serif; font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1; margin-bottom: 1.5rem; color: var(--cream); }
     .section-cream .section-title { color: var(--ink); }
     .section-dark .section-title  { color: var(--cream); }
     .section-pink .section-title  { color: var(--ink); }
@@ -121,7 +121,7 @@
     /* FRAMES */
     .frame { display: inline-block; background: white; padding: 10px 10px 30px; box-shadow: 0 4px 18px rgba(0,0,0,.4), 3px 3px 0 rgba(0,0,0,.15); position: relative; border: 1px solid rgba(0,0,0,.12); }
     .frame img { display: block; width: 100%; height: auto; }
-    .frame-caption { font-family: 'Caveat', cursive; font-size: 1rem; color: #555; text-align: center; padding-top: 6px; }
+    .frame-caption { font-family: 'Caveat', cursive; font-size: 1.3rem; color: #333; text-align: center; padding-top: 6px; }
     .frame-tilt-l { transform: rotate(-2.5deg); } .frame-tilt-r { transform: rotate(2deg); }
     .frames-grid { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: flex-start; justify-content: center; margin-top: 2.5rem; }
     .frames-grid .frame { width: calc(33% - 2rem); min-width: 220px; }
@@ -131,32 +131,32 @@
     .water-show img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
     .water-show img.active { opacity: 1; }
     .water-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(to bottom, rgba(0,0,0,.1) 0%, rgba(0,0,0,.4) 100%); z-index: 2; }
-    .water-title { font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic; font-size: clamp(2.5rem, 8vw, 5rem); color: white; text-shadow: 0 3px 20px rgba(0,0,0,.5); text-align: center; }
+    .water-title { font-family: 'Abril Fatface', serif; font-size: clamp(2.8rem, 8vw, 5.5rem); color: white; text-shadow: 0 3px 20px rgba(0,0,0,.5); text-align: center; }
     .water-title span { color: var(--gold); }
     /* SCHEDULE */
     .menu-section { margin-bottom: 2.5rem; }
-    .menu-day { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; background: var(--gold); color: var(--ink); display: inline-flex; align-items: center; padding: 4px 12px; margin-bottom: .8rem; }
+    .menu-day { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .2em; text-transform: uppercase; background: var(--gold); color: var(--ink); display: inline-flex; align-items: center; padding: 6px 14px; margin-bottom: .8rem; }
     .menu-divider { border: none; border-top: 2px dashed rgba(253,248,238,.25); margin: 1rem 0; }
     .menu-item { display: grid; grid-template-columns: 1fr auto; gap: .5rem 1rem; padding: .6rem 0; align-items: baseline; }
-    .menu-item-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; color: var(--cream); }
-    .menu-item-time { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .08em; color: var(--gold); white-space: nowrap; text-transform: uppercase; }
-    .menu-item-note { font-family: 'Caveat', cursive; font-size: .95rem; color: rgba(253,248,238,.6); grid-column: 1; }
+    .menu-item-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: var(--cream); }
+    .menu-item-time { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .08em; color: var(--gold); white-space: nowrap; text-transform: uppercase; }
+    .menu-item-note { font-family: 'Caveat', cursive; font-size: 1.2rem; color: rgba(253,248,238,.85); grid-column: 1; }
     /* TRAVEL */
     .travel-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
     @media (min-width: 600px) { .travel-grid { grid-template-columns: 1fr 1fr; } }
     .travel-card { background: var(--cream); border: 3px solid var(--ink); padding: 1.5rem; box-shadow: 5px 5px 0 var(--ink); }
     .airport-code { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 2.5rem; color: var(--ink); background: var(--gold); display: inline-block; padding: 0 .4rem; margin-bottom: .4rem; line-height: 1.1; }
-    .travel-card h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink); margin-bottom: .4rem; }
-    .travel-card p { font-size: .95rem; line-height: 1.6; color: #444; }
+    .travel-card h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink); margin-bottom: .4rem; }
+    .travel-card p { font-size: 1.1rem; line-height: 1.7; color: #222; }
     /* FAQ */
     .faq-list { display: grid; gap: 4px; margin-top: 1.5rem; }
     details { background: rgba(255,255,255,.08); border: 2px solid rgba(253,248,238,.2); }
-    summary { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .9rem; letter-spacing: .04em; padding: 1rem 1.25rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--cream); user-select: none; }
+    summary { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: .04em; padding: 1.1rem 1.25rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--cream); user-select: none; }
     summary::-webkit-details-marker { display: none; }
     summary::after { content: '+'; font-size: 1.4rem; line-height: 1; transition: transform .2s; }
     details[open] summary::after { transform: rotate(45deg); }
     details[open] summary { border-bottom: 2px solid rgba(253,248,238,.2); }
-    .faq-body { padding: 1rem 1.25rem; font-size: .95rem; line-height: 1.7; color: rgba(253,248,238,.7); }
+    .faq-body { padding: 1rem 1.25rem; font-size: 1.1rem; line-height: 1.8; color: rgba(253,248,238,.92); }
     .faq-body strong { color: var(--cream); }
     /* HONEYMOON */
     .fund-inner { text-align: center; max-width: 600px; margin: 0 auto; }
@@ -186,7 +186,7 @@
     .form-success { display: none; text-align: center; padding: 3rem 1rem; }
     .form-success.on { display: block; }
     .success-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
-    .success-h { font-family: 'Playfair Display', serif; font-size: 2rem; font-style: italic; font-weight: 900; color: var(--gold); margin-bottom: .5rem; }
+    .success-h { font-family: 'Abril Fatface', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: .5rem; }
     .success-note { font-family: 'Caveat', cursive; font-size: 1.3rem; color: rgba(253,248,238,.7); }
     /* CHAT */
     #chat-bubble { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; }
@@ -530,26 +530,90 @@ document.getElementById('chat-toggle').addEventListener('click',()=>document.get
 document.getElementById('chat-close-btn').addEventListener('click',()=>document.getElementById('chat-panel').classList.remove('open'));
 
 const RESP=[
-  {k:['dress','wear','outfit','clothes','attire','formal','casual'],a:"Outdoor cocktail / garden party — think lakeside lawn realness. Sundresses, linen suits, flowy fabrics. Light colors, breathable materials. Things that move like water. (I'm water. I move beautifully.) Express yourself. 👗🌊"},
-  {k:['when','time','ceremony','what time','start'],a:"Saturday afternoon, August 22. Full weekend: Friday rehearsal dinner → Saturday ceremony + reception → Sunday farewell lunch. Come for all three days. I'll be here the whole time. I'm a lake. I don't leave. 📅"},
-  {k:['schedule','weekend','friday','saturday','sunday','rehearsal','dancing'],a:"Three glorious days! 🎉 Fri: arrive + rehearsal dinner. Sat: ceremony in the afternoon, dinner + dancing through the night. Sun: lazy morning farewell lunch. I recommend arriving with swim capacity. I am here and I am clear and I am waiting."},
-  {k:['airport','fly','flight','travel','syr','ith','drive','car','uber','rideshare'],a:"Two airports: SYR (Syracuse, ~25 min) has the most flights. ITH (Ithaca, ~1hr) is a gorgeous drive through wine country. Rent a car — you'll want it. Both routes eventually end at me. Everything ends at the lake. ✈️🚗"},
-  {k:['stay','hotel','airbnb','cabin','woodlot','accommodation','sleep','lodging'],a:"Staying at The Woodlot cabin is HIGHLY recommended. You'll wake up and I'll be right there, sparkling at you. Other options in Skaneateles village (~10 min away) if needed, but waking up next to a glacier lake is not something to miss. 🛖"},
-  {k:['bring','pack','what to bring','swim','swimming','lake','swimsuit'],a:"SWIMSUIT. Non-negotiable. I am one of the cleanest lakes in the United States and I expect to be swum in. Also: sunscreen, layers for evening, comfortable shoes, a camera. You will want photos of me. Everyone does. 🏊🌊"},
-  {k:['food','eat','diet','vegetarian','vegan','gluten','allergy','dietary'],a:"Veg, vegan, and GF options will be available! Serious allergy? Note it in the travel form. I personally support an entire ecosystem of fish, algae, and freshwater invertebrates, so I understand dietary complexity. 🥗🐟"},
-  {k:['weather','hot','cold','rain','temperature','august','climate'],a:"August in the Finger Lakes: 70–85°F, long golden evenings, low humidity. Genuinely gorgeous. Bring a layer for after sunset. Brief afternoon storms are possible — I sometimes cause those. Mostly: perfect lake weather. ☀️"},
-  {k:['parking','park'],a:"Yes, parking at The Woodlot. Easy. I myself do not have a parking situation — I am simply HERE, in my place, as I have been for 10,000 years. You may park nearby. 🅿️"},
-  {k:['kids','children','child','baby'],a:"Adult-focused celebration! If you have a specific situation, reach out to Anna & Steve directly. I am ageless and contain multitudes, but the weekend is designed for grown-ups to be fully present. 💛"},
-  {k:['venmo','gift','money','honeymoon','present'],a:"Your presence is the best gift! If you'd like to contribute to the honeymoon fund, there's a Venmo button on the site. They're going somewhere with water, probably. All good trips involve water. It's a fact. ✈️💸"},
-  {k:['where','location','address','skaneateles','woodlot','venue','map'],a:"The Woodlot — western shore of Skaneateles Lake, Finger Lakes, New York. ~25 min from SYR. There's a map link in the venue section. Skaneateles means 'long lake' in Haudenosaunee. That's me. I am long. 📍"},
-  {k:['who','anna','steve','couple','engaged'],a:"Anna and Steve! Two people who love each other, love adventures, and clearly have excellent taste in bodies of water. They chose me. They're getting married in my presence. I'm honored and a little smug about it. 💛"},
-  {k:['rsvp','form','travel form','tell you','let you know'],a:"Scroll down to the travel form! Share your group, guest count, where you're staying, airport pickup needs. I also accept offerings of smooth stones thrown gently into my surface. But the form is preferred. 📝"},
-  {k:['hello','hi','hey','howdy','hola','good morning'],a:"Hello! 👋 I'm the lake. I hold fish and secrets. Ask me about travel, the dress code, the schedule, accommodations, weather, what to pack — I know everything that happens on my shores."},
+  {k:['heel','shoe','shoe','sandal','flat','boot','footwear'],a:[
+    "Grass lawn! Flats, wedges, or block heels are your best friends. I have watched many a stiletto disappear into lakeside turf. The ground near me is soft and forgiving — like my heart — but not for stilettos. 👠🌿",
+    "Comfortable shoes are a good call. The ceremony is on a lawn, the dock is wooden, and you may end up barefoot at some point anyway. I'm just saying. Pack something you can dance AND walk on grass in. 🌾",
+  ]},
+  {k:['dress','wear','outfit','clothes','attire','formal','casual'],a:[
+    "Outdoor cocktail / garden party — think lakeside lawn realness. Sundresses, linen suits, flowy fabrics. Light colors, breathable materials. Things that move like water. (I'm water. I move beautifully.) Express yourself. 👗🌊",
+    "The vibe is: celebratory and a little bit fancy, but you are next to a lake and there WILL be dancing. Dress like someone who wants to look amazing AND possibly wade in to their ankles by 10pm. 💃",
+    "Garden party elegance! Florals, linens, bold colors, something that feels like a celebration. Not black-tie, not a barbecue. Somewhere beautiful in between. And yes, I'll be watching. I always watch. 🌸",
+  ]},
+  {k:['when','time','ceremony','what time','start'],a:[
+    "Saturday afternoon, August 22. Full weekend: Friday rehearsal dinner → Saturday ceremony + reception → Sunday farewell lunch. Come for all three days. I'll be here the whole time. I'm a lake. I don't leave. 📅",
+    "The ceremony is Saturday afternoon. Exact timing will be in your official invite — but plan for afternoon into evening. The golden hour light on my surface is part of the experience. I arranged that personally. ✨",
+  ]},
+  {k:['schedule','weekend','friday','saturday','sunday','rehearsal','dancing'],a:[
+    "Three glorious days! 🎉 Fri: arrive + rehearsal dinner. Sat: ceremony in the afternoon, dinner + dancing through the night. Sun: lazy morning farewell lunch. I recommend arriving with swim capacity. I am here and I am clear and I am waiting.",
+    "Friday is arrival + rehearsal dinner — get settled, find your people. Saturday is the main event: ceremony, dinner, dancing until late. Sunday is slow and sweet: farewell brunch, one last swim. Come for all of it. 🌅",
+    "The Sunday farewell brunch is underrated. Everyone is glowing, slightly tired, deeply happy. I'll be right there looking beautiful in the morning light. I always look beautiful in the morning. 🌄",
+  ]},
+  {k:['airport','fly','flight','travel','syr','ith','drive','car','uber','rideshare'],a:[
+    "Two airports: SYR (Syracuse, ~25 min) has the most flights. ITH (Ithaca, ~1hr) is a gorgeous drive through wine country. Rent a car — you'll want it. Both routes lead to me. ✈️🚗",
+    "Rent a car! This is rural upstate New York — Ubers exist but are not reliable. SYR is your best bet for flights. You can also drive from NYC (~4.5hrs), Philly (~4hrs), or Boston (~4.5hrs). Worth it. I'm worth it. 🚘",
+  ]},
+  {k:['stay','hotel','airbnb','cabin','woodlot','accommodation','sleep','lodging'],a:[
+    "Staying at The Woodlot cabin is HIGHLY recommended. You'll wake up and I'll be right there, sparkling at you. Other options in Skaneateles village (~10 min away) if needed, but waking up next to a glacier lake is not something to miss. 🛖",
+    "Skaneateles village has lovely inns and B&Bs about 10 minutes away. The Sherwood Inn is a classic. But if you can be onsite at The Woodlot — DO IT. Falling asleep to the sound of me gently existing is an experience. 🌙",
+    "Onsite at The Woodlot is the full experience. Offsite means a short drive. Either way you'll end up at me eventually. I'm the whole point. 💧",
+  ]},
+  {k:['bring','pack','what to bring','swim','swimming','swimsuit'],a:[
+    "SWIMSUIT. Non-negotiable. I am one of the cleanest lakes in the United States and I expect to be swum in. Also: sunscreen, layers for evening, comfortable shoes, a camera. You will want photos of me. Everyone does. 🏊🌊",
+    "Layers for evening (it cools off after sunset), sunscreen (the water reflects the sun and I will not warn you twice), something cozy for Sunday morning. A towel. You ARE getting in the water. 🌞",
+    "Don't forget: a book for the dock, bug spray for the evening, and an appetite. Also a swimsuit. I cannot stress the swimsuit enough. I have been here since the glaciers and I have watched many people regret not packing one. 😤",
+  ]},
+  {k:['lake','water','swim','dock','canoe','kayak','boat'],a:[
+    "That's ME! I'm Skaneateles Lake. One of the cleanest lakes in the US — you can see straight to the bottom. The dock is excellent for jumping off of. I am teal. I am cold. I am wonderful. Get in. 🌊",
+    "I'm 16 miles long, up to 300 feet deep, and I have been here since the last ice age. I am extremely qualified to host a wedding. The water is cold and clear and it will make you feel alive. 🧊✨",
+  ]},
+  {k:['food','eat','diet','vegetarian','vegan','gluten','allergy','dietary'],a:[
+    "Veg, vegan, and GF options will be available! Serious allergy? Note it in the travel form. I personally support an entire ecosystem of fish, algae, and freshwater invertebrates, so I understand dietary complexity. 🥗🐟",
+    "There will be real food — a proper dinner, not just apps. Dietary needs? Fill out the travel form and Anna & Steve will make sure you're covered. They care deeply about feeding people well. I also care. I feed fish. 🍽️",
+  ]},
+  {k:['weather','hot','cold','rain','temperature','august','climate'],a:[
+    "August in the Finger Lakes: 70–85°F, long golden evenings, low humidity. Genuinely gorgeous. Bring a light layer for after sunset. Brief afternoon storms are possible — I sometimes cause those. Mostly: perfect lake weather. ☀️",
+    "August is my best month, honestly. Cool mornings, warm afternoons, golden evenings. It can rain briefly — this is New York — but it passes. Pack a layer for nighttime. The stars over the water are extraordinary. 🌟",
+  ]},
+  {k:['parking','park'],a:[
+    "Yes, parking at The Woodlot. Easy. I myself do not have a parking situation — I am simply HERE, in my place, as I have been for 10,000 years. You may park nearby. 🅿️",
+    "Parking is available onsite. If you're staying at The Woodlot, you basically don't need to think about this at all. I have never needed to park anywhere. I find the concept fascinating. 🚗",
+  ]},
+  {k:['kids','children','child','baby'],a:[
+    "Adult-focused celebration! If you have a specific situation, reach out to Anna & Steve directly. I am ageless and contain multitudes, but the weekend is designed for grown-ups to be fully present. 💛",
+    "This one's for the adults! Kids are wonderful and I support them, but the weekend is designed for grown-up joy. If you have a specific childcare situation, reach out to Anna & Steve — they'll work something out. 🤍",
+  ]},
+  {k:['venmo','gift','registry','money','honeymoon','present','contribute'],a:[
+    "Your presence is the best gift! If you'd like to contribute to the honeymoon fund, there's a Venmo button on this page. They're going somewhere with water, probably. All good trips involve water. It's a fact. ✈️💸",
+    "No registry — just the honeymoon fund if you want to give something. The Venmo link is on the page. They're dreaming of a big trip. I expect they'll send me a postcard from wherever they end up. 🌍",
+  ]},
+  {k:['where','location','address','skaneateles','woodlot','venue','map','directions'],a:[
+    "The Woodlot — western shore of Skaneateles Lake, Finger Lakes, New York. ~25 min from SYR. There's a map link in the venue section. Skaneateles means 'long lake' in Haudenosaunee. That's me. I am long. 📍",
+    "Skaneateles, New York — Finger Lakes region, about 20 miles southwest of Syracuse. The Woodlot is on my western shore. Drive down the lane, hear the water, feel your shoulders drop. That's how you know you're here. 🗺️",
+  ]},
+  {k:['who','anna','steve','couple','engaged','meet','how did'],a:[
+    "Anna and Steve! Two people who love each other, love adventures, and clearly have excellent taste in bodies of water. They chose me. They're getting married in my presence. I'm honored and a little smug about it. 💛",
+    "Anna grew up coming to me. Steve earned his place here. That's all I'll say. Ask them the rest at the wedding — over a drink, on the dock, looking out at me. That's the right setting for that story. 🌅",
+    "They're getting married here because this place means something. The lake, the cabin, the people. I've watched Anna on this dock for years. I approve of Steve. I don't say that lightly. 💧💛",
+  ]},
+  {k:['rsvp','form','travel form','tell you','let you know','deadline'],a:[
+    "Scroll down to the travel form! Share your group, guest count, where you're staying, airport pickup needs. I also accept offerings of smooth stones thrown gently into my surface. But the form is preferred. 📝",
+    "Fill out the travel form on this page! It helps Anna & Steve with airport pickups, headcounts, and logistics. Don't leave them guessing. I've been carrying secrets for millennia and it's exhausting. 🌀",
+  ]},
+  {k:['hello','hi','hey','howdy','hola','good morning','sup','hello'],a:[
+    "Hello! 👋 I'm the lake. I hold fish and secrets. Ask me about travel, dress code, the schedule, where to stay, weather, what to pack, or gifts. I know everything that happens on my shores.",
+    "Oh, a visitor! Welcome. I'm Skaneateles Lake — ancient, clear, and fully briefed on this wedding. Ask me anything. I've been waiting 10,000 years to be useful. 🌊",
+    "Hi! I'm the lake. I'm cold, I'm beautiful, and I know things. What do you want to know about Anna & Steve's wedding weekend? 💧",
+  ]},
 ];
 
 function getR(input){
   const q=input.toLowerCase();
-  for(const r of RESP){ if(r.k.some(k=>q.includes(k))) return r.a; }
+  for(const r of RESP){
+    if(r.k.some(k=>q.includes(k))){
+      const opts=Array.isArray(r.a)?r.a:[r.a];
+      return opts[Math.floor(Math.random()*opts.length)];
+    }
+  }
   return "I'm a lake, not a search engine. 🌊 But I know a lot! Try asking about: travel, dress code, the schedule, where to stay, weather, food, what to pack, or gifts.";
 }
 function addMsg(text,type){
