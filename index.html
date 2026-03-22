@@ -57,51 +57,67 @@
       87.5% { transform: translateY(-7.7em); }
       100%  { transform: translateY(0); }
     }
-    /* HERO */
-    #hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
-    @media (max-width: 700px) { #hero { grid-template-columns: 1fr; } }
-    .hero-photo-col { position: relative; overflow: hidden; min-height: 60vh; }
-    .hero-photo-col img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-    .hero-text-col {
-      background: var(--ink); display: flex; flex-direction: column;
-      align-items: center; justify-content: center; padding: 3rem 2.5rem;
-      position: relative; overflow: hidden; text-align: center;
+    /* HERO — single unified section */
+    #hero {
+      background-color: var(--wood-2);
+      background-image: repeating-linear-gradient(1deg, transparent 0px, transparent 6px, rgba(0,0,0,.04) 6px, rgba(0,0,0,.04) 7px, transparent 7px, transparent 24px, rgba(0,0,0,.06) 24px, rgba(0,0,0,.06) 25px);
     }
-    .hero-text-col::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(180,90,20,.25) 0%, transparent 60%),
-                  radial-gradient(ellipse at 80% 80%, rgba(90,40,5,.4) 0%, transparent 55%);
+    /* Compact masthead strip */
+    .gallery-masthead {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.1rem 2.5rem 1.3rem;
+      background: rgba(26,15,0,.9);
+      border-bottom: 3px solid var(--gold);
     }
-    .hero-text-col > * { position: relative; z-index: 1; }
-    .hero-kicker { font-family: 'Caveat', cursive; font-size: 1.7rem; color: var(--gold); margin-bottom: 1rem; }
-    .hero-names {
-      font-family: 'Abril Fatface', serif;
-      font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: .88; color: var(--cream); margin-bottom: .6em;
-    }
-    .hero-names .amp { color: var(--gold); font-size: .75em; }
+    .gallery-masthead .spinning-date-wrap { width: 62px; height: 62px; flex-shrink: 0; margin: 0; }
     /* SPINNING DATE */
-    .spinning-date-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto 1.5rem; }
+    .spinning-date-wrap { position: relative; width: 62px; height: 62px; margin: 0; }
     .spinning-ring { position: absolute; inset: 0; animation: spin-slow 18s linear infinite; }
     .spinning-ring svg { width: 100%; height: 100%; }
-    .spinning-ring text { fill: var(--gold); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 5px; text-transform: uppercase; }
+    .spinning-ring text { fill: var(--gold); font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; }
     .date-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .date-big { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--gold); line-height: 1; }
-    .date-year { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--cream); opacity: .8; }
+    .date-big { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .95rem; color: var(--gold); line-height: 1; }
+    .date-year { font-family: 'Caveat', cursive; font-size: .65rem; color: var(--cream); opacity: .8; }
     @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .hero-location { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(253,248,238,.85); margin-bottom: 2rem; }
-    .hero-cta {
-      display: inline-block; background: var(--gold); color: var(--ink);
-      font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .9rem;
-      letter-spacing: .12em; text-transform: uppercase; padding: .9rem 2.2rem;
-      text-decoration: none; transform: rotate(-2deg); border: 3px solid var(--ink);
-      box-shadow: 4px 4px 0 var(--gold); transition: transform .2s, box-shadow .2s;
+    .hero-kicker { font-family: 'Caveat', cursive; font-size: 1rem; color: var(--gold); margin-bottom: .15rem; line-height: 1; }
+    .hero-names { font-family: 'Abril Fatface', serif; font-size: clamp(1.4rem, 3.2vw, 2.2rem); line-height: .9; color: var(--cream); margin-bottom: .15em; }
+    .hero-names .amp { color: var(--gold); }
+    .hero-location { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(253,248,238,.55); margin-top: .2rem; }
+    /* GALLERY GRID */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.2rem;
+      padding: 2.8rem 3rem 4rem;
+      max-width: 1240px;
+      margin: 0 auto;
     }
-    .hero-cta:hover { transform: rotate(0deg) scale(1.03); }
-    /* COUPLE STRIP */
-    .couple-strip { display: grid; grid-template-columns: repeat(3, 1fr); height: 280px; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
-    @media (max-width: 700px) { .couple-strip { grid-template-columns: repeat(3, 1fr); height: 160px; } }
-    .couple-strip img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; border-right: 3px solid var(--ink); filter: sepia(8%); }
-    .couple-strip img:last-child { border-right: none; }
+    @media (max-width: 850px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 1.8rem; padding: 2rem 1.5rem 3rem; } }
+    @media (max-width: 480px) { .gallery-grid { gap: 1.3rem; padding: 1.5rem 1rem 2.5rem; } }
+    /* Card base — SVG floral border-image */
+    .gallery-card {
+      display: block; text-decoration: none;
+      position: relative; background: var(--cream);
+      padding: 7px 7px 0;
+      border: 20px solid transparent;
+      border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect x='0' y='0' width='60' height='20' fill='%23fdf8ee'/%3E%3Crect x='0' y='40' width='60' height='20' fill='%23fdf8ee'/%3E%3Crect x='0' y='20' width='20' height='20' fill='%23fdf8ee'/%3E%3Crect x='40' y='20' width='20' height='20' fill='%23fdf8ee'/%3E%3Ccircle cx='10' cy='10' r='9' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='10' r='5' fill='none' stroke='%23f0c040' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='10' r='2.5' fill='%237a3d0e'/%3E%3Ccircle cx='10' cy='1' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='10' cy='19' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='1' cy='10' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='19' cy='10' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='4' cy='4' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='16' cy='4' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='4' cy='16' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='50' cy='10' r='9' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='10' r='5' fill='none' stroke='%23f0c040' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='10' r='2.5' fill='%237a3d0e'/%3E%3Ccircle cx='50' cy='1' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='50' cy='19' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='41' cy='10' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='59' cy='10' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='44' cy='4' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='56' cy='4' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='44' cy='16' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='56' cy='16' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='10' cy='50' r='9' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='50' r='5' fill='none' stroke='%23f0c040' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='50' r='2.5' fill='%237a3d0e'/%3E%3Ccircle cx='10' cy='41' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='10' cy='59' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='1' cy='50' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='19' cy='50' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='4' cy='44' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='16' cy='44' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='4' cy='56' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='16' cy='56' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='50' cy='50' r='9' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='50' r='5' fill='none' stroke='%23f0c040' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='50' r='2.5' fill='%237a3d0e'/%3E%3Ccircle cx='50' cy='41' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='50' cy='59' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='41' cy='50' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='59' cy='50' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='44' cy='44' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='56' cy='44' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='44' cy='56' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='56' cy='56' r='1.5' fill='%23f0c040'/%3E%3Ccircle cx='30' cy='10' r='7' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='30' cy='10' r='3' fill='%23f0c040'/%3E%3Ccircle cx='30' cy='2' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='30' cy='18' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='22' cy='10' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='38' cy='10' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='30' cy='50' r='7' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='30' cy='50' r='3' fill='%23f0c040'/%3E%3Ccircle cx='30' cy='42' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='30' cy='58' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='22' cy='50' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='38' cy='50' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='10' cy='30' r='7' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='30' r='3' fill='%23f0c040'/%3E%3Ccircle cx='10' cy='22' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='10' cy='38' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='2' cy='30' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='18' cy='30' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='50' cy='30' r='7' fill='none' stroke='%237a3d0e' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='30' r='3' fill='%23f0c040'/%3E%3Ccircle cx='50' cy='22' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='50' cy='38' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='42' cy='30' r='1.5' fill='%237a3d0e'/%3E%3Ccircle cx='58' cy='30' r='1.5' fill='%237a3d0e'/%3E%3C/svg%3E") 20 round;
+      box-shadow: 5px 7px 0 rgba(0,0,0,.42);
+      transition: transform .25s ease, box-shadow .25s ease;
+      cursor: pointer;
+    }
+    .gallery-card img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center; }
+    /* Card label */
+    .gallery-card-label { text-align: center; font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); padding: .5rem .3rem .55rem; line-height: 1.35; }
+    .gallery-card-label .lbl-arrow { display: block; font-size: .58rem; color: var(--wood-1); margin-top: .1rem; opacity: .65; letter-spacing: .1em; }
+    /* Photo cards */
+    .gallery-card.is-photo { padding: 7px; }
+    .gallery-card.is-photo .gallery-card-label { font-family: 'Caveat', cursive; font-size: 1rem; font-weight: 600; letter-spacing: .02em; text-transform: none; color: #555; padding: .35rem .3rem .45rem; }
+    /* Tilts — chaotic */
+    .gallery-card:nth-child(4n+1) { transform: rotate(-2.8deg); }
+    .gallery-card:nth-child(4n+2) { transform: rotate( 2.4deg); }
+    .gallery-card:nth-child(4n+3) { transform: rotate(-1.5deg); }
+    .gallery-card:nth-child(4n+4) { transform: rotate( 3.3deg); }
+    .gallery-card:hover { transform: rotate(0deg) scale(1.04) translateY(-5px) !important; box-shadow: 7px 11px 0 rgba(0,0,0,.5); z-index: 10; }
     /* PANO */
     .pano-banner { width: 100%; height: 280px; object-fit: cover; object-position: center 40%; display: block; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
     /* SECTIONS */
@@ -315,17 +331,12 @@
 </div>
 
 <section id="hero">
-  <div class="hero-photo-col">
-    <img src="assets/web/couple-ring-1.jpg" alt="Anna and Steve" />
-  </div>
-  <div class="hero-text-col">
-    <p class="hero-kicker">you are invited to celebrate</p>
-    <h1 class="hero-names">Anna<br><span class="amp">&amp;</span><br>Steve</h1>
+  <div class="gallery-masthead">
     <div class="spinning-date-wrap">
       <div class="spinning-ring">
-        <svg viewBox="0 0 180 180">
-          <defs><path id="cp" d="M 90,90 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" /></defs>
-          <text><textPath href="#cp" startOffset="0%">THE DATE ✦ THE DATE ✦ THE DATE ✦ THE DATE ✦</textPath></text>
+        <svg viewBox="0 0 62 62">
+          <defs><path id="cp" d="M 31,31 m -24,0 a 24,24 0 1,1 48,0 a 24,24 0 1,1 -48,0"/></defs>
+          <text><textPath href="#cp" startOffset="0%">THE DATE ✦ THE DATE ✦ THE DATE ✦</textPath></text>
         </svg>
       </div>
       <div class="date-center">
@@ -333,24 +344,83 @@
         <span class="date-year">2026</span>
       </div>
     </div>
-    <p class="hero-location">The Woodlot · Skaneateles Lake, NY</p>
-    <a href="#travel-form" class="hero-cta">Share your travel plans →</a>
-    <a href="https://maps.google.com/?q=91+Woodlot+Landing,+Skaneateles+NY+13152" target="_blank" rel="noopener"
-       class="hero-cta" style="margin-top:.75rem;background:transparent;color:var(--gold);border-color:var(--gold);box-shadow:4px 4px 0 var(--gold);transform:rotate(1.5deg);">
-      📍 Where is that?! →
+    <div>
+      <p class="hero-kicker">you are invited to celebrate</p>
+      <h1 class="hero-names">Anna <span class="amp">&amp;</span> Steve</h1>
+      <p class="hero-location">The Woodlot · Skaneateles Lake, NY</p>
+    </div>
+  </div>
+  <div class="gallery-grid">
+
+    <!-- Row 1 -->
+    <a href="#the-woodlot" class="gallery-card">
+      <img src="assets/web/venue-cabin-water.jpg" alt="The Woodlot" />
+      <div class="gallery-card-label">The Woodlot<span class="lbl-arrow">The Place →</span></div>
     </a>
+
+    <a href="#" class="gallery-card is-photo" aria-label="Anna and Steve">
+      <img src="assets/web/couple-1.jpg" alt="Anna and Steve" />
+      <div class="gallery-card-label">anna &amp; steve ✦</div>
+    </a>
+
+    <a href="#the-lake" class="gallery-card">
+      <img src="assets/web/water-animated.gif" alt="Skaneateles Lake" />
+      <div class="gallery-card-label">The Lake<span class="lbl-arrow">Skaneateles →</span></div>
+    </a>
+
+    <a href="#schedule" class="gallery-card">
+      <img src="assets/web/venue-lake-dock.jpg" alt="The Schedule" />
+      <div class="gallery-card-label">Schedule<span class="lbl-arrow">The Weekend →</span></div>
+    </a>
+
+    <!-- Row 2 -->
+    <a href="#" class="gallery-card is-photo" aria-label="Anna and Steve">
+      <img src="assets/web/couple-ring-1.jpg" alt="Anna and Steve" />
+      <div class="gallery-card-label">aug 22, 2026 ✦</div>
+    </a>
+
+    <a href="#how-to-arrive" class="gallery-card">
+      <img src="assets/web/venue-sunset.jpg" alt="How to Arrive" />
+      <div class="gallery-card-label">How to Arrive<span class="lbl-arrow">Getting Here →</span></div>
+    </a>
+
+    <a href="#faq" class="gallery-card">
+      <img src="assets/web/venue-shore-fern.jpg" alt="FAQs" />
+      <div class="gallery-card-label">FAQs<span class="lbl-arrow">We've Got Answers →</span></div>
+    </a>
+
+    <a href="#" class="gallery-card is-photo" aria-label="Anna and Steve">
+      <img src="assets/web/couple-2.jpg" alt="Anna and Steve" />
+      <div class="gallery-card-label">the happy couple ✦</div>
+    </a>
+
+    <!-- Row 3 -->
+    <a href="#your-stay" class="gallery-card">
+      <img src="assets/web/venue-cabin-interior.jpg" alt="Lodging Details" />
+      <div class="gallery-card-label">Lodging Details<span class="lbl-arrow">Find Your Stay →</span></div>
+    </a>
+
+    <a href="#travel-form" class="gallery-card">
+      <img src="assets/web/venue-floating-dock.jpg" alt="Share Travel Plans" />
+      <div class="gallery-card-label">Travel Plans<span class="lbl-arrow">Share Yours →</span></div>
+    </a>
+
+    <a href="#gifts" class="gallery-card">
+      <img src="assets/web/venue-firepit.jpg" alt="Gifts" />
+      <div class="gallery-card-label">Gifts &amp; Venmo<span class="lbl-arrow">Honeymoon Fund →</span></div>
+    </a>
+
+    <a href="#" class="gallery-card is-photo" aria-label="Anna and Steve">
+      <img src="assets/web/couple-ring-2.jpg" alt="Anna and Steve" />
+      <div class="gallery-card-label">skaneateles lake ✦</div>
+    </a>
+
   </div>
 </section>
 
-<div class="couple-strip">
-  <img src="assets/web/couple-2.jpg" alt="Anna and Steve" />
-  <img src="assets/web/couple-ring-2.jpg" alt="Anna and Steve" />
-  <img src="assets/web/couple-1.jpg" alt="Anna and Steve" />
-</div>
-
 <img class="pano-banner" src="assets/web/venue-panorama.jpg" alt="The Woodlot grounds" />
 
-<section class="section-cream">
+<section class="section-cream" id="the-woodlot">
   <div class="section-inner">
     <p class="diner-label pop">The Place</p>
     <h2 class="section-title pop d1">Where we're <em>getting married</em></h2>
@@ -383,7 +453,7 @@
   </div>
 </section>
 
-<div class="water-show" id="water-show">
+<div class="water-show" id="the-lake">
   <img src="assets/web/venue-lake-dock.jpg" class="active" alt="The lake" />
   <img src="assets/web/venue-sunset.jpg" alt="Sunset" />
   <img src="assets/web/venue-lake-reflection.jpg" alt="Reflection" />
@@ -409,13 +479,10 @@
   </div>
 </div>
 
-<section class="section-wood">
+<section class="section-wood" id="schedule">
   <div class="section-inner">
     <p class="diner-label pop">The Weekend</p>
-    <h2 class="section-title pop d1">Three days of <span class="rotating-word-wrap"><span class="rotating-word"><span>joy</span><span>celebration</span><span>swimming</span><span>eating</span><span>smiling</span><span>intense conversations</span><span>???</span><span>fun</span></span></span></h2>
-    <p class="pop d2" style="font-size:1rem;line-height:1.75;color:rgba(253,248,238,.7);max-width:58ch;margin-bottom:2.5rem;">
-      The whole weekend is the celebration. Come for as much as you can.
-    </p>
+    <h2 class="section-title pop d1">Weekend <em>Schedule</em></h2>
     <div class="menu-section pop">
       <div class="menu-day">Friday, August 21 — Arrival</div>
       <div class="menu-item"><span class="menu-item-name">Arrive &amp; Settle In</span><span class="menu-item-time">Afternoon</span><span class="menu-item-note">check in, explore the lake, find your people</span></div>
@@ -439,7 +506,7 @@
   </div>
 </section>
 
-<section class="section-cream">
+<section class="section-cream" id="how-to-arrive">
   <div class="section-inner">
     <p class="diner-label pop">Getting Here</p>
     <h2 class="section-title pop d1">How to <em>arrive</em></h2>
@@ -474,7 +541,7 @@
   </div>
 </section>
 
-<section class="section-dark">
+<section class="section-dark" id="faq">
   <div class="section-inner">
     <p class="diner-label pop">Questions</p>
     <h2 class="section-title pop d1">We've got <em>answers</em></h2>
@@ -492,7 +559,7 @@
   </div>
 </section>
 
-<section class="section-pink">
+<section class="section-pink" id="gifts">
   <div class="fund-inner">
     <p class="diner-label pop" style="background:var(--ink);color:var(--gold);">Gifts</p>
     <h2 class="section-title pop d1" style="color:var(--ink);">The <em style="color:white;">honeymoon fund</em></h2>
@@ -726,7 +793,7 @@
 
 <script>
 (function(){
-  const imgs = document.querySelectorAll('#water-show img');
+  const imgs = document.querySelectorAll('#the-lake img');
   let cur = 0;
   setInterval(() => { imgs[cur].classList.remove('active'); cur=(cur+1)%imgs.length; imgs[cur].classList.add('active'); }, 3200);
 })();
