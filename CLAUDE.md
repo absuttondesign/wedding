@@ -105,7 +105,23 @@ Co will base64-encode and embed them when you're ready.
 ## What's done
 
 - [x] v1 clean build — full site HTML, all sections, form, FAQ, stars
-- [ ] v2 Thai Diner redesign — in progress
-- [ ] AI chat widget
-- [ ] Real photos embedded
-- [ ] Deployed to GitHub Pages
+- [x] v2 Thai Diner redesign — marbled wood, lace borders, bold fonts
+- [x] Real photos embedded (venue, couple, lake, woodlot)
+- [x] Gallery grid — 12 cards, 4-col, colorful floral border-image SVG, spinning daisy stickers, big flower overrides, per-card removals
+- [x] Squarer gallery cards (aspect-ratio 5/4), "How to Arrive" card hover flips photo upside-down
+- [x] Copy: new-agey photo captions, "Integration Day" Sunday, "Cant Wait" ticker, "come celebrate with us" kicker
+- [x] Ask the Lake chat widget — built but hidden (Steve veto, display:none — easy to restore)
+- [x] Favicon — inline SVG daisy (pink/orange/yellow/green)
+- [x] OG social image — og-image.jpg (blue hat photo, 1200×630, "Wedding Website!" text) + og:image meta tags
+- [x] Lodging finder — matched guest name in hot pink (#f472b6)
+- [x] Woodlot section — Map It button → Google Maps (91 Woodlot Landing, Skaneateles NY 13152)
+- [x] Schedule — Thu Aug 20 early arrival, Fri Aug 21 rehearsal, Sat Aug 22 wedding, Sun Aug 23 Integration Day
+- [x] Simplified "Locals & Anna's Family" form (Name + Guests + dietary + notes only)
+- [ ] **PUSH TO GITHUB** ← not yet pushed, all changes are local
+- [ ] Swap Venmo handle (`@your-venmo-handle`)
+- [ ] Wire form to Google Sheets (replace `YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL` — 2 places)
+- [ ] Add Sunday lunch venue when decided
+- [ ] Add exact drive times per property from SYR + ITH airports
+
+## Known: Ask the Lake
+The full chat widget JS + HTML is still in the file, just hidden via `#chat-bubble { display:none }`. To restore: change to `display:flex`. Steve may change his mind.
