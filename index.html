@@ -524,7 +524,7 @@
             <div id="stay-room" class="stay-detail-value"></div>
           </div>
           <div class="stay-detail">
-            <div class="stay-detail-label">Your Bed</div>
+            <div class="stay-detail-label">Beds</div>
             <div id="stay-beds" class="stay-detail-value"></div>
           </div>
           <div class="stay-detail">
@@ -713,10 +713,10 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Unit 1': { beds: {'Greta & Matilda':'Queen','Iris':'Full','Chloe':'Full','Leven':'Twin'}, guests: ['Greta & Matilda','Iris','Chloe','Leven'] },
-      'Unit 2': { beds: {'Dad & Melissa':'Queen','Drew':'Full'}, guests: ['Dad & Melissa','Drew'] },
-      'Unit 3': { beds: {'Mike & Corrie':'Queen','Thomas':'Full','Matthew':'Twin'}, guests: ['Mike & Corrie','Thomas','Matthew'], aliases: ['Michael'] },
-      'Unit 4': { beds: {'Nick & Elena':'Queen','Sam & Marty':'Full'}, guests: ['Nick & Elena','Sam & Marty'], aliases: ['Pick'] },
+      'Unit 1': { beds: {'Greta & Matilda':'Queen','Iris':'Full + Full + Twin','Chloe':'Full + Full + Twin','Leven':'Full + Full + Twin'}, guests: ['Greta & Matilda','Iris','Chloe','Leven'] },
+      'Unit 2': { beds: {'Dad & Melissa':'Queen','Drew':'Full + two empty beds'}, guests: ['Dad & Melissa','Drew'] },
+      'Unit 3': { beds: {'Mike & Corrie':'Queen','Thomas':'Full + Twin','Matthew':'Full + Twin'}, guests: ['Mike & Corrie','Thomas','Matthew'], aliases: ['Michael'] },
+      'Unit 4': { beds: {'Nick & Elena':'Queen','Sam & Marty':'Full + two empty beds'}, guests: ['Nick & Elena','Sam & Marty'], aliases: ['Pick'] },
     }
   },
   'fire-lane-85': {
@@ -731,7 +731,7 @@ const PROPERTIES = {
       'Room 1': { beds: {'Jonah & Makalah':'Queen'}, guests: ['Jonah & Makalah'] },
       'Room 2': { beds: {'Jill & Ziya':'Queen'}, guests: ['Jill & Ziya'] },
       'Room 3': { beds: {'Tom & Susie Sonke':'King'}, guests: ['Tom & Susie Sonke'], aliases: ['Grandma Sonke','Grandpa Sonke'] },
-      'Room 4': { beds: {'Audrey':'Twin','Jaylin':'Twin'}, guests: ['Audrey','Jaylin'] },
+      'Room 4': { beds: {'Audrey':'Twin + Twin','Jaylin':'Twin + Twin'}, guests: ['Audrey','Jaylin'] },
     }
   },
   'five-mile': {
@@ -757,7 +757,7 @@ const PROPERTIES = {
     units: {
       'Room 1': { beds: {'Steve & Juli':'King'}, guests: ['Steve & Juli'] },
       'Room 2': { beds: {'Denise & Jack':'Queen'}, guests: ['Denise & Jack'] },
-      'Room 3': { beds: {'Hannah':'Twin','Marley':'Twin'}, guests: ['Hannah','Marley'] },
+      'Room 3': { beds: {'Hannah':'Twin + Twin','Marley':'Twin + Twin'}, guests: ['Hannah','Marley'] },
     }
   }
 };
