@@ -228,35 +228,31 @@
       color: var(--ink);
       font-family: 'Anybody', sans-serif;
       font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: .06em;
+      font-size: 1rem;
+      letter-spacing: .05em;
       text-transform: uppercase;
-      border: 5px solid var(--ink);
-      padding: 1.4rem 1.8rem;
+      border: none;
+      width: 140px;
+      height: 140px;
       cursor: pointer;
-      box-shadow: 7px 7px 0 var(--ink);
-      transition: transform .15s, box-shadow .15s;
-      white-space: nowrap;
-      border-radius: 50% 8px 50% 8px;
-      transform: rotate(-4deg);
-      line-height: 1.1;
+      clip-path: polygon(50% 0%,53.9% 10.2%,59.8% 1%,61.6% 11.7%,69.1% 3.8%,68.9% 14.7%,77.8% 8.4%,75.4% 19.1%,85.4% 14.6%,80.9% 24.6%,91.6% 22.2%,85.3% 31.1%,96.2% 30.9%,88.3% 38.4%,99% 40.2%,89.8% 46.1%,100% 50%,89.8% 53.9%,99% 59.8%,88.3% 61.6%,96.2% 69.1%,85.3% 68.9%,91.6% 77.8%,80.9% 75.4%,85.4% 85.4%,75.4% 80.9%,77.8% 91.6%,68.9% 85.3%,69.1% 96.2%,61.6% 88.3%,59.8% 99%,53.9% 89.8%,50% 100%,46.1% 89.8%,40.2% 99%,38.4% 88.3%,30.9% 96.2%,31.1% 85.3%,22.2% 91.6%,24.6% 80.9%,14.6% 85.4%,19.1% 75.4%,8.4% 77.8%,14.7% 68.9%,3.8% 69.1%,11.7% 61.6%,1% 59.8%,10.2% 53.9%,0% 50%,10.2% 46.1%,1% 40.2%,11.7% 38.4%,3.8% 30.9%,14.7% 31.1%,8.4% 22.2%,19.1% 24.6%,14.6% 14.6%,24.6% 19.1%,22.2% 8.4%,31.1% 14.7%,30.9% 3.8%,38.4% 11.7%,40.2% 1%,46.1% 10.2%);
+      filter: drop-shadow(4px 4px 0 var(--ink));
+      transition: transform .15s, filter .15s;
+      line-height: 1.2;
       text-align: center;
+      padding: 1rem;
       animation: sticker-wobble 3s ease-in-out infinite;
-      position: relative;
     }
     #chat-toggle::before {
-      content: '🌊 FREE!';
+      content: '🌊';
       display: block;
-      font-size: .7rem;
-      letter-spacing: .15em;
-      color: var(--ink);
-      opacity: .75;
+      font-size: 1.3rem;
       margin-bottom: .2rem;
     }
-    #chat-toggle:hover { transform: rotate(0deg) scale(1.08); box-shadow: 10px 10px 0 var(--ink); }
+    #chat-toggle:hover { transform: rotate(3deg) scale(1.1); filter: drop-shadow(6px 6px 0 var(--ink)); }
     @keyframes sticker-wobble {
-      0%, 100% { transform: rotate(-4deg) scale(1); }
-      50% { transform: rotate(-2deg) scale(1.04); }
+      0%, 100% { transform: rotate(-5deg) scale(1); }
+      50% { transform: rotate(-2deg) scale(1.05); }
     }
     #chat-panel { display: none; flex-direction: column; width: min(360px, 92vw); background: var(--ink); border: 3px solid var(--gold); box-shadow: 6px 6px 0 rgba(0,0,0,.5); max-height: 500px; }
     #chat-panel.open { display: flex; }
@@ -439,8 +435,12 @@
       </div>
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
-      <h3>🚗 Getting to the Venue</h3>
-      <p>We recommend renting a car — you'll want the freedom to explore. Rideshare (Uber/Lyft) is available from SYR. Need an airport pickup? Fill out the travel form and we'll coordinate!</p>
+      <h3>🚗 Getting to Your Airbnb</h3>
+      <p>Rent a car — you'll want the freedom to explore. Rideshare from SYR works too. Your Airbnb details (address, listing, check-in info) are coming soon — check back for the full guest lookup. Need an airport pickup? Fill out the travel form!</p>
+    </div>
+    <div class="travel-card pop" style="margin-top:1.5rem;">
+      <h3>⛵ Getting to the Woodlot</h3>
+      <p>For the Friday rehearsal dinner and Saturday ceremony, you'll cross the lake by boat. Rentals are delivered directly to each Airbnb — no marina trip needed. A lake map with the Woodlot approach from the water is coming soon. The boats are also just… there for fun. Use them.</p>
     </div>
     <div class="frames-grid" style="margin-top:3rem;">
       <div class="frame frame-tilt-r pop d1"><img src="assets/web/venue-sunset.jpg" alt="Sunset on the lake" /><p class="frame-caption">sunset on the lake</p></div>
@@ -455,10 +455,10 @@
     <p class="diner-label pop">Questions</p>
     <h2 class="section-title pop d1">We've got <em>answers</em></h2>
     <div class="faq-list pop d2">
-      <details><summary>What's the dress code?</summary><div class="faq-body"><strong>Outdoor cocktail / garden party.</strong> Something you'd feel great in on a lakeside lawn. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself.</div></details>
+      <details><summary>What's the dress code?</summary><div class="faq-body"><strong>Outdoor cocktail / garden party.</strong> The venue is three levels of decks with stairs — beautiful, but worth knowing for shoe choices. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself.</div></details>
       <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — vegetarian, vegan, gluten-free, dairy-free, and allergy-friendly options will be available. <strong>Garlic &amp; allium allergies are specifically accommodated.</strong> Check all that apply in the travel form below so we can make sure you're taken care of.</div></details>
       <details><summary>What's the weather like in August?</summary><div class="faq-body"><strong>Gorgeous.</strong> 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible but usually brief.</div></details>
-      <details><summary>Is there parking?</summary><div class="faq-body">Yes, parking is available at The Woodlot. More logistics details will come closer to the date.</div></details>
+      <details><summary>How do I get to the Woodlot?</summary><div class="faq-body">By boat! Everyone is staying at Airbnbs and cabins around the lake, and the final leg to the Woodlot is across the water. Boat rentals will be delivered directly to your accommodation. More details — including your specific Airbnb info — coming soon.</div></details>
       <details><summary>Can I bring my kids?</summary><div class="faq-body">All ages welcome — the lake does not card anyone. Little ones are especially encouraged to look for lucky stones in the pebbles along the shore. If you would also like to bring your parents, you are welcome to.</div></details>
       <details><summary>Indoors or outdoors?</summary><div class="faq-body">Ceremony is outside on the lakefront. The reception starts outdoors for the golden hour and moves inside as the evening cools. Comfortable shoes are your friend.</div></details>
       <details><summary>What should I bring for the weekend?</summary><div class="faq-body"><strong>Swimsuit</strong> — the lake is crystal clear and you will want to be in it. Also: sunscreen, layers for the evening, comfortable shoes, and a camera.</div></details>
@@ -506,7 +506,7 @@
             <select class="form-sel" id="fs" name="staying">
               <option value="" disabled selected>Select…</option>
               <option>The Woodlot / Blakney Sisters Cabin</option>
-              <option>Nearby Airbnb or Hotel</option>
+              <option>Lakeside Airbnb (details coming)</option>
               <option>With family or friends locally</option>
               <option>Day trip (not overnight)</option>
               <option>Not sure yet</option>
@@ -580,7 +580,7 @@
       <button id="chat-send">Send</button>
     </div>
   </div>
-  <button id="chat-toggle">💬 Ask<br>the Lake</button>
+  <button id="chat-toggle">Ask the Lake</button>
 </div>
 
 <script>
@@ -616,11 +616,11 @@ document.getElementById('chat-close-btn').addEventListener('click',()=>document.
 
 const RESP=[
   {k:['heel','shoe','shoe','sandal','flat','boot','footwear'],a:[
-    "Grass lawn! Flats, wedges, or block heels are your best friends. I have watched many a stiletto disappear into lakeside turf. The ground near me is soft and forgiving — like my heart — but not for stilettos. 👠🌿",
-    "Comfortable shoes are a good call. The ceremony is on a lawn, the dock is wooden, and you may end up barefoot at some point anyway. I'm just saying. Pack something you can dance AND walk on grass in. 🌾",
+    "Three levels of decks and a lot of stairs! Flats, wedges, or block heels are your best friends. I have watched many a stiletto catch in a deck board and make a real scene. The wood near me is beautiful and forgiving — like my heart — but not for stilettos. 👠🌿",
+    "Comfortable shoes are a smart call. The venue is multi-level decks with stairs, the dock is wooden, and you may end up barefoot by the water at some point anyway. Pack something you can dance AND navigate stairs in. 🌾",
   ]},
   {k:['dress','wear','outfit','clothes','attire','formal','casual'],a:[
-    "Outdoor cocktail / garden party — think lakeside lawn realness. Sundresses, linen suits, flowy fabrics. Light colors, breathable materials. Things that move like water. (I'm water. I move beautifully.) Express yourself. 👗🌊",
+    "Outdoor cocktail / garden party — three levels of beautiful decks with lake views. Sundresses, linen suits, flowy fabrics. Light colors, breathable materials. Things that move like water. (I'm water. I move beautifully.) Express yourself. 👗🌊",
     "The vibe is: celebratory and a little bit fancy, but you are next to a lake and there WILL be dancing. Dress like someone who wants to look amazing AND possibly wade in to their ankles by 10pm. 💃",
     "Garden party elegance! Florals, linens, bold colors, something that feels like a celebration. Not black-tie, not a barbecue. Somewhere beautiful in between. And yes, I'll be watching. I always watch. 🌸",
   ]},
@@ -634,18 +634,22 @@ const RESP=[
     "The Sunday farewell brunch is underrated. Everyone is glowing, slightly tired, deeply happy. I'll be right there looking beautiful in the morning light. I always look beautiful in the morning. 🌄",
   ]},
   {k:['airport','fly','flight','travel','syr','ith','drive','car','uber','rideshare'],a:[
-    "Two airports: SYR (Syracuse, ~25 min) has the most flights. ITH (Ithaca, ~1hr) is a gorgeous drive through wine country. Rent a car — you'll want it. Both routes lead to me. ✈️🚗",
-    "Rent a car! This is rural upstate New York — Ubers exist but are not reliable. SYR is your best bet for flights. You can also drive from NYC (~4.5hrs), Philly (~4hrs), or Boston (~4.5hrs). Worth it. I'm worth it. 🚘",
+    "Two airports: SYR (Syracuse, ~25 min) has the most flights. ITH (Ithaca, ~1hr) is a gorgeous drive through wine country. Rent a car to get to your lakeside Airbnb — and then the final leg to the Woodlot? By boat. Yes, really. ✈️🚗🛥️",
+    "Fly into SYR (closest) or ITH (scenic). Rent a car to reach your accommodation around the lake. Then you'll arrive at the Woodlot the proper way — across the water. I will be there waiting. I am always waiting. 🚘🌊",
+  ]},
+  {k:['boat','arrive','arrival','dock','moor','mooring','water taxi'],a:[
+    "For the Friday rehearsal dinner and Saturday ceremony, you cross me by boat to reach the Woodlot. The rental is delivered right to your Airbnb. You pull up to the dock. You've arrived at a wedding by boat. This is your life now. ⛵🌊",
+    "Boat rentals come to your Airbnb. You use them to get to the Woodlot for the Friday and Saturday events — and also just whenever you feel like it. The lake is right there. I encourage this. I am the lake. 🛥️✨",
   ]},
   {k:['stay','hotel','airbnb','cabin','woodlot','accommodation','sleep','lodging'],a:[
-    "Staying at The Woodlot cabin is HIGHLY recommended. You'll wake up and I'll be right there, sparkling at you. Other options in Skaneateles village (~10 min away) if needed, but waking up next to a glacier lake is not something to miss. 🛖",
-    "Skaneateles village has lovely inns and B&Bs about 10 minutes away. The Sherwood Inn is a classic. But if you can be onsite at The Woodlot — DO IT. Falling asleep to the sound of me gently existing is an experience. 🌙",
-    "Onsite at The Woodlot is the full experience. Offsite means a short drive. Either way you'll end up at me eventually. I'm the whole point. 💧",
+    "Everyone is staying at Airbnbs and cabins around my shores — your specific spot, address, and check-in info will be in your personal guest details (coming soon). You'll drive there. Then boat to the Woodlot for events. Then back. It's a very good system. 🛖🌊",
+    "Lakeside Airbnbs all around me. You drive to yours, get settled, and then cross the water by boat to the rehearsal dinner and ceremony. The boat is also just available for fun. I encourage fun. 🌙⛵",
+    "Your accommodation details are coming soon — look out for your personal guest info with the address and listing. Short version: you'll be on my shores the whole weekend. I consider this ideal. 💧",
   ]},
   {k:['bring','pack','what to bring','swim','swimming','swimsuit'],a:[
-    "SWIMSUIT. Non-negotiable. I am one of the cleanest lakes in the United States and I expect to be swum in. Also: sunscreen, layers for evening, comfortable shoes, a camera. You will want photos of me. Everyone does. 🏊🌊",
-    "Layers for evening (it cools off after sunset), sunscreen (the water reflects the sun and I will not warn you twice), something cozy for Sunday morning. A towel. You ARE getting in the water. 🌞",
-    "Don't forget: a book for the dock, bug spray for the evening, and an appetite. Also a swimsuit. I cannot stress the swimsuit enough. I have been here since the glaciers and I have watched many people regret not packing one. 😤",
+    "Swimsuit recommended. Optional, technically. I have been here since the glaciers and I have seen things. I do not judge. I am a lake. But I will say: a swimsuit is easier to explain at a family gathering. We all make choices. 🏊🌊",
+    "Layers for evening (it cools off after sunset), sunscreen (the water reflects the sun and I will not warn you twice), something cozy for Sunday morning. A towel. You ARE getting in the water. Attire at that point is between you and your relatives. 🌞",
+    "Don't forget: a book for the dock, bug spray for the evening, and an appetite. Swimsuit is… encouraged. I have been here since the glaciers. I have a very open-minded relationship with clothing. But this is a family event and I just want everyone to have a nice time. 😌",
   ]},
   {k:['lake','water','swim','dock','canoe','kayak','boat'],a:[
     "That's ME! I'm Skaneateles Lake. One of the cleanest lakes in the US — you can see straight to the bottom. The dock is excellent for jumping off of. I am teal. I am cold. I am wonderful. Get in. 🌊",
@@ -675,9 +679,9 @@ const RESP=[
     "August in the Finger Lakes: 70–85°F, long golden evenings, low humidity. Genuinely gorgeous. Bring a light layer for after sunset. Brief afternoon storms are possible — I sometimes cause those. Mostly: perfect lake weather. ☀️",
     "August is my best month, honestly. Cool mornings, warm afternoons, golden evenings. It can rain briefly — this is New York — but it passes. Pack a layer for nighttime. The stars over the water are extraordinary. 🌟",
   ]},
-  {k:['parking','park'],a:[
-    "Yes, parking at The Woodlot. Easy. I myself do not have a parking situation — I am simply HERE, in my place, as I have been for 10,000 years. You may park nearby. 🅿️",
-    "Parking is available onsite. If you're staying at The Woodlot, you basically don't need to think about this at all. I have never needed to park anywhere. I find the concept fascinating. 🚗",
+  {k:['parking','park','drive','directions','address'],a:[
+    "The Woodlot address is 75 Woodlot Landing, Skaneateles NY — useful for getting to your Airbnb. But the arrival to the Woodlot itself? By boat, across the lake. I highly recommend this. I am the lake. 🛥️",
+    "You'll park at your Airbnb and arrive at the Woodlot by water. Boat rentals come to you. This is the correct way to arrive at a lakeside wedding and I will not hear otherwise. 🅿️🌊",
   ]},
   {k:['kids','children','child','baby'],a:[
     "Adult-focused celebration! If you have a specific situation, reach out to Anna & Steve directly. I am ageless and contain multitudes, but the weekend is designed for grown-ups to be fully present. 💛",
