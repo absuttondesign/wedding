@@ -524,12 +524,16 @@
             <div id="stay-room" class="stay-detail-value"></div>
           </div>
           <div class="stay-detail">
-            <div class="stay-detail-label">Beds</div>
+            <div class="stay-detail-label">Your Bed</div>
             <div id="stay-beds" class="stay-detail-value"></div>
           </div>
           <div class="stay-detail">
-            <div class="stay-detail-label">Sharing with</div>
-            <div id="stay-sharing" class="stay-detail-value"></div>
+            <div class="stay-detail-label">Sharing Room With</div>
+            <div id="stay-sharing-room" class="stay-detail-value"></div>
+          </div>
+          <div class="stay-detail" style="grid-column:1/-1;">
+            <div class="stay-detail-label">Sharing House With</div>
+            <div id="stay-sharing-house" class="stay-detail-value"></div>
           </div>
           <div class="stay-detail">
             <div class="stay-detail-label">Boats at this property</div>
@@ -709,10 +713,10 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Unit 1': { beds: 'Queen, Full ×2, Twin', guests: ['Greta','Matilda','Iris','Leven','Chloe'] },
-      'Unit 2': { beds: 'Queen, Full ×2, Twin', guests: ['Dad','Melissa','Drew'] },
-      'Unit 3': { beds: 'Queen, Full ×2, Twin', guests: ['Mike','Corrie','Thomas','Matthew'] },
-      'Unit 4': { beds: 'Queen, Full ×2, Twin', guests: ['Nick','Elena','Sam','Marty'] },
+      'Unit 1': { beds: {'Greta':'Queen','Matilda':'Queen','Iris':'Full','Chloe':'Full','Leven':'Twin'}, guests: ['Greta','Matilda','Iris','Leven','Chloe'] },
+      'Unit 2': { beds: {'Dad':'Queen','Melissa':'Full','Drew':'Twin'}, guests: ['Dad','Melissa','Drew'] },
+      'Unit 3': { beds: {'Mike':'Queen','Corrie':'Full','Thomas':'Full','Matthew':'Twin'}, guests: ['Mike','Corrie','Thomas','Matthew'] },
+      'Unit 4': { beds: {'Nick':'Queen','Elena':'Full','Sam':'Full','Marty':'Twin'}, guests: ['Nick','Elena','Sam','Marty'] },
     }
   },
   'fire-lane-85': {
@@ -724,10 +728,10 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Room 1': { beds: 'Queen', guests: ['Jonah','Makalah'] },
-      'Room 2': { beds: 'Queen', guests: ['Jill','Ziya'] },
-      'Room 3': { beds: 'King', guests: ['Grandma','Grandpa'] },
-      'Room 4': { beds: 'Two twins', guests: ['Audrey','Jaylin'] },
+      'Room 1': { beds: {'Jonah':'Queen','Makalah':'Queen'}, guests: ['Jonah','Makalah'] },
+      'Room 2': { beds: {'Jill':'Queen','Ziya':'Queen'}, guests: ['Jill','Ziya'] },
+      'Room 3': { beds: {'Grandma':'King','Grandpa':'King'}, guests: ['Grandma','Grandpa'] },
+      'Room 4': { beds: {'Audrey':'Twin','Jaylin':'Twin'}, guests: ['Audrey','Jaylin'] },
     }
   },
   'five-mile': {
@@ -739,7 +743,7 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'The House': { beds: 'Two bedrooms', guests: ['Karly','Todd','Eli'] },
+      'The House': { beds: {'Karly':'Bedroom 1','Todd':'Bedroom 1','Eli':'Bedroom 2'}, guests: ['Karly','Todd','Eli'] },
     }
   },
   'fire-lane-71': {
@@ -751,9 +755,9 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Room 1': { beds: 'King', guests: ['Steve','Juli'] },
-      'Room 2': { beds: 'Queen', guests: ['Denise','Jack'] },
-      'Room 3': { beds: 'Two twins', guests: ['Hannah','Marley'] },
+      'Room 1': { beds: {'Steve':'King','Juli':'King'}, guests: ['Steve','Juli'] },
+      'Room 2': { beds: {'Denise':'Queen','Jack':'Queen'}, guests: ['Denise','Jack'] },
+      'Room 3': { beds: {'Hannah':'Twin','Marley':'Twin'}, guests: ['Hannah','Marley'] },
     }
   }
 };
@@ -806,9 +810,22 @@ function showStay(name){
   const ab = document.getElementById('stay-airbnb-link');
   if(prop.airbnb){ ab.href=prop.airbnb; ab.style.display='inline-block'; }
   else { ab.style.display='none'; }
+  // Per-guest bed
+  const myBed = unit.beds[canonical] || '—';
   document.getElementById('stay-room').textContent = unitName;
-  document.getElementById('stay-beds').textContent = unit.beds;
-  document.getElementById('stay-sharing').textContent = others.length ? others.join(', ') : 'Just you! 🎉';
+  document.getElementById('stay-beds').textContent = myBed;
+
+  // Sharing room with = unit-mates (excluding self)
+  const roomOthers = unit.guests.filter(g => g.toLowerCase() !== key);
+  document.getElementById('stay-sharing-room').textContent = roomOthers.length ? roomOthers.join(', ') : 'Just you! 🎉';
+
+  // Sharing house with = everyone at property in other units
+  const houseOthers = [];
+  for(const [uname, u] of Object.entries(prop.units)){
+    if(uname !== unitName) houseOthers.push(...u.guests);
+  }
+  document.getElementById('stay-sharing-house').textContent = houseOthers.length ? houseOthers.join(', ') : '—';
+
   document.getElementById('stay-boats').textContent = prop.boats;
   document.getElementById('stay-checkin').textContent = prop.checkin;
   document.getElementById('stay-checkout').textContent = prop.checkout;
@@ -819,7 +836,7 @@ function showStay(name){
     const email = document.getElementById('stay-email').value.trim();
     const statusEl = document.getElementById('stay-email-status');
     if(!email){ statusEl.textContent='Please enter your email address first!'; statusEl.style.display='block'; return; }
-    const body = `Hi ${canonical}!\n\nHere are your lodging details for Anna & Steve's wedding weekend:\n\n🏠 ${prop.name}\n📍 ${prop.address}\n${prop.airbnb ? '🔗 Airbnb: '+prop.airbnb+'\n' : ''}🛏 ${unitName} · ${unit.beds}\n👥 Sharing with: ${others.length ? others.join(', ') : 'just you!'}\n⛵ Boats at this property: ${prop.boats}\n\n📅 Check-in: ${prop.checkin}\n📅 Check-out: ${prop.checkout}\n\nSee you at the lake! 🌊\nAnna & Steve`;
+    const body = `Hi ${canonical}!\n\nHere are your lodging details for Anna & Steve's wedding weekend:\n\n🏠 ${prop.name}\n📍 ${prop.address}\n${prop.airbnb ? '🔗 Airbnb: '+prop.airbnb+'\n' : ''}🛏 ${unitName} · Your bed: ${myBed}\n👥 Sharing room with: ${roomOthers.length ? roomOthers.join(', ') : 'just you!'}\n🏡 Sharing house with: ${houseOthers.length ? houseOthers.join(', ') : '—'}\n⛵ Boats at this property: ${prop.boats}\n\n📅 Check-in: ${prop.checkin}\n📅 Check-out: ${prop.checkout}\n\nSee you at the lake! 🌊\nAnna & Steve`;
     window.location.href = 'mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('Your Lodging · Anna & Steve Wedding Weekend')+'&body='+encodeURIComponent(body);
     statusEl.textContent = '✓ Opening your email app…'; statusEl.style.display='block';
   };
