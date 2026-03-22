@@ -453,7 +453,7 @@
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
       <h3>🚗 Getting to Your Airbnb</h3>
-      <p>Rent a car — you'll want the freedom to explore. Rideshare from SYR works too. Your Airbnb details (address, listing, check-in info) are coming soon — check back for the full guest lookup. Need an airport pickup? Fill out the travel form!</p>
+      <p>You can rent a car if you want the freedom to explore wine country. Need an airport pickup? <a href="#travel-form" style="color:var(--gold);text-decoration:underline;">Fill out the travel form below!</a></p>
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
       <h3>⛵ Getting to the Woodlot</h3>
@@ -475,8 +475,10 @@
       <details><summary>What's the dress code?</summary><div class="faq-body"><strong>Outdoor cocktail / garden party.</strong> The venue is three levels of decks with stairs — beautiful, but worth knowing for shoe choices. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself.</div></details>
       <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — vegetarian, vegan, gluten-free, dairy-free, and allergy-friendly options will be available. <strong>Garlic &amp; allium allergies are specifically accommodated.</strong> Check all that apply in the travel form below so we can make sure you're taken care of.</div></details>
       <details><summary>What's the weather like in August?</summary><div class="faq-body"><strong>Gorgeous.</strong> 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible but usually brief.</div></details>
+      <details><summary>What's the nearest airport?</summary><div class="faq-body"><strong>Syracuse Hancock (SYR)</strong> is closest — about 25 minutes away and has the most flight options. <strong>Ithaca Tompkins (ITH)</strong> is about an hour but a gorgeous drive through wine country. Either works!</div></details>
+      <details><summary>How do I get from the airport to my Airbnb?</summary><div class="faq-body">Fill out the travel form below and let us know! Tell us if you need an airport pickup or if you're planning to rent your own car. We want to make sure everyone gets to the lake without stress.</div></details>
       <details><summary>How do I get to the Woodlot?</summary><div class="faq-body">By boat! Everyone is staying at Airbnbs and cabins around the lake, and the final leg to the Woodlot is across the water. Boat rentals will be delivered directly to your accommodation. More details — including your specific Airbnb info — coming soon.</div></details>
-      <details><summary>Can I bring my kids?</summary><div class="faq-body">All ages welcome — the lake does not card anyone. Little ones are especially encouraged to look for lucky stones in the pebbles along the shore. If you would also like to bring your parents, you are welcome to.</div></details>
+      <details><summary>Can I bring my parents?</summary><div class="faq-body">Yes! As long as they behave. The lake does not card anyone, but it does have standards. Little ones are especially encouraged to look for lucky stones in the pebbles along the shore.</div></details>
       <details><summary>Indoors or outdoors?</summary><div class="faq-body">Ceremony is outside on the lakefront. The reception starts outdoors for the golden hour and moves inside as the evening cools. Comfortable shoes are your friend.</div></details>
       <details><summary>What should I bring for the weekend?</summary><div class="faq-body"><strong>Swimsuit</strong> — the lake is crystal clear and you will want to be in it. Also: sunscreen, layers for the evening, comfortable shoes, and a camera.</div></details>
     </div>
@@ -496,7 +498,7 @@
 <section class="section-wood" id="your-stay">
   <div class="section-inner">
     <p class="diner-label pop">Out-of-Towners</p>
-    <h2 class="section-title pop d1">Get Your <em>Lodging Deets</em></h2>
+    <h2 class="section-title pop d1">Get Your <em>Lodging Details</em></h2>
     <p class="pop d2" style="font-size:1.05rem;line-height:1.75;color:rgba(253,248,238,.85);max-width:56ch;margin-bottom:2rem;">Type your first name below to find your accommodation details, Airbnb link, and what to expect when you arrive.</p>
 
     <div class="stay-search pop d2">
@@ -557,6 +559,51 @@
             <button id="stay-email-btn" class="form-btn" style="margin-top:0;transform:none;white-space:nowrap;">Send It →</button>
           </div>
           <p id="stay-email-status" style="font-family:'Caveat',cursive;font-size:1.1rem;color:var(--gold);margin-top:.6rem;display:none;"></p>
+        </div>
+
+        <!-- Travel plan mini-form -->
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px dashed rgba(253,248,238,.2);">
+          <p style="font-family:'Anybody',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;">✦ While you're here</p>
+          <p style="font-size:1rem;line-height:1.6;color:rgba(253,248,238,.8);margin-bottom:1.2rem;">Let us know how you're getting to the lake so we can coordinate pickups and make sure everyone arrives well.</p>
+          <form id="stay-travel-form">
+            <input type="hidden" id="stf-name" name="name" />
+            <input type="hidden" id="stf-property" name="property" />
+            <input type="hidden" name="source" value="travel-plan" />
+            <div style="margin-bottom:1rem;">
+              <label class="form-lbl">How are you getting here?</label>
+              <div class="radio-grp" style="margin-top:.4rem;">
+                <label class="radio-lbl"><input type="radio" name="transport" value="renting-car" id="stf-car"> I'll rent a car</label>
+                <label class="radio-lbl"><input type="radio" name="transport" value="needs-pickup" id="stf-pickup"> I need a pickup</label>
+                <label class="radio-lbl"><input type="radio" name="transport" value="not-sure"> Not sure yet</label>
+              </div>
+            </div>
+            <div id="stf-flight-fields" style="display:none;margin-bottom:1rem;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+                <div class="form-group">
+                  <label class="form-lbl" for="stf-airport">Airport</label>
+                  <select class="form-sel" id="stf-airport" name="airport">
+                    <option value="" disabled selected>Select…</option>
+                    <option>SYR — Syracuse Hancock</option>
+                    <option>ITH — Ithaca Tompkins</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-lbl" for="stf-arrival">Arrival Date &amp; Time</label>
+                  <input class="form-inp" type="text" id="stf-arrival" name="arrival" placeholder="e.g. Friday Aug 21, ~3pm" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl" for="stf-flight">Flight Number <span style="font-weight:400;opacity:.6;">(optional)</span></label>
+                <input class="form-inp" type="text" id="stf-flight" name="flight" placeholder="e.g. AA 1234" />
+              </div>
+            </div>
+            <button type="submit" class="form-btn" id="stf-submit" style="margin-top:.5rem;transform:none;">Send to Anna &amp; Steve ✦</button>
+          </form>
+          <div id="stf-success" style="display:none;padding:1rem;background:rgba(201,168,76,.12);border-radius:.5rem;border:1px solid rgba(201,168,76,.3);">
+            <p style="font-family:'Abril Fatface',serif;font-size:1.2rem;color:var(--gold);margin-bottom:.3rem;">Got it! 🎉</p>
+            <p style="font-size:.95rem;color:rgba(253,248,238,.8);">We'll be in touch to sort out the details. See you at the lake.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -688,6 +735,27 @@
 
 document.querySelectorAll('input[name="pickup"]').forEach(r => {
   r.addEventListener('change', function(){ document.getElementById('ffields').classList.toggle('on', this.value==='yes'); });
+});
+
+// Stay travel mini-form
+document.querySelectorAll('input[name="transport"]').forEach(r => {
+  r.addEventListener('change', function(){
+    document.getElementById('stf-flight-fields').style.display = this.value==='needs-pickup' ? 'block' : 'none';
+  });
+});
+document.getElementById('stay-travel-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = document.getElementById('stf-submit');
+  btn.disabled=true; btn.textContent='Sending…';
+  const WEBHOOK='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL';
+  const payload={};
+  new FormData(this).forEach((v,k) => payload[k]=v);
+  function stfOk(){
+    document.getElementById('stay-travel-form').style.display='none';
+    document.getElementById('stf-success').style.display='block';
+  }
+  if(WEBHOOK==='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL'){ stfOk(); return; }
+  fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(stfOk).catch(stfOk);
 });
 
 document.getElementById('tform').addEventListener('submit', function(e){
@@ -842,6 +910,14 @@ function showStay(name){
   document.getElementById('stay-checkout').textContent = prop.checkout;
   result.style.display='block';
 
+  // Pre-fill travel mini-form with name + property
+  document.getElementById('stf-name').value = canonical;
+  document.getElementById('stf-property').value = prop.name;
+  document.getElementById('stay-travel-form').style.display='block';
+  document.getElementById('stf-success').style.display='none';
+  document.getElementById('stf-submit').disabled=false;
+  document.getElementById('stf-submit').textContent='Send to Anna & Steve ✦';
+
   // Email button
   document.getElementById('stay-email-btn').onclick = ()=>{
     const email = document.getElementById('stay-email').value.trim();
@@ -928,9 +1004,9 @@ const RESP=[
     "The Woodlot address is 75 Woodlot Landing, Skaneateles NY — useful for getting to your Airbnb. But the arrival to the Woodlot itself? By boat, across the lake. I highly recommend this. I am the lake. 🛥️",
     "You'll park at your Airbnb and arrive at the Woodlot by water. Boat rentals come to you. This is the correct way to arrive at a lakeside wedding and I will not hear otherwise. 🅿️🌊",
   ]},
-  {k:['kids','children','child','baby'],a:[
-    "Adult-focused celebration! If you have a specific situation, reach out to Anna & Steve directly. I am ageless and contain multitudes, but the weekend is designed for grown-ups to be fully present. 💛",
-    "This one's for the adults! Kids are wonderful and I support them, but the weekend is designed for grown-up joy. If you have a specific childcare situation, reach out to Anna & Steve — they'll work something out. 🤍",
+  {k:['kids','children','child','baby','parents','mom','dad','bring'],a:[
+    "Can you bring your parents? Yes, if they're ready to have fun. I am a lake. I welcome all ages. I have been here since the glaciers and I have seen children, parents, grandparents, and great-grandparents all on the same dock. It was lovely. Bring your parents. 🌊👴👵",
+    "Great question. Yes. Bring them. Make sure they have good shoes for the stairs and are open to the concept of boats. That's all I ask. Well — I'm a lake, I don't technically ask things. But that's my preference. 🛥️",
   ]},
   {k:['venmo','gift','registry','money','honeymoon','present','contribute'],a:[
     "Your presence is the best gift! If you'd like to contribute to the honeymoon fund, there's a Venmo button on this page. They're going somewhere with water, probably. All good trips involve water. It's a fact. ✈️💸",
