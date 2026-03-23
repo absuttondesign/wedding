@@ -615,12 +615,20 @@
       </div>
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
-      <h3>🚗 Getting to Your Airbnb</h3>
+      <h3>🚗 <a href="#travel-form" style="color:inherit;text-decoration:none;border-bottom:2px solid var(--gold);">Getting to Your Airbnb</a></h3>
       <p>You can rent a car if you want the freedom to explore wine country. Need an airport pickup? <a href="#travel-form" style="color:var(--gold);text-decoration:underline;">Fill out the travel form below!</a></p>
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
       <h3>⛵ Getting to the Woodlot</h3>
-      <p>For the Friday rehearsal dinner and Saturday ceremony, you'll cross the lake by boat. Rentals are delivered directly to each Airbnb — no marina trip needed. A lake map with the Woodlot approach from the water is coming soon. The boats are also just… there for fun. Use them.</p>
+      <p>For the Friday rehearsal dinner and Saturday ceremony, you'll cross the lake by boat. Rentals are delivered directly to each Airbnb — no marina trip needed. The boats are also just… there for fun. Use them.</p>
+      <div style="margin-top:1.25rem;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);overflow:hidden;line-height:0;">
+        <img src="assets/photos/map.png" alt="Wedding locations map" style="width:100%;display:block;" />
+      </div>
+      <p style="margin-top:.75rem;font-size:1rem;opacity:.85;">❤️ The Woodlot &nbsp;·&nbsp; 🔷 Boat refuel &nbsp;·&nbsp; 🏠 Airbnbs &nbsp;·&nbsp; ⭐ Points of interest</p>
+      <p style="font-size:.9rem;opacity:.7;margin-top:.35rem;">⭐ Skaneateles Village (public docks) &nbsp;·&nbsp; Staghorn Point (fossil cliffs) &nbsp;·&nbsp; Glen Haven Inn (restaurant + docks)</p>
+      <div style="margin-top:.75rem;">
+        <a href="https://maps.app.goo.gl/9p71Nv4GDRWVayZo9" target="_blank" rel="noopener" class="rsvp-btn" style="display:inline-block;font-size:.9rem;padding:.5rem 1.25rem;">📍 View All Locations →</a>
+      </div>
     </div>
     <div class="frames-grid" style="margin-top:3rem;">
       <div class="frame frame-tilt-r pop d1"><img src="assets/web/venue-sunset.jpg" alt="Golden dissolution" /><p class="frame-caption">golden dissolution</p></div>
@@ -727,11 +735,23 @@
             <input type="hidden" id="stf-name" name="name" />
             <input type="hidden" id="stf-property" name="property" />
             <input type="hidden" name="source" value="travel-plan" />
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label class="form-lbl" for="stf-party">Who else? <span style="font-weight:400;opacity:.6;">(names, please)</span></label>
+              <input class="form-inp" type="text" id="stf-party" name="party" placeholder="e.g. Sarah, Jake, and little Mochi" />
+            </div>
             <div style="margin-bottom:1rem;">
-              <label class="form-lbl" style="color:#f472b6;">How are you getting here?</label>
+              <label class="form-lbl" style="color:#f472b6;">Which events are you attending?</label>
+              <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:.5rem;">
+                <label class="radio-lbl"><input type="checkbox" name="event_rehearsal" value="Rehearsal Dinner" style="accent-color:#f472b6;"> Rehearsal Dinner</label>
+                <label class="radio-lbl"><input type="checkbox" name="event_wedding" value="Wedding Ceremony &amp; Reception" style="accent-color:#f472b6;"> Wedding Ceremony &amp; Reception</label>
+              </div>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <label class="form-lbl" style="color:#f472b6;">Do you need a ride from the airport?</label>
               <div class="radio-grp" style="margin-top:.4rem;">
-                <label class="radio-lbl"><input type="radio" name="transport" value="renting-car" id="stf-car"> I'll rent a car</label>
-                <label class="radio-lbl"><input type="radio" name="transport" value="needs-pickup" id="stf-pickup"> I need a pickup</label>
+                <label class="radio-lbl"><input type="radio" name="transport" value="needs-pickup" id="stf-pickup"> Yes, I need an airport pickup</label>
+                <label class="radio-lbl"><input type="radio" name="transport" value="has-car" id="stf-car"> I'll have a car</label>
+                <label class="radio-lbl"><input type="radio" name="transport" value="no-pickup-needed"> I don't need a pickup</label>
                 <label class="radio-lbl"><input type="radio" name="transport" value="not-sure"> Not sure yet</label>
               </div>
             </div>
@@ -750,6 +770,10 @@
                   <label class="form-lbl" for="stf-arrival">Arrival Date &amp; Time</label>
                   <input class="form-inp" type="text" id="stf-arrival" name="arrival" placeholder="e.g. Friday Aug 21, ~3pm" />
                 </div>
+              </div>
+              <div class="form-group" style="margin-bottom:.75rem;">
+                <label class="form-lbl" for="stf-departure">Departure Date &amp; Time</label>
+                <input class="form-inp" type="text" id="stf-departure" name="departure" placeholder="e.g. Sunday Aug 23, ~2pm" />
               </div>
               <div class="form-group">
                 <label class="form-lbl" for="stf-flight">Flight Number <span style="font-weight:400;opacity:.6;">(optional)</span></label>
@@ -781,28 +805,21 @@
       <form id="tform">
         <div class="form-row form-row-2">
           <div class="form-group"><label class="form-lbl" for="fn">Your Name</label><input class="form-inp" type="text" id="fn" name="name" placeholder="First &amp; Last" required /></div>
-          <div class="form-group"><label class="form-lbl" for="fg">Guests in your group</label>
-            <select class="form-sel" id="fg" name="guests" required>
-              <option value="" disabled selected>How many?</option>
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
-            </select>
+          <div class="form-group"><label class="form-lbl" for="fg">Who else? <span style="font-weight:400;opacity:.6;">(names, please)</span></label>
+            <input class="form-inp" type="text" id="fg" name="guests" placeholder="e.g. Partner, kids, dog…" />
           </div>
         </div>
 
         <div class="form-row" style="margin-top:1rem;">
           <div class="form-group" style="grid-column:1/-1;">
-            <label class="form-lbl">Dietary needs &amp; allergies — check all that apply</label>
+            <label class="form-lbl">Which events are you attending?</label>
             <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:.5rem;">
-              <label class="radio-lbl"><input type="checkbox" name="diet_veg" value="Vegetarian" style="accent-color:var(--gold);"> Vegetarian</label>
-              <label class="radio-lbl"><input type="checkbox" name="diet_vegan" value="Vegan" style="accent-color:var(--gold);"> Vegan</label>
-              <label class="radio-lbl"><input type="checkbox" name="diet_gf" value="Gluten-free" style="accent-color:var(--gold);"> Gluten-free</label>
-              <label class="radio-lbl"><input type="checkbox" name="diet_dairy" value="Dairy-free" style="accent-color:var(--gold);"> Dairy-free</label>
-              <label class="radio-lbl"><input type="checkbox" name="diet_nut" value="Nut allergy" style="accent-color:var(--gold);"> Nut allergy</label>
-              <label class="radio-lbl"><input type="checkbox" name="diet_shellfish" value="Shellfish allergy" style="accent-color:var(--gold);"> Shellfish allergy</label>
-              <label class="radio-lbl"><input type="checkbox" name="diet_garlic" value="Garlic &amp; Allium allergy" style="accent-color:var(--gold);"> Garlic &amp; Allium allergy</label>
+              <label class="radio-lbl"><input type="checkbox" name="event_rehearsal" value="Rehearsal Dinner" style="accent-color:var(--gold);"> Rehearsal Dinner</label>
+              <label class="radio-lbl"><input type="checkbox" name="event_wedding" value="Wedding Ceremony &amp; Reception" style="accent-color:var(--gold);"> Wedding Ceremony &amp; Reception</label>
             </div>
           </div>
         </div>
+
         <div class="form-row" style="margin-top:1rem;">
           <div class="form-group"><label class="form-lbl" for="fnotes">Anything else?</label><input class="form-inp" type="text" id="fnotes" name="notes" placeholder="Other needs, questions, excitement level…" /></div>
         </div>
@@ -859,31 +876,39 @@ document.querySelectorAll('input[name="transport"]').forEach(r => {
     document.getElementById('stf-flight-fields').style.display = this.value==='needs-pickup' ? 'block' : 'none';
   });
 });
+function buildPayload(form) {
+  const fd = new FormData(form);
+  const payload = {};
+  fd.forEach((v, k) => { payload[k] = v; });
+  // Use getAll for checkboxes so both events capture correctly if both are checked
+  ['event_rehearsal','event_wedding'].forEach(k => {
+    const vals = fd.getAll(k);
+    payload[k] = vals.length ? vals.join(', ') : '';
+  });
+  return payload;
+}
+
 document.getElementById('stay-travel-form').addEventListener('submit', function(e){
   e.preventDefault();
   const btn = document.getElementById('stf-submit');
   btn.disabled=true; btn.textContent='Sending…';
-  const WEBHOOK='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL';
-  const payload={};
-  new FormData(this).forEach((v,k) => payload[k]=v);
+  const WEBHOOK='https://script.google.com/macros/s/AKfycbwgt-T92seUmeLPYKjpkDS1dqXqOddRT9EY0rePwZjM3zS4ui7DRNu2kBOoKcBlWVvB/exec';
   function stfOk(){
     document.getElementById('stay-travel-form').style.display='none';
     document.getElementById('stf-success').style.display='block';
   }
-  if(WEBHOOK==='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL'){ stfOk(); return; }
-  fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(stfOk).catch(stfOk);
+  function stfErr(){ btn.disabled=false; btn.textContent='Try again ↩'; }
+  fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildPayload(this))}).then(stfOk).catch(stfErr);
 });
 
 document.getElementById('tform').addEventListener('submit', function(e){
   e.preventDefault();
   const btn = document.getElementById('fsubmit');
   btn.disabled=true; btn.textContent='Sending…';
-  const WEBHOOK='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL';
-  const payload={};
-  new FormData(this).forEach((v,k) => payload[k]=v);
+  const WEBHOOK='https://script.google.com/macros/s/AKfycbwgt-T92seUmeLPYKjpkDS1dqXqOddRT9EY0rePwZjM3zS4ui7DRNu2kBOoKcBlWVvB/exec';
   function ok(){ document.getElementById('tform').style.display='none'; document.getElementById('fsuccess').classList.add('on'); }
-  if(WEBHOOK==='YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL'){ ok(); return; }
-  fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(ok).catch(ok);
+  function err(){ btn.disabled=false; btn.textContent='Try again ↩'; }
+  fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildPayload(this))}).then(ok).catch(err);
 });
 
 // ── STAY LOOKUP ──────────────────────────────────────────
@@ -897,7 +922,7 @@ const PROPERTIES = {
     checkin: 'Thursday, Aug 21 · exact time TBD',
     checkout: 'Sunday, Aug 24 · exact time TBD',
     units: {
-      'Unit 1': { beds: {'Greta & Matilda':'Queen','Iris':'Full + Full + Twin','Chloe':'Full + Full + Twin','Leven':'Full + Full + Twin'}, guests: ['Greta & Matilda','Iris','Chloe','Leven'], rooms: [{label:'Bedroom 1',guests:['Greta & Matilda']},{label:'Bedroom 2',guests:['Iris','Chloe','Leven']}] },
+      'Unit 1': { beds: {'Greta & Matilda':'Queen','Iris':'Full + Full + Twin','Chloe':'Full + Full + Twin','Leven':'Full + Full + Twin','Test Person':'Test Bed'}, guests: ['Greta & Matilda','Iris','Chloe','Leven','Test Person'], aliases: ['Bunny','Test'], rooms: [{label:'Bedroom 1',guests:['Greta & Matilda']},{label:'Bedroom 2',guests:['Iris','Chloe','Leven','Test Person']}] },
       'Unit 2': { beds: {'Dad & Melissa':'Queen','Drew':'Full + two empty beds'}, guests: ['Dad & Melissa','Drew'], rooms: [{label:'Bedroom 1',guests:['Dad & Melissa']},{label:'Bedroom 2',guests:['Drew']}] },
       'Unit 3': { beds: {'Mike & Corrie':'Queen','Thomas':'Full + Twin','Matthew':'Full + Twin'}, guests: ['Mike & Corrie','Thomas','Matthew'], aliases: ['Michael'], rooms: [{label:'Bedroom 1',guests:['Mike & Corrie']},{label:'Bedroom 2',guests:['Thomas','Matthew']}] },
       'Unit 4': { beds: {'Nick & Elena':'Queen','Sam & Marty':'Full + two empty beds'}, guests: ['Nick & Elena','Sam & Marty'], aliases: ['Pick'], rooms: [{label:'Bedroom 1',guests:['Nick & Elena']},{label:'Bedroom 2',guests:['Sam & Marty']}] },
