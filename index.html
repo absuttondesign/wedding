@@ -584,7 +584,7 @@
     </div>
     <div class="menu-section pop d1">
       <div class="menu-day">Saturday, August 22 — The Big Day ✦</div>
-      <div class="menu-item"><span class="menu-item-name">Wedding Ceremony</span><span class="menu-item-time">Afternoon</span><span class="menu-item-note">The ceremony on the shore.</span></div>
+      <div class="menu-item"><span class="menu-item-name">Wedding Ceremony</span><span class="menu-item-time">Evening</span><span class="menu-item-note">The ceremony on the shore.</span></div>
       <hr class="menu-divider">
       <div class="menu-item"><span class="menu-item-name">Dinner &amp; Dancing</span><span class="menu-item-time">Evening</span><span class="menu-item-note">A sit-down dinner followed by music, dance, chatting, celebrating til we kick everyone out.</span></div>
     </div>
@@ -644,13 +644,12 @@
     <h2 class="section-title pop d1"><em>FAQ</em>s</h2>
     <div class="faq-list pop d2">
       <details><summary>What's the dress code?</summary><div class="faq-body"><strong>Outdoor cocktail / garden party.</strong> The venue is three levels of decks with stairs — beautiful, but worth knowing for shoe choices. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself.</div></details>
-      <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — vegetarian, vegan, gluten-free, dairy-free, and allergy-friendly options will be available. <strong>Garlic &amp; allium allergies are specifically accommodated.</strong> Check all that apply in the travel form below so we can make sure you're taken care of.</div></details>
+      <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — we'll have options for a range of dietary needs.</div></details>
       <details><summary>What's the weather like in August?</summary><div class="faq-body"><strong>Gorgeous.</strong> 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible but usually brief.</div></details>
       <details><summary>What's the nearest airport?</summary><div class="faq-body"><strong>Syracuse Hancock (SYR)</strong> is closest — about 25 minutes away and has the most flight options. <strong>Ithaca Tompkins (ITH)</strong> is about an hour but a gorgeous drive through wine country. Either works!</div></details>
-      <details><summary>How do I get from the airport to my Airbnb?</summary><div class="faq-body">Fill out the travel form below and let us know! Tell us if you need an airport pickup or if you're planning to rent your own car. We want to make sure everyone gets to the lake without stress.</div></details>
-      <details><summary>How do I get to the Woodlot?</summary><div class="faq-body">By boat! Everyone is staying at Airbnbs and cabins around the lake, and the final leg to the Woodlot is across the water. Boat rentals will be delivered directly to your accommodation. More details — including your specific Airbnb info — coming soon.</div></details>
-      <details><summary>Can I bring my parents?</summary><div class="faq-body">Yes! As long as they behave. The lake does not card anyone, but it does have standards. Little ones are especially encouraged to look for lucky stones in the pebbles along the shore.</div></details>
-      <details><summary>Indoors or outdoors?</summary><div class="faq-body">Ceremony is outside on the lakefront. The reception starts outdoors for the golden hour and moves inside as the evening cools. Comfortable shoes are your friend.</div></details>
+      <details><summary>How do I get from the airport to my Airbnb?</summary><div class="faq-body">Fill out the travel form below — let us know your arrival details and whether you need a pickup. We'll coordinate from there.</div></details>
+      <details><summary>How do I get to the Woodlot?</summary><div class="faq-body">By boat! Everyone is staying at Airbnbs and cabins around the lake, and the final leg to the Woodlot is across the water. Boat rentals will be delivered directly to your accommodation. Airbnb details can be found in the Out-of-Towners Lodging section.</div></details>
+      <details><summary>Indoors or outdoors?</summary><div class="faq-body">Ceremony is outside on the lakefront. Reception on the deck. Comfortable shoes are your friend.</div></details>
       <details><summary>What should I bring for the weekend?</summary><div class="faq-body"><strong>Swimsuit</strong> — the lake is crystal clear and you will want to be in it. Also: sunscreen, layers for the evening, comfortable shoes, and a camera.</div></details>
     </div>
   </div>
@@ -729,14 +728,13 @@
 
         <!-- Travel plan mini-form -->
         <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px dashed rgba(253,248,238,.2);">
-          <p style="font-family:'Anybody',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;">✦ While you're here</p>
-          <p style="font-size:1rem;line-height:1.6;color:rgba(253,248,238,.8);margin-bottom:1.2rem;">Let us know how you're getting to the lake so we can coordinate pickups and make sure everyone arrives well.</p>
+          <p style="font-family:'Anybody',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:.1em;text-transform:uppercase;color:#f472b6;margin-bottom:.75rem;">✦ While you're here</p>
           <form id="stay-travel-form">
             <input type="hidden" id="stf-name" name="name" />
             <input type="hidden" id="stf-property" name="property" />
             <input type="hidden" name="source" value="travel-plan" />
             <div class="form-group" style="margin-bottom:1rem;">
-              <label class="form-lbl" for="stf-party">Who else? <span style="font-weight:400;opacity:.6;">(names, please)</span></label>
+              <label class="form-lbl" style="color:#f472b6;" for="stf-party">Are you bringing additional guests? <span style="font-weight:400;opacity:.8;">(Names, please)</span></label>
               <input class="form-inp" type="text" id="stf-party" name="party" placeholder="e.g. Sarah, Jake, and little Mochi" />
             </div>
             <div style="margin-bottom:1rem;">
@@ -772,12 +770,12 @@
                 </div>
               </div>
               <div class="form-group" style="margin-bottom:.75rem;">
-                <label class="form-lbl" for="stf-departure">Departure Date &amp; Time</label>
-                <input class="form-inp" type="text" id="stf-departure" name="departure" placeholder="e.g. Sunday Aug 23, ~2pm" />
+                <label class="form-lbl" for="stf-flight">Arriving Flight Number <span style="font-weight:400;opacity:.6;">(optional)</span></label>
+                <input class="form-inp" type="text" id="stf-flight" name="flight" placeholder="e.g. AA 1234" />
               </div>
               <div class="form-group">
-                <label class="form-lbl" for="stf-flight">Flight Number <span style="font-weight:400;opacity:.6;">(optional)</span></label>
-                <input class="form-inp" type="text" id="stf-flight" name="flight" placeholder="e.g. AA 1234" />
+                <label class="form-lbl" for="stf-departure">Departure Date &amp; Time</label>
+                <input class="form-inp" type="text" id="stf-departure" name="departure" placeholder="e.g. Sunday Aug 23, ~2pm" />
               </div>
             </div>
             <button type="submit" class="form-btn" id="stf-submit" style="margin-top:.5rem;transform:none;background:#f472b6;border-color:#f472b6;color:#fff;">Send to Anna &amp; Steve ✦</button>
@@ -804,7 +802,7 @@
       <form id="tform">
         <div class="form-row form-row-2">
           <div class="form-group"><label class="form-lbl" for="fn">Your Name</label><input class="form-inp" type="text" id="fn" name="name" placeholder="First &amp; Last" required /></div>
-          <div class="form-group"><label class="form-lbl" for="fg">Who else? <span style="font-weight:400;opacity:.6;">(names, please)</span></label>
+          <div class="form-group"><label class="form-lbl" style="color:#f472b6;" for="fg">Are you bringing additional guests? <span style="font-weight:400;opacity:.8;">(Names, please)</span></label>
             <input class="form-inp" type="text" id="fg" name="guests" placeholder="e.g. Partner, kids, dog…" />
           </div>
         </div>
@@ -884,8 +882,31 @@ function buildPayload(form) {
   return payload;
 }
 
+function showNameError(msgId, msg) {
+  let el = document.getElementById(msgId);
+  if (!el) {
+    el = document.createElement('p');
+    el.id = msgId;
+    el.style.cssText = 'color:#f472b6;font-size:.9rem;margin-top:.4rem;font-style:italic;';
+  }
+  el.textContent = msg;
+  return el;
+}
+
 document.getElementById('stay-travel-form').addEventListener('submit', function(e){
   e.preventDefault();
+  const nameVal = document.getElementById('stf-name').value.trim();
+  if (!nameVal) {
+    const inp = document.getElementById('stf-name').closest('.form-wrap') || document.getElementById('stf-submit').parentNode;
+    const errId = 'stf-name-err';
+    let err = document.getElementById(errId);
+    if (!err) {
+      err = showNameError(errId, '✦ We need your name so we know who\'s coming!');
+      document.getElementById('stf-submit').insertAdjacentElement('beforebegin', err);
+    }
+    return;
+  }
+  document.getElementById('stf-name-err') && (document.getElementById('stf-name-err').textContent = '');
   const btn = document.getElementById('stf-submit');
   btn.disabled=true; btn.textContent='Sending…';
   const WEBHOOK='https://script.google.com/macros/s/AKfycbwgt-T92seUmeLPYKjpkDS1dqXqOddRT9EY0rePwZjM3zS4ui7DRNu2kBOoKcBlWVvB/exec';
@@ -899,6 +920,17 @@ document.getElementById('stay-travel-form').addEventListener('submit', function(
 
 document.getElementById('tform').addEventListener('submit', function(e){
   e.preventDefault();
+  const nameVal = document.getElementById('fn').value.trim();
+  if (!nameVal) {
+    const errId = 'fn-name-err';
+    let err = document.getElementById(errId);
+    if (!err) {
+      err = showNameError(errId, '✦ We need your name so we know who\'s coming!');
+      document.getElementById('fn').insertAdjacentElement('afterend', err);
+    }
+    return;
+  }
+  document.getElementById('fn-name-err') && (document.getElementById('fn-name-err').textContent = '');
   const btn = document.getElementById('fsubmit');
   btn.disabled=true; btn.textContent='Sending…';
   const WEBHOOK='https://script.google.com/macros/s/AKfycbwgt-T92seUmeLPYKjpkDS1dqXqOddRT9EY0rePwZjM3zS4ui7DRNu2kBOoKcBlWVvB/exec';
