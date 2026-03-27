@@ -613,15 +613,15 @@
       </div>
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
-      <h3>🚗 <a href="#travel-form" style="color:inherit;text-decoration:none;border-bottom:2px solid var(--gold);">Getting to Your Airbnb</a></h3>
-      <p>You can rent a car if you want the freedom to explore wine country. Need an airport pickup? <a href="#travel-form" style="color:var(--gold);text-decoration:underline;">Fill out the travel form below!</a></p>
+      <h3>🚗 <a href="#your-stay" style="color:inherit;text-decoration:none;border-bottom:2px solid var(--gold);">Getting to Your Airbnb</a></h3>
+      <p>You can rent a car if you want the freedom to explore wine country. Need an airport pickup? <a href="#your-stay" style="color:var(--gold);text-decoration:underline;">Fill out the travel form below!</a></p>
     </div>
     <div class="travel-card pop" style="margin-top:1.5rem;">
       <h3>⛵ Getting to the Woodlot</h3>
       <p>For the Friday rehearsal dinner and Saturday ceremony, you'll cross the lake by boat. Rentals are delivered directly to each Airbnb — no marina trip needed. The boats are also just… there for fun. Use them.</p>
       <div style="margin-top:1.25rem;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);overflow:hidden;line-height:0;">
         <a href="https://maps.app.goo.gl/9p71Nv4GDRWVayZo9" target="_blank" rel="noopener" style="display:block;">
-          <img src="assets/photos/map.png" alt="Wedding locations map" style="width:100%;display:block;" />
+          <img src="assets/map.jpg" alt="Hand-drawn map of Skaneateles Lake — The Woodlot, Airbnbs, marinas, fossils, and points of interest" style="width:100%;display:block;" />
         </a>
       </div>
       <p style="margin-top:.75rem;font-size:1rem;opacity:.85;">❤️ The Woodlot &nbsp;·&nbsp; 🔷 Boat refuel &nbsp;·&nbsp; 🏠 Airbnbs &nbsp;·&nbsp; ⭐ Points of interest</p>
@@ -631,7 +631,7 @@
       </div>
     </div>
     <div class="frames-grid" style="margin-top:3rem;">
-      <div class="frame frame-tilt-r pop d1"><img src="assets/web/venue-sunset.jpg" alt="Golden dissolution" /><p class="frame-caption">golden dissolution</p></div>
+      <div class="frame frame-tilt-r pop d1"><img src="assets/web/venue-sunset.jpg" alt="Golden dissolution" style="transform:rotate(180deg);" /><p class="frame-caption">golden dissolution</p></div>
       <div class="frame frame-tilt-l pop d2"><img src="assets/web/venue-shore-fern.jpg" alt="Shore" /><p class="frame-caption">infinite becoming</p></div>
       <div class="frame frame-tilt-r pop d3"><img src="assets/web/venue-firepit.jpg" alt="The firepit" /><p class="frame-caption">held by earth</p></div>
     </div>
@@ -646,10 +646,12 @@
       <details><summary>What's the dress code?</summary><div class="faq-body"><strong>Outdoor cocktail / garden party.</strong> The venue is three levels of decks with stairs — beautiful, but worth knowing for shoe choices. Sundresses, linen suits, flowy fabrics — yes. The vibe is celebratory and joyful. Express yourself.</div></details>
       <details><summary>Food for dietary restrictions?</summary><div class="faq-body">Yes — we'll have options for a range of dietary needs.</div></details>
       <details><summary>What's the weather like in August?</summary><div class="faq-body"><strong>Gorgeous.</strong> 70–85°F, low humidity, long golden evenings. Bring a light layer for after sunset. Quick afternoon thunderstorms are possible but usually brief.</div></details>
+      <details><summary>Can I contribute for lodging?</summary><div class="faq-body"><strong>Nothing is expected, anything helps.</strong> To get a rough idea of lodging costs, it's about $535 per bed, or $760 with boats per person for the weekend.</div></details>
       <details><summary>What's the nearest airport?</summary><div class="faq-body"><strong>Syracuse Hancock (SYR)</strong> is closest — about 25 minutes away and has the most flight options. <strong>Ithaca Tompkins (ITH)</strong> is about an hour but a gorgeous drive through wine country. Either works!</div></details>
       <details><summary>How do I get from the airport to my Airbnb?</summary><div class="faq-body">Fill out the travel form below — let us know your arrival details and whether you need a pickup. We'll coordinate from there.</div></details>
       <details><summary>How do I get to the Woodlot?</summary><div class="faq-body">By boat! Everyone is staying at Airbnbs and cabins around the lake, and the final leg to the Woodlot is across the water. Boat rentals will be delivered directly to your accommodation. Airbnb details can be found in the Out-of-Towners Lodging section.</div></details>
       <details><summary>Indoors or outdoors?</summary><div class="faq-body">Ceremony is outside on the lakefront. Reception on the deck. Comfortable shoes are your friend.</div></details>
+      <details><summary>What about gifts?</summary><div class="faq-body">In lieu of stuff, we have a <a href="#gifts" style="color:var(--gold);">honeymoon fund</a>. Thanks!</div></details>
       <details><summary>What should I bring for the weekend?</summary><div class="faq-body"><strong>Swimsuit</strong> — the lake is crystal clear and you will want to be in it. Also: sunscreen, layers for the evening, comfortable shoes, and a camera.</div></details>
     </div>
   </div>
@@ -778,6 +780,23 @@
                 <input class="form-inp" type="text" id="stf-departure" name="departure" placeholder="e.g. Sunday Aug 23, ~2pm" />
               </div>
             </div>
+            <div style="margin-bottom:1rem;">
+              <label class="form-lbl" style="color:#f472b6;">Dietary needs or allergies? <span style="font-weight:400;opacity:.8;">(check all that apply)</span></label>
+              <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:.5rem;">
+                <label class="radio-lbl"><input type="checkbox" name="diet_vegetarian" value="Vegetarian" style="accent-color:#f472b6;"> Vegetarian</label>
+                <label class="radio-lbl"><input type="checkbox" name="diet_vegan" value="Vegan" style="accent-color:#f472b6;"> Vegan</label>
+                <label class="radio-lbl"><input type="checkbox" name="diet_gf" value="Gluten-free" style="accent-color:#f472b6;"> Gluten-free</label>
+                <label class="radio-lbl"><input type="checkbox" name="diet_dairy" value="Dairy-free" style="accent-color:#f472b6;"> Dairy-free</label>
+                <label class="radio-lbl"><input type="checkbox" name="diet_nut" value="Nut allergy" style="accent-color:#f472b6;"> Nut allergy</label>
+                <label class="radio-lbl"><input type="checkbox" name="diet_shellfish" value="Shellfish allergy" style="accent-color:#f472b6;"> Shellfish allergy</label>
+                <label class="radio-lbl"><input type="checkbox" name="diet_nightshade" value="Nightshade allergy" style="accent-color:#f472b6;"> Nightshade allergy</label>
+                <label class="radio-lbl"><input type="checkbox" name="diet_allium" value="Garlic/allium allergy" style="accent-color:#f472b6;"> Garlic &amp; allium</label>
+              </div>
+              <div class="form-group" style="margin-top:.75rem;">
+                <label class="form-lbl" style="color:#f472b6;" for="stf-diet-other">Anything else we should know? <span style="font-weight:400;opacity:.8;">(severity, cross-contamination concerns, etc.)</span></label>
+                <input class="form-inp" type="text" id="stf-diet-other" name="diet_other" placeholder="e.g. Severe nut allergy — cross-contamination level" />
+              </div>
+            </div>
             <button type="submit" class="form-btn" id="stf-submit" style="margin-top:.5rem;transform:none;background:#f472b6;border-color:#f472b6;color:#fff;">Send to Anna &amp; Steve ✦</button>
           </form>
           <div id="stf-success" style="display:none;padding:1rem;background:rgba(201,168,76,.12);border-radius:.5rem;border:1px solid rgba(201,168,76,.3);">
@@ -818,6 +837,26 @@
           </div>
         </div>
 
+        <div class="form-row" style="margin-top:1rem;">
+          <div class="form-group" style="grid-column:1/-1;">
+            <label class="form-lbl">Dietary needs or allergies? <span style="font-weight:400;opacity:.8;">(check all that apply)</span></label>
+            <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:.5rem;">
+              <label class="radio-lbl"><input type="checkbox" name="diet_vegetarian" value="Vegetarian" style="accent-color:var(--gold);"> Vegetarian</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_vegan" value="Vegan" style="accent-color:var(--gold);"> Vegan</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_gf" value="Gluten-free" style="accent-color:var(--gold);"> Gluten-free</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_dairy" value="Dairy-free" style="accent-color:var(--gold);"> Dairy-free</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_nut" value="Nut allergy" style="accent-color:var(--gold);"> Nut allergy</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_shellfish" value="Shellfish allergy" style="accent-color:var(--gold);"> Shellfish allergy</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_nightshade" value="Nightshade allergy" style="accent-color:var(--gold);"> Nightshade allergy</label>
+              <label class="radio-lbl"><input type="checkbox" name="diet_allium" value="Garlic/allium allergy" style="accent-color:var(--gold);"> Garlic &amp; allium</label>
+            </div>
+            <div class="form-group" style="margin-top:.75rem;">
+              <label class="form-lbl" for="f-diet-other">Anything else we should know? <span style="font-weight:400;opacity:.8;">(severity, cross-contamination concerns, etc.)</span></label>
+              <input class="form-inp" type="text" id="f-diet-other" name="diet_other" placeholder="e.g. Severe nut allergy — cross-contamination level" />
+            </div>
+          </div>
+        </div>
+
         <button type="submit" class="form-btn" id="fsubmit">Send it our way ✦</button>
       </form>
       <div class="form-success" id="fsuccess">
@@ -830,7 +869,7 @@
 </section>
 
 <footer>
-  <p>Made with love for <strong>Anna &amp; Steve</strong> · August 22, 2026 · Skaneateles Lake, NY</p>
+  <p>Made with love by <strong>Anna</strong> · with a little fire from <strong>Calcifer</strong> · August 22, 2026 · Skaneateles Lake, NY</p>
   <p style="margin-top:.5rem;font-size:.9rem;">Questions? Reach out to us directly.</p>
 </footer>
 
