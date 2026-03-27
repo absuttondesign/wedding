@@ -745,7 +745,8 @@
               <label class="form-lbl" style="color:#f472b6;">Which events are you attending?</label>
               <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:.5rem;">
                 <label class="radio-lbl"><input type="checkbox" name="event_rehearsal" value="Rehearsal Dinner" style="accent-color:#f472b6;"> Rehearsal Dinner</label>
-                <label class="radio-lbl"><input type="checkbox" name="event_wedding" value="Wedding Ceremony &amp; Reception" style="accent-color:#f472b6;"> Wedding Ceremony &amp; Reception</label>
+                <label class="radio-lbl"><input type="checkbox" name="event_ceremony" value="Wedding Ceremony" style="accent-color:#f472b6;"> Wedding Ceremony</label>
+                <label class="radio-lbl"><input type="checkbox" name="event_reception" value="Dinner &amp; Dancing" style="accent-color:#f472b6;"> Dinner &amp; Dancing</label>
                 <label class="radio-lbl"><input type="checkbox" name="event_brunch" value="Sunday Picnic Brunch" style="accent-color:#f472b6;"> Sunday Picnic Brunch</label>
               </div>
             </div>
@@ -797,7 +798,7 @@
               </div>
               <div class="form-group" style="margin-top:.75rem;">
                 <label class="form-lbl" style="color:#f472b6;" for="stf-diet-other">Anything else we should know? <span style="font-weight:400;opacity:.8;">(severity, cross-contamination concerns, etc.)</span></label>
-                <input class="form-inp" type="text" id="stf-diet-other" name="diet_other" placeholder="e.g. Severe nut allergy — cross-contamination level" />
+                <input class="form-inp" type="text" id="stf-diet-other" name="other" placeholder="e.g. Severe nut allergy — cross-contamination level" />
               </div>
             </div>
             <button type="submit" class="form-btn" id="stf-submit" style="margin-top:.5rem;transform:none;background:#f472b6;border-color:#f472b6;color:#fff;">Send to Anna &amp; Steve ✦</button>
@@ -835,7 +836,8 @@
             <label class="form-lbl">Which events are you attending?</label>
             <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:.5rem;">
               <label class="radio-lbl"><input type="checkbox" name="event_rehearsal" value="Rehearsal Dinner" style="accent-color:var(--gold);"> Rehearsal Dinner</label>
-              <label class="radio-lbl"><input type="checkbox" name="event_wedding" value="Wedding Ceremony &amp; Reception" style="accent-color:var(--gold);"> Wedding Ceremony &amp; Reception</label>
+              <label class="radio-lbl"><input type="checkbox" name="event_ceremony" value="Wedding Ceremony" style="accent-color:var(--gold);"> Wedding Ceremony</label>
+              <label class="radio-lbl"><input type="checkbox" name="event_reception" value="Dinner &amp; Dancing" style="accent-color:var(--gold);"> Dinner &amp; Dancing</label>
               <label class="radio-lbl"><input type="checkbox" name="event_brunch" value="Sunday Picnic Brunch" style="accent-color:var(--gold);"> Sunday Picnic Brunch</label>
             </div>
           </div>
@@ -856,7 +858,7 @@
             </div>
             <div class="form-group" style="margin-top:.75rem;">
               <label class="form-lbl" for="f-diet-other">Anything else we should know? <span style="font-weight:400;opacity:.8;">(severity, cross-contamination concerns, etc.)</span></label>
-              <input class="form-inp" type="text" id="f-diet-other" name="diet_other" placeholder="e.g. Severe nut allergy — cross-contamination level" />
+              <input class="form-inp" type="text" id="f-diet-other" name="other" placeholder="e.g. Severe nut allergy — cross-contamination level" />
             </div>
           </div>
         </div>
@@ -918,11 +920,21 @@ function buildPayload(form) {
   const fd = new FormData(form);
   const payload = {};
   fd.forEach((v, k) => { payload[k] = v; });
-  // Use getAll for checkboxes so both events capture correctly if both are checked
-  ['event_rehearsal','event_wedding'].forEach(k => {
+  // Event checkboxes — one column each
+  ['event_rehearsal','event_ceremony','event_reception','event_brunch'].forEach(k => {
     const vals = fd.getAll(k);
     payload[k] = vals.length ? vals.join(', ') : '';
   });
+  // Dietary checkboxes — combine into single "dietary" column
+  const dietKeys = ['diet_vegetarian','diet_vegan','diet_gf','diet_dairy','diet_nut','diet_shellfish','diet_nightshade','diet_allium'];
+  const dietVals = dietKeys.flatMap(k => fd.getAll(k));
+  payload.dietary = dietVals.join(', ');
+  // Free text dietary detail goes into notes, not dietary
+  const other = fd.get('other') || '';
+  if (other) payload.notes = [payload.notes, other].filter(Boolean).join(' | ');
+  // Clean up individual diet keys so they don't send as separate columns
+  dietKeys.forEach(k => delete payload[k]);
+  delete payload.other;
   return payload;
 }
 
@@ -953,7 +965,7 @@ document.getElementById('stay-travel-form').addEventListener('submit', function(
   document.getElementById('stf-name-err') && (document.getElementById('stf-name-err').textContent = '');
   const btn = document.getElementById('stf-submit');
   btn.disabled=true; btn.textContent='Sending…';
-  const WEBHOOK='https://script.google.com/macros/s/AKfycbwgt-T92seUmeLPYKjpkDS1dqXqOddRT9EY0rePwZjM3zS4ui7DRNu2kBOoKcBlWVvB/exec';
+  const WEBHOOK='https://script.google.com/macros/s/AKfycbxSaIzTkdRYJHhQCFgGBlHOQF-WzGIY7Y97Tb0Uc9CBb6btmoXePRKskF_jL2BpAUq2/exec';
   function stfOk(){
     document.getElementById('stay-travel-form').style.display='none';
     document.getElementById('stf-success').style.display='block';
@@ -977,7 +989,7 @@ document.getElementById('tform').addEventListener('submit', function(e){
   document.getElementById('fn-name-err') && (document.getElementById('fn-name-err').textContent = '');
   const btn = document.getElementById('fsubmit');
   btn.disabled=true; btn.textContent='Sending…';
-  const WEBHOOK='https://script.google.com/macros/s/AKfycbwgt-T92seUmeLPYKjpkDS1dqXqOddRT9EY0rePwZjM3zS4ui7DRNu2kBOoKcBlWVvB/exec';
+  const WEBHOOK='https://script.google.com/macros/s/AKfycbxSaIzTkdRYJHhQCFgGBlHOQF-WzGIY7Y97Tb0Uc9CBb6btmoXePRKskF_jL2BpAUq2/exec';
   function ok(){ document.getElementById('tform').style.display='none'; document.getElementById('fsuccess').classList.add('on'); }
   function err(){ btn.disabled=false; btn.textContent='Try again ↩'; }
   fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildPayload(this))}).then(ok).catch(err);
