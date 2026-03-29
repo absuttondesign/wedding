@@ -127,11 +127,19 @@ Co will base64-encode and embed them when you're ready.
 - [x] FAQ — dietary simplified, kids/parents removed, Woodlot "coming soon" removed, airport→Airbnb updated, indoors/outdoors updated, ceremony → Evening
 - [x] Locals section — "Can't wait to see you!" header + "Let us know who's coming" subhead
 - [x] Pushed to GitHub Pages ✅
+- [x] Split "Wedding Ceremony & Reception" → two separate checkboxes ("Wedding Ceremony" + "Dinner & Dancing") on both forms
+- [x] Consolidated all dietary checkboxes into single `dietary` column in payload (comma-separated)
+- [x] Free-text "other" field routes to `notes` column instead of dietary
+- [x] New Apps Script deployment with updated doPost column mapping (16 columns: Timestamp through Notes)
+- [x] Webhook URLs swapped to new deployment
+- [x] Committed as aa81a3c (not yet pushed — HEAD.lock + no GitHub auth)
 
 ## Still needed
 
+- [ ] Anna: `rm .git/HEAD.lock && git push` from terminal to deploy form changes
+- [ ] Anna: Update Google Sheet column headers to match new doPost order (Timestamp | Form Type | Name | Who Else | Rehearsal Dinner | Wedding Ceremony | Dinner & Dancing | Sunday Picnic | Dietary | Property | Transport | Airport | Arrival | Flight # | Departure | Notes)
 - [ ] Swap Venmo handle (`@your-venmo-handle`)
-- [ ] Update Airbnb check-in/check-out exact times (currently "exact time TBD")
+- [ ] Update Airbnb check-in/check-out exact times (currently "exact time TBD") — need Steve's input
 - [ ] Add "We'll forward the checkin email a few days before arrival" note to lodging section
 - [ ] Add Sunday brunch venue name (currently "venue TBD — details coming soon")
 - [ ] Update FAQ airport drive times to furthest Airbnb (currently ~25 min SYR / ~1hr ITH)
