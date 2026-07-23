@@ -2,3 +2,11 @@
 *.DS_Store
 Thumbs.db
 assets/photos/raw/
+
+# Guest data — this repo is PUBLIC. Never commit form responses,
+# guest lists, addresses, or anything else with people's details in it.
+*.xlsx
+*.xls
+*.csv
+*.numbers
+lake-responses.xlsx
