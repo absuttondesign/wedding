@@ -133,10 +133,19 @@ Co will base64-encode and embed them when you're ready.
 - [x] New Apps Script deployment with updated doPost column mapping (16 columns: Timestamp through Notes)
 - [x] Webhook URLs swapped to new deployment
 - [x] Committed as aa81a3c (not yet pushed — HEAD.lock + no GitHub auth)
+- [x] New centered masthead ("Steve & Anna Get Married" + date/place subline, spinning-date badge centered under the title) replacing the left-aligned `.gallery-masthead`
+- [x] "Our Intentions" panel under the header, above the gallery nav cards
+- [x] `#schedule` rebuilt — three day-cards (Fri / Sat framed / Sun) with real times, replacing the old `.menu-section` list
+- [x] Framed Woodlot map (gold frame + floral corners) below the schedule cards — `assets/woodlot-map.jpg` (1760×1398, JPEG q95, 780 KB — the 3.7 MB PNG source lives in `_Agent Mail/WoodlotMapLegendWeddingDay.png`)
+- [x] Honeymoon fund: "Nothing is expected, anything helps."
+- [x] Lodging: "Lodging Costs" subhead + $535/$760 line
+- [x] All new classes namespaced `sa-` (mockup class names collided with existing site CSS); old `.gallery-masthead` / `.hero-*` / `.menu-*` rules left in place but unused
 
 ## Still needed
 
-- [ ] Anna: `rm .git/HEAD.lock && git push` from terminal to deploy form changes
+- [ ] Anna: `git push` from terminal to deploy (needs your GitHub auth)
+- [x] Repaired git — 5 zero-byte objects (4 blobs + 1 tree) were breaking every `git` command; refetched from GitHub, `git fsck` is clean. Backup of the broken `.git` was taken before the repair.
+- [x] Restored `assets/web/couple-1.jpg` from HEAD (had been truncated to 0 bytes)
 - [ ] Anna: Update Google Sheet column headers to match new doPost order (Timestamp | Form Type | Name | Who Else | Rehearsal Dinner | Wedding Ceremony | Dinner & Dancing | Sunday Picnic | Dietary | Property | Transport | Airport | Arrival | Flight # | Departure | Notes)
 - [ ] Swap Venmo handle (`@your-venmo-handle`)
 - [ ] Update Airbnb check-in/check-out exact times (currently "exact time TBD") — need Steve's input
