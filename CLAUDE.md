@@ -128,7 +128,9 @@ Co will base64-encode and embed them when you're ready.
 - [x] Locals section — "Can't wait to see you!" header + "Let us know who's coming" subhead
 - [x] Pushed to GitHub Pages ✅
 - [x] Thursday early-birds note (dashed-border strip above schedule cards) — boat picnic sunset-tour dinner, Aug 20
-- [x] Saturday card: day-of coordinator note — contact André (716-331-0258, tel: link) instead of the couple
+- [x] Saturday card: day-of coordinator note — contact André (716-331-0258, tel: link, digits in Anybody sans for legibility) instead of the couple
+- [x] Lake map updated — Marina & Gas callout version (`_Agent Mail/updatedMap-Lake.png` → assets/map.jpg, 1466×1576 JPEG q90, 700 KB)
+- [x] "Getting to the Woodlot" card moved from Travel section into #schedule, right under the framed map; caption renamed "Woodlot Map for Saturday"
 - [x] Split "Wedding Ceremony & Reception" → two separate checkboxes ("Wedding Ceremony" + "Dinner & Dancing") on both forms
 - [x] Consolidated all dietary checkboxes into single `dietary` column in payload (comma-separated)
 - [x] Free-text "other" field routes to `notes` column instead of dietary
