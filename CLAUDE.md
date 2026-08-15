@@ -127,6 +127,8 @@ Co will base64-encode and embed them when you're ready.
 - [x] FAQ — dietary simplified, kids/parents removed, Woodlot "coming soon" removed, airport→Airbnb updated, indoors/outdoors updated, ceremony → Evening
 - [x] Locals section — "Can't wait to see you!" header + "Let us know who's coming" subhead
 - [x] Pushed to GitHub Pages ✅
+- [x] Thursday early-birds note (dashed-border strip above schedule cards) — boat picnic sunset-tour dinner, Aug 20
+- [x] Saturday card: day-of coordinator note — contact André (716-331-0258, tel: link) instead of the couple
 - [x] Split "Wedding Ceremony & Reception" → two separate checkboxes ("Wedding Ceremony" + "Dinner & Dancing") on both forms
 - [x] Consolidated all dietary checkboxes into single `dietary` column in payload (comma-separated)
 - [x] Free-text "other" field routes to `notes` column instead of dietary
@@ -140,6 +142,12 @@ Co will base64-encode and embed them when you're ready.
 - [x] Honeymoon fund: "Nothing is expected, anything helps."
 - [x] Lodging: "Lodging Costs" subhead + $535/$760 line
 - [x] All new classes namespaced `sa-` (mockup class names collided with existing site CSS); old `.gallery-masthead` / `.hero-*` / `.menu-*` rules left in place but unused
+
+## Pushing note (Aug 2026)
+
+A stale `GITHUB_TOKEN` env var shadows the valid `gh` keyring login (annasuttondesign-lab) and breaks plain `git push`. Workaround that works:
+`TOKEN=$(env -u GITHUB_TOKEN gh auth token) && git push "https://x-access-token:${TOKEN}@github.com/absuttondesign/wedding.git" main`
+Permanent fix: remove `GITHUB_TOKEN` from the shell profile, or refresh it.
 
 ## Still needed
 
